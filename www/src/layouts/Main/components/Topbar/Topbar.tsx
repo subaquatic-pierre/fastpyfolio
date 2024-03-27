@@ -87,12 +87,12 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }: Props): JSX.Eleme
         {/* TODO: Get logo from CMS */}
         <Box
           sx={{
-            objectFit: 'contain',
-            ...(mode === 'dark' &&
-              !colorInvert && {
-                WebkitFilter: 'brightness(0) invert(1)',
-                filter: 'brightness(0) invert(1)'
-              })
+            objectFit: 'contain'
+            // ...(mode === 'dark' &&
+            //   !colorInvert && {
+            //     WebkitFilter: 'brightness(0) invert(1)',
+            //     filter: 'brightness(0) invert(1)'
+            //   })
           }}
           component={'img'}
           src={settings.logo}

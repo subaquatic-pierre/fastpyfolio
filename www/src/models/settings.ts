@@ -35,7 +35,7 @@ export const defaultSiteSettings: SiteSettings = {
   linkedIn: '',
   instagram: '',
   webhook: '',
-  logo: '',
+  logo: '/logo.png',
   favicon: '',
   ogMeta: [],
   host: '',
