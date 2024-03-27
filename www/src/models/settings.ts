@@ -22,7 +22,7 @@ export type SiteSettings = {
 };
 
 export const defaultSiteSettings: SiteSettings = {
-  title: 'Fast API NextJS Portfolio',
+  title: 'Nebula Nexus',
   description: '',
   externalScripts: '',
   phoneNumber: '',

@@ -48,7 +48,7 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }: Props): JSX.Eleme
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 60
+    threshold: 30
   });
 
   // const loadPages = async () => {
@@ -102,17 +102,32 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }: Props): JSX.Eleme
       </Box>
       <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
         <Stack spacing={2} direction="row">
-          <NavItem title={'About Us'} path="/about-us" id={'about-us'} colorInvert={colorInvert} />
-          <NavItem title={'Services'} path="/services" id={'services'} colorInvert={colorInvert} />
-          <NavItem title={'Contact Us'} path="/contact-us" id={'contact'} colorInvert={colorInvert} />
+          {/* <NavItem title={'About Us'} path="/about-us" id={'about-us'} colorInvert={colorInvert} /> */}
+          {/* <NavItem title={'Services'} path="/services" id={'services'} colorInvert={colorInvert} /> */}
+          {/* <NavItem title={'Contact'} path="/contact-us" id={'contact'} colorInvert={colorInvert} /> */}
+          <NavItem title={'Projects'} path="/projects" id={'projects'} colorInvert={colorInvert} />
           <NavItem title={'Blog'} path="/blog" id={'blog'} colorInvert={colorInvert} />
-          <NavItem title={'Demo Pages'} id={'pages'} items={pagesState} colorInvert={colorInvert} />
+          {/* <NavItem title={'Demo Pages'} id={'pages'} items={pagesState} colorInvert={colorInvert} /> */}
         </Stack>
-        <Box marginLeft={4} marginRight={2}>
-          <Button variant="contained" color="primary" href="/admin" LinkComponent={Link} size="large">
-            Login
-          </Button>
-        </Box>
+        <Stack mx={4} spacing={2} direction="row">
+          <Box>
+            <Button
+              size={'large'}
+              variant="contained"
+              fullWidth
+              component={Link}
+              href="/contact"
+              // target={'blank'}
+            >
+              Get In Touch
+            </Button>
+          </Box>
+          <Box>
+            <Button variant="contained" color="primary" href="/admin" LinkComponent={Link} size="large">
+              Login
+            </Button>
+          </Box>
+        </Stack>
         <Box>
           <ThemeModeToggler />
         </Box>

@@ -35,34 +35,34 @@ const Typography = (mode: ThemeMode, fontFamily: FontFamily, theme: Theme): Typo
   },
   h5: {
     fontWeight: 600,
-    fontSize: '1rem',
+    fontSize: '1.1rem',
     lineHeight: 1.5
   },
   h6: {
     fontWeight: 400,
-    fontSize: '0.875rem',
+    fontSize: '1rem',
     lineHeight: 1.57
   },
   caption: {
     fontWeight: 400,
-    fontSize: '0.75rem',
+    fontSize: '0.8rem',
     lineHeight: 1.66
   },
   body1: {
-    fontSize: '0.875rem',
+    fontSize: '0.9',
     lineHeight: 1.57
   },
   body2: {
-    fontSize: '0.75rem',
+    fontSize: '0.8rem',
     lineHeight: 1.66
   },
   subtitle1: {
-    fontSize: '0.875rem',
+    fontSize: '0.9rem',
     fontWeight: 600,
     lineHeight: 1.57
   },
   subtitle2: {
-    fontSize: '0.75rem',
+    fontSize: '0.8rem',
     fontWeight: 500,
     lineHeight: 1.66
   },

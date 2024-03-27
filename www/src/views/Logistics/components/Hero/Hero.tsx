@@ -7,18 +7,20 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { alpha, useTheme } from '@mui/material/styles';
 
 import Container from 'components/Container';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Hero = (): JSX.Element => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-    defaultMatches: true,
+    defaultMatches: true
   });
 
   const LeftSide = () => (
     <Box data-aos={isMd ? 'fade-right' : 'fade-up'}>
       <Box marginBottom={2}>
         <Typography variant="h2" color="text.primary" sx={{ fontWeight: 700 }}>
-          We make trucking{' '}
+          Empowering digital innovation,
         </Typography>
         <Typography
           color={'primary'}
@@ -26,23 +28,21 @@ const Hero = (): JSX.Element => {
           variant="h2"
           fontWeight={700}
           sx={{
-            background: `linear-gradient(180deg, transparent 82%, ${alpha(
-              theme.palette.secondary.main,
-              0.3,
-            )} 0%)`,
+            background: `linear-gradient(180deg, transparent 82%, ${alpha(theme.palette.secondary.main, 0.3)} 0%)`
           }}
         >
-          efficient
+          the future of cloud computing
         </Typography>
       </Box>
       <Box marginBottom={3}>
         <Typography variant="h6" component="p" color="text.secondary">
-          Forward thinking businesses use our cloud backup service to ensure
-          data reliability and safety.
+          With a focus on scalability and performance optimization, expertise is leveraged to develop robust applications and architect
+          resilient cloud infrastructure. Trust in the commitment to deliver tailored solutions that drive success in the ever-evolving
+          digital landscape.
         </Typography>
       </Box>
-      <Button variant="contained" color="primary" size="large">
-        Get started
+      <Button variant="contained" LinkComponent={Link} href="/contact" color="primary" size="large">
+        Get In Touch
       </Button>
     </Box>
   );
@@ -51,20 +51,22 @@ const Hero = (): JSX.Element => {
     return (
       <Box
         sx={{
+          position: 'relative',
           height: { xs: 'auto', md: 1 },
           '& img': {
-            objectFit: 'cover',
-          },
+            objectFit: 'cover'
+          }
         }}
       >
         <Box
-          component={'img'}
-          loading="lazy"
-          src={'https://assets.maccarianagency.com/backgrounds/img50.jpg'}
-          height={{ xs: 'auto', md: 1 }}
-          maxHeight={{ xs: 300, md: 1 }}
-          width={1}
-          maxWidth={1}
+          component={Image}
+          fill
+          src={'/images/laptop.jpg'}
+          alt="hero"
+          // height={{ xs: 'auto', md: 1 }}
+          // maxHeight={{ xs: 300, md: 1 }}
+          // width={1}
+          // maxWidth={1}
         />
       </Box>
     );
@@ -75,22 +77,12 @@ const Hero = (): JSX.Element => {
       sx={{
         width: 1,
         height: 1,
-        overflow: 'hidden',
+        overflow: 'hidden'
       }}
     >
       <Container paddingX={0} paddingY={0} maxWidth={{ sm: 1, md: 1236 }}>
-        <Box
-          display={'flex'}
-          flexDirection={{ xs: 'column', md: 'row' }}
-          position={'relative'}
-          minHeight={{ md: 600 }}
-        >
-          <Box
-            width={1}
-            order={{ xs: 2, md: 1 }}
-            display={'flex'}
-            alignItems={'center'}
-          >
+        <Box display={'flex'} flexDirection={{ xs: 'column', md: 'row' }} position={'relative'} minHeight={{ md: 600 }}>
+          <Box width={1} order={{ xs: 2, md: 1 }} display={'flex'} alignItems={'center'}>
             <Container>
               <LeftSide />
             </Container>
@@ -100,21 +92,21 @@ const Hero = (): JSX.Element => {
               flex: { xs: '0 0 100%', md: '0 0 50%' },
               position: 'relative',
               maxWidth: { xs: '100%', md: '50%' },
-              order: { xs: 1, md: 2 },
+              order: { xs: 1, md: 2 }
             }}
           >
             <Box
               sx={{
                 width: { xs: 1, md: '50vw' },
                 height: '100%',
-                position: 'relative',
+                position: 'relative'
               }}
             >
               <Box
                 sx={{
                   width: '100%',
                   height: '100%',
-                  overflow: 'hidden',
+                  overflow: 'hidden'
                 }}
               >
                 <Box
@@ -126,12 +118,12 @@ const Hero = (): JSX.Element => {
                     position: { xs: 'relative', md: 'absolute' },
                     clipPath: {
                       xs: 'none',
-                      md: 'polygon(10% 0%, 100% 0, 100% 100%, 0% 100%)',
+                      md: 'polygon(10% 0%, 100% 0, 100% 100%, 0% 100%)'
                     },
                     shapeOutside: {
                       xs: 'none',
-                      md: 'polygon(10% 0%, 100% 0, 100% 100%, 0% 100%)',
-                    },
+                      md: 'polygon(10% 0%, 100% 0, 100% 100%, 0% 100%)'
+                    }
                   }}
                 >
                   <RightSide />

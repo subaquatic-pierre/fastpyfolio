@@ -1,4 +1,5 @@
-import { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode, useEffect } from 'react';
+import AOS from 'aos';
 
 // scroll bar
 import 'simplebar/dist/simplebar.css';
@@ -23,6 +24,9 @@ import { store } from 'store';
 import ThemeCustomization from 'themes';
 import { AuthContextProvider } from 'contexts/AuthContext';
 import 'styles/main.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import 'aos/dist/aos.css';
 
 // types
 type LayoutProps = NextPage & {
@@ -35,6 +39,25 @@ interface Props {
 }
 
 export default function App({ Component, pageProps }: AppProps & Props) {
+  useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles && jssStyles.parentElement) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+
+    AOS.init({
+      once: true,
+      delay: 50,
+      duration: 500,
+      easing: 'ease-in-out'
+    });
+  }, []);
+
+  useEffect(() => {
+    AOS.refresh();
+  }, []);
+
   return (
     <ReduxProvider store={store}>
       <ConfigProvider>

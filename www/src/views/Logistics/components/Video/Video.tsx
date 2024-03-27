@@ -4,15 +4,18 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 
 import Container from 'components/Container';
+import { Stack } from '@mui/material';
 
 const Video = (): JSX.Element => {
   return (
     <Box
       sx={{
         position: 'relative',
-        backgroundImage:
-          'url(https://assets.maccarianagency.com/backgrounds/img50.jpg)',
+        backgroundImage: 'url(/images/cloudComponents.jpg)',
         backgroundPosition: 'center center',
+        backgroundSize: 'cover',
+        width: '100%',
+        height: '300px',
         '&:after': {
           content: '""',
           position: 'absolute',
@@ -22,54 +25,42 @@ const Video = (): JSX.Element => {
           bottom: 0,
           bgcolor: '#11092d',
           opacity: 0.7,
-          zIndex: 1,
-        },
+          zIndex: 1
+        }
       }}
     >
       <Container position={'relative'} zIndex={3}>
         <Box>
-          <Box marginBottom={4}>
-            <Typography
-              variant={'h4'}
-              gutterBottom
-              align={'center'}
-              sx={{ fontWeight: 700, color: 'common.white' }}
-            >
-              Watch the video
+          <Stack marginBottom={4} alignItems="center">
+            <Typography variant={'h4'} gutterBottom align={'center'} sx={{ fontWeight: 700, color: 'common.white' }}>
+              Discover Cloud Components
             </Typography>
             <Typography
               variant={'h6'}
               component={'p'}
               color={'text.secondary'}
+              maxWidth={400}
               align={'center'}
               sx={{ color: 'common.white' }}
             >
-              After 3 days all of your offers will arrive and you will have
-              another 7 days to select your new company.
+              Dive into the intricacies of cloud architecture. Explore the components that power our innovative solutions and unlock new
+              possibilities for your digital infrastructure.
             </Typography>
-          </Box>
-          <Box
+          </Stack>
+          {/* <Box
             sx={{
-              backgroundImage:
-                'url(https://assets.maccarianagency.com/backgrounds/img50.jpg)',
+              backgroundImage: 'url(/images/cloudComponents.jpg)',
               backgroundPosition: 'center center',
               height: 324,
               maxWidth: 600,
               margin: '0 auto',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'center'
             }}
           >
             <IconButton size={'large'}>
-              <Box
-                component={'svg'}
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                width={50}
-                height={50}
-              >
+              <Box component={'svg'} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width={50} height={50}>
                 <path
                   fillRule="evenodd"
                   d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
@@ -77,7 +68,7 @@ const Video = (): JSX.Element => {
                 />
               </Box>
             </IconButton>
-          </Box>
+          </Box> */}
         </Box>
       </Container>
     </Box>

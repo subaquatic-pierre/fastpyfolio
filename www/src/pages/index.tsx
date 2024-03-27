@@ -1,4 +1,5 @@
 import Page from 'components/Page';
+import Main from 'layouts/Main';
 import { getSiteSettings } from 'lib/serverFetch';
 import { SiteSettings } from 'models/settings';
 import { GetStaticProps } from 'next';
@@ -11,9 +12,11 @@ interface PageProps {
 
 const IndexPage: React.FC<PageProps> = ({ settings }): JSX.Element => {
   return (
-    <Page settings={settings} title={settings.title}>
-      <Logistics />
-    </Page>
+    <Main>
+      <Page settings={settings} title={settings.title}>
+        <Logistics />
+      </Page>
+    </Main>
   );
 };
 

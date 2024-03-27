@@ -8,11 +8,12 @@ import Layout from 'layouts';
 import Page from 'components/Page';
 import ContactForm from 'sections/contact-us/ContactForm';
 import ContactHeader from 'sections/contact-us/ContactHeader';
+import Main from 'layouts/Main';
 
 // ==============================|| CONTACT US - MAIN ||============================== //
 
 const ContactUs = () => (
-  <Layout variant="guest">
+  <Main>
     <Page title="Contact Us">
       <Grid container spacing={12} justifyContent="center" alignItems="center" sx={{ mb: 12 }}>
         <Grid item xs={12}>
@@ -25,7 +26,7 @@ const ContactUs = () => (
         </Grid>
       </Grid>
     </Page>
-  </Layout>
+  </Main>
 );
 
 export default ContactUs;

@@ -14,83 +14,53 @@ const mock = [
   {
     media: 'https://assets.maccarianagency.com/backgrounds/img2.jpg',
     title: 'Motivation is the first step to success',
-    subtitle:
-      'Once you\'re setup, instantly withdraw payments or deposit into your bank account within 2-3 business days.',
+    subtitle: "Once you're setup, instantly withdraw payments or deposit into your bank account within 2-3 business days."
   },
   {
     media: 'https://assets.maccarianagency.com/backgrounds/img3.jpg',
     title: 'Success steps for your personal or business life',
-    subtitle:
-      'We make sure to include all the amenities and niceties that a growing startup could possibly need.',
+    subtitle: 'We make sure to include all the amenities and niceties that a growing startup could possibly need.'
   },
   {
     media: 'https://assets.maccarianagency.com/backgrounds/img4.jpg',
     title: 'Increasing prosperity with positive thinking',
-    subtitle:
-      'Once you\'re setup, instantly withdraw payments or deposit into your bank account within 2-3 business days.',
-  },
+    subtitle: "Once you're setup, instantly withdraw payments or deposit into your bank account within 2-3 business days."
+  }
 ];
 
 const News = (): JSX.Element => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-    defaultMatches: true,
+    defaultMatches: true
   });
 
   return (
     <Box>
       <Box marginBottom={4}>
-        <Typography
-          variant={'h4'}
-          gutterBottom
-          align={'center'}
-          sx={{ fontWeight: 700 }}
-        >
-          Our latest news
+        <Typography variant={'h4'} gutterBottom align={'center'} sx={{ fontWeight: 700 }}>
+          Latest Updates
         </Typography>
-        <Typography
-          variant={'h6'}
-          component={'p'}
-          color={'text.secondary'}
-          align={'center'}
-        >
-          After 3 days all of your offers will arrive and you will have another
-          7 days to select your new company.
+        <Typography variant={'h6'} component={'p'} color={'text.secondary'} align={'center'}>
+          Stay up-to-date with our latest news and announcements. Explore opportunities and make informed decisions about your next steps.
         </Typography>
       </Box>
       <Grid container spacing={isMd ? 4 : 2}>
         <Grid item xs={12} md={8}>
           <Grid container spacing={isMd ? 4 : 2} direction="column">
             {mock.map((item, index) => (
-              <Grid
-                item
-                xs={12}
-                key={index}
-                data-aos="fade-up"
-                data-aos-delay={index * 200}
-                data-aos-offset={100}
-                data-aos-duration={600}
-              >
-                <Box
-                  component={Card}
-                  display={'flex'}
-                  flexDirection={{ xs: 'column', sm: 'row' }}
-                >
+              <Grid item xs={12} key={index} data-aos="fade-up" data-aos-delay={index * 200} data-aos-offset={100} data-aos-duration={600}>
+                <Box component={Card} display={'flex'} flexDirection={{ xs: 'column', sm: 'row' }}>
                   <CardMedia
                     title={item.title}
                     image={item.media}
                     sx={{
                       height: { xs: 240, sm: 'auto' },
-                      width: { xs: 1, sm: 300 },
+                      width: { xs: 1, sm: 300 }
                     }}
                   />
                   <CardContent>
                     <Box>
-                      <Typography
-                        variant="h6"
-                        gutterBottom
-                        color="text.primary"
-                      >
+                      <Typography variant="h6" gutterBottom color="text.primary">
                         {item.title}
                       </Typography>
                       <Typography variant="subtitle1" color="text.secondary">
@@ -111,21 +81,11 @@ const News = (): JSX.Element => {
             <Grid item xs={12} data-aos="fade-up">
               <Box component={Card} bgcolor={'primary.main'}>
                 <CardContent>
-                  <Typography
-                    variant="h6"
-                    gutterBottom
-                    color="text.primary"
-                    sx={{ color: 'common.white' }}
-                  >
+                  <Typography variant="h6" gutterBottom color="text.primary" sx={{ color: 'common.white' }}>
                     You like what you’re reading?
                   </Typography>
-                  <Typography
-                    variant="subtitle1"
-                    color="text.secondary"
-                    sx={{ color: 'common.white' }}
-                  >
-                    Get free online programing tips and resources delivered
-                    directly to your inbox.
+                  <Typography variant="subtitle1" color="text.secondary" sx={{ color: 'common.white' }}>
+                    Get free online programing tips and resources delivered directly to your inbox.
                   </Typography>
                 </CardContent>
               </Box>
@@ -134,7 +94,7 @@ const News = (): JSX.Element => {
               <Box component={Card}>
                 <CardContent>
                   <Typography variant="h6" gutterBottom color="text.primary">
-                    Interactive decision support system
+                    Browse Updates, Stay in the Know
                   </Typography>
                   <Button
                     variant="contained"
@@ -150,12 +110,7 @@ const News = (): JSX.Element => {
                         width={24}
                         height={24}
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </Box>
                     }
                   >

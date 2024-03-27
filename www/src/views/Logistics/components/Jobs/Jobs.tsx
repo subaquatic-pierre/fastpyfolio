@@ -6,23 +6,27 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Link from 'next/link';
 
 export const mock = [
   {
     title: 'Front-End Developer',
     location: 'Madrid',
     type: 'Remote',
+    slug: 'slug'
   },
   {
     title: 'Community Manager',
     location: 'Paris',
     type: 'Full time',
+    slug: 'slug'
   },
   {
     title: 'UX/UI Designer',
     location: 'Yerevan',
     type: 'Part time',
-  },
+    slug: 'slug'
+  }
 ];
 
 const Jobs = (): JSX.Element => {
@@ -35,25 +39,17 @@ const Jobs = (): JSX.Element => {
           data-aos={'fade-up'}
           gutterBottom
           sx={{
-            fontWeight: 700,
+            fontWeight: 700
           }}
         >
-          We are hiring
+          Latest Projects Showcase
         </Typography>
-        <Typography
-          variant="h6"
-          align={'center'}
-          color={'text.secondary'}
-          data-aos={'fade-up'}
-        >
-          Keep track of what's happening with your data, change permissions, and
-          run
-          <br />
-          reports against your data anywhere in the world.
+        <Typography variant="h6" align={'center'} color={'text.secondary'} data-aos={'fade-up'}>
+          Explore our recent innovations and discover the power of innovation in action
         </Typography>
         <Box display="flex" justifyContent={'center'} marginTop={2}>
-          <Button variant="contained" color="primary" size="large">
-            View all positions
+          <Button LinkComponent={Link} href="/projects" variant="contained" color="primary" size="large">
+            View all projects
           </Button>
         </Box>
       </Box>
@@ -61,57 +57,51 @@ const Jobs = (): JSX.Element => {
         <Grid container spacing={2}>
           {mock.map((item, i) => (
             <Grid item xs={12} key={i}>
-              <Box
-                component={Card}
-                variant={'outlined'}
-                bgcolor={'transparent'}
-                sx={{
-                  '&:hover': {
-                    boxShadow: 2,
-                  },
-                }}
-              >
+              <Link href={`/projects/${item.slug}`}>
                 <Box
-                  component={CardContent}
-                  display={'flex'}
-                  alignItems={'center'}
+                  component={Card}
+                  variant={'outlined'}
+                  bgcolor={'transparent'}
+                  sx={{
+                    '&:hover': {
+                      boxShadow: 2
+                    }
+                  }}
                 >
-                  <Box
-                    display={'flex'}
-                    flexDirection={{ xs: 'column', sm: 'row' }}
-                    flex={'1 1 100%'}
-                    justifyContent={{ sm: 'space-between' }}
-                    alignItems={{ sm: 'center' }}
-                  >
-                    <Typography
-                      variant={'h6'}
-                      fontWeight={700}
-                      sx={{ marginBottom: { xs: 1, sm: 0 } }}
-                    >
-                      {item.title}
-                    </Typography>
-                    <Typography variant={'subtitle1'} color={'text.secondary'}>
-                      {`${item.location} / ${item.type}`}
-                    </Typography>
-                  </Box>
-                  <Box marginLeft={2} color={'primary.main'}>
+                  <Box component={CardContent} display={'flex'} alignItems={'center'}>
                     <Box
-                      component={'svg'}
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      width={{ xs: 30, sm: 40 }}
-                      height={{ xs: 30, sm: 40 }}
+                      display={'flex'}
+                      flexDirection={{ xs: 'column', sm: 'row' }}
+                      flex={'1 1 100%'}
+                      justifyContent={{ sm: 'space-between' }}
+                      alignItems={{ sm: 'center' }}
                     >
-                      <path
-                        fillRule="evenodd"
-                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                        clipRule="evenodd"
-                      />
+                      <Typography variant={'h6'} fontWeight={700} sx={{ marginBottom: { xs: 1, sm: 0 } }}>
+                        {item.title}
+                      </Typography>
+                      <Typography variant={'subtitle1'} color={'text.secondary'}>
+                        {`${item.location} / ${item.type}`}
+                      </Typography>
+                    </Box>
+                    <Box marginLeft={2} color={'primary.main'}>
+                      <Box
+                        component={'svg'}
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        width={{ xs: 30, sm: 40 }}
+                        height={{ xs: 30, sm: 40 }}
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </Box>
                     </Box>
                   </Box>
                 </Box>
-              </Box>
+              </Link>
             </Grid>
           ))}
         </Grid>

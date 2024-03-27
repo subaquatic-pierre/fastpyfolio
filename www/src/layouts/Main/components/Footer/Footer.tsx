@@ -7,64 +7,73 @@ import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 import useSettings from 'hooks/useSettings';
 import { Stack } from '@mui/material';
+import { GithubFilled, LinkedinFilled } from '@ant-design/icons';
 
 const Footer = (): JSX.Element => {
   const settings = useSettings();
   const theme = useTheme();
   const { mode } = theme.palette;
 
+  const linkSX = {
+    color: theme.palette.common.white,
+    fontSize: '0.875rem',
+    fontWeight: 400,
+    opacity: '0.6',
+    cursor: 'pointer',
+    '&:hover': {
+      opacity: '1'
+    }
+  };
+
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12}>
-        <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} width={1} flexDirection={{ xs: 'column', sm: 'row' }}>
-          <Box display={'flex'} component={Link} href="/" title={settings.title} height={{ xs: 60, md: 80 }} width={{ xs: 60, md: 100 }}>
-            {/* TODO: Get logo from CMS */}
-            <Box
-              sx={{
-                objectFit: 'contain',
-                ...(mode === 'dark' && {
-                  WebkitFilter: 'brightness(0) invert(1)',
-                  filter: 'brightness(0) invert(1)'
-                })
-              }}
-              component={'img'}
-              src={settings.logo}
-              height={1}
-              width={1}
-            />
-          </Box>
-          {/* <Box display="flex" flexWrap={'wrap'} alignItems={'center'}>
-            <Box marginTop={1} marginRight={2}>
-              <Link underline="none" component="a" href="/" color="text.primary" variant={'subtitle2'}>
-                Home
-              </Link>
-            </Box>
-            <Box marginTop={1} marginRight={2}>
-              <Link
-                underline="none"
-                component="a"
-                href="https://thefront.maccarianagency.com/docs/introduction"
-                target={'blank'}
-                color="text.primary"
-                variant={'subtitle2'}
-              >
-                Documentation
-              </Link>
-            </Box>
-            <Box marginTop={1}>
-              <Button
-                variant="outlined"
-                color="primary"
-                component="a"
-                target="blank"
-                href="https://mui.com/store/items/the-front-landing-page/"
-                size="small"
-              >
-                Purchase now
-              </Button>
-            </Box>
-          </Box> */}
+      <Grid item xs={3} md={4}>
+        <Box display={'flex'} component={Link} href="/" title={settings.title} height={{ xs: 60, md: 80 }} width={{ xs: 60, md: 100 }}>
+          {/* TODO: Get logo from CMS */}
+          <Box
+            sx={{
+              objectFit: 'contain'
+              // ...(mode === 'dark' && {
+              //   WebkitFilter: 'brightness(0) invert(1)',
+              //   filter: 'brightness(0) invert(1)'
+              // })
+            }}
+            component={'img'}
+            src={settings.logo}
+            height={1}
+            width={1}
+          />
         </Box>
+      </Grid>
+      <Grid item xs={9} md={8} container spacing={2}>
+        <Stack direction="row" width="100%" justifyContent="space-between" alignItems="center">
+          <Typography>Nebula Nexus - Unleashing Innovation in the Cloud</Typography>
+          <Stack spacing={1} direction="row">
+            <Link underline="none" href="https://www.linkedin.com/in/subaquatic-pierre/" target="_blank" sx={linkSX}>
+              <LinkedinFilled style={{ fontSize: '200%' }} />
+            </Link>
+            <Link underline="none" href="https://github.com/subaquatic-pierre" target="_blank" sx={linkSX}>
+              <GithubFilled style={{ fontSize: '200%' }} />
+            </Link>
+          </Stack>
+        </Stack>
+        {/* <Grid item xs={12} sm={8}>
+          <Typography>Nebula Nexus - Unleashing Innovation in the Cloud</Typography>
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <Grid container spacing={2} alignItems="center" sx={{ justifyContent: 'flex-end' }}>
+            <Grid item>
+              <Link underline="none" href="https://www.linkedin.com/in/subaquatic-pierre/" target="_blank" sx={linkSX}>
+                <LinkedinFilled style={{ fontSize: '200%' }} />
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link underline="none" href="https://github.com/subaquatic-pierre" target="_blank" sx={linkSX}>
+                <GithubFilled style={{ fontSize: '200%' }} />
+              </Link>
+            </Grid>
+          </Grid>
+        </Grid> */}
       </Grid>
       <Grid item xs={12}>
         <Stack direction="row" alignItems="center" justifyContent="center">

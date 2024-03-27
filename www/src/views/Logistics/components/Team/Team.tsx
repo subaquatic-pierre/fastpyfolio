@@ -19,45 +19,26 @@ const Team = (): JSX.Element => {
           <Box>
             <Box marginBottom={2}>
               <Typography variant={'h4'} sx={{ fontWeight: 700 }} gutterBottom>
-                Our leaders will help you
+                Elevating API Experiences
               </Typography>
               <Typography color="text.secondary">
-                We develop intelligent solutions for companies to reduce their
-                operational costs, increase their profitability and improve
-                service quality.
+                Unlocking the potential of digital ecosystems with expertise in API design. Committed to developing intelligent solutions
+                streamlining operations, driving profitability, and elevating service quality for businesses.
               </Typography>
             </Box>
             <Grid container spacing={1}>
               {[
-                'Our sign up is dead simple. We only require your basic company information',
-                'We support bulk uploading via SQL, integrations with most data storage products',
-                'Simply select where you\'d like to transfer your data',
+                'Harnessing the power of Python, Rust, and Node.js to create robust and efficient APIs, ensuring optimal performance and scalability.',
+                'Embracing microservices architecture to design APIs that are modular, flexible, and easily maintainable, facilitating seamless integration and updates.',
+                'Leveraging cutting-edge technologies to ensure APIs are fast, scalable, and responsive, providing a smooth and efficient user experience.',
+                'Implementing efficient data management strategies within APIs, allowing for seamless data handling and processing, enhancing overall system performance.',
+                'Continuously optimizing API designs to adapt to evolving business needs and technological advancements, ensuring long-term efficiency and effectiveness.'
               ].map((item, i) => (
                 <Grid item xs={12} key={i}>
-                  <Box
-                    component={ListItem}
-                    disableGutters
-                    width={'auto'}
-                    padding={0}
-                  >
-                    <Box
-                      component={ListItemAvatar}
-                      minWidth={'auto !important'}
-                      marginRight={2}
-                    >
-                      <Box
-                        component={Avatar}
-                        bgcolor={theme.palette.secondary.main}
-                        width={20}
-                        height={20}
-                      >
-                        <svg
-                          width={12}
-                          height={12}
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
+                  <Box component={ListItem} disableGutters width={'auto'} padding={0}>
+                    <Box component={ListItemAvatar} minWidth={'auto !important'} marginRight={2}>
+                      <Box component={Avatar} bgcolor={theme.palette.secondary.main} width={20} height={20}>
+                        <svg width={12} height={12} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                           <path
                             fillRule="evenodd"
                             d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -77,7 +58,7 @@ const Team = (): JSX.Element => {
           <Box height={1} width={1} display={'flex'} flexDirection={'column'}>
             <Box
               component={'img'}
-              src={'https://assets.maccarianagency.com/backgrounds/img1.jpg'}
+              src={'/images/roundOrb.png'}
               alt="..."
               width={160}
               height={160}
@@ -87,16 +68,19 @@ const Team = (): JSX.Element => {
               boxShadow={4}
               data-aos={'fade-up'}
               sx={{
+                display: {
+                  xs: 'none',
+                  md: 'block'
+                },
                 objectFit: 'cover',
-                filter:
-                  theme.palette.mode === 'dark' ? 'brightness(0.5)' : 'none',
+                filter: theme.palette.mode === 'dark' ? 'brightness(0.5)' : 'none'
               }}
             />
             <Box
               component={'img'}
               width={200}
               height={200}
-              src={'https://assets.maccarianagency.com/backgrounds/img2.jpg'}
+              src={'/images/helmetMan2.jpg'}
               alt="..."
               marginTop={'-8%'}
               zIndex={2}
@@ -104,27 +88,30 @@ const Team = (): JSX.Element => {
               boxShadow={4}
               data-aos={'fade-up'}
               sx={{
+                display: {
+                  xs: 'none',
+                  md: 'block'
+                },
                 objectFit: 'cover',
-                filter:
-                  theme.palette.mode === 'dark' ? 'brightness(0.5)' : 'none',
+                filter: theme.palette.mode === 'dark' ? 'brightness(0.5)' : 'none'
               }}
             />
             <Box
               component={'img'}
               width={300}
               height={300}
-              src={'https://assets.maccarianagency.com/backgrounds/img4.jpg'}
+              src={'/images/helmetMan.jpg'}
               alt="..."
-              marginTop={'-20%'}
-              marginLeft={'calc(100% - 300px)'}
+              marginTop={{ xs: 0, md: '-20%' }}
+              marginLeft={{ xs: 'auto', md: 'calc(100% - 300px)' }}
+              mr={{ xs: 'auto', md: 'none' }}
               zIndex={1}
               borderRadius={'100%'}
               boxShadow={4}
               data-aos={'fade-up'}
               sx={{
                 objectFit: 'cover',
-                filter:
-                  theme.palette.mode === 'dark' ? 'brightness(0.5)' : 'none',
+                filter: theme.palette.mode === 'dark' ? 'brightness(0.5)' : 'none'
               }}
             />
           </Box>

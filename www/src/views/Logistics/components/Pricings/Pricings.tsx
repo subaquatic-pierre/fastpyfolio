@@ -14,35 +14,23 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 
 const mock = [
   {
-    title: 'Starter',
-    price: '$22',
-    features: ['1 User', '1 App', 'Integrations'],
-    isHighlighted: false,
+    title: 'Frontend',
+    price: '',
+    features: ['ReactJS', 'HTML5', 'CSS3', 'Typescript', 'Javascript', 'NextJS'],
+    isHighlighted: false
   },
   {
-    title: 'Pro',
-    price: '$44',
-    features: [
-      'All in Starter plan',
-      'Google Ads',
-      'SSO via Google',
-      'API access',
-    ],
-    isHighlighted: true,
+    title: 'Backend',
+    price: '',
+    features: ['Python', 'Rust', 'NodeJS', 'Django', 'Actix Web', 'ExpressJS'],
+    isHighlighted: true
   },
   {
-    title: 'Enterprise',
-    price: '$77',
-    features: [
-      'All features',
-      'Email support',
-      'Google Ads',
-      'SSO via Google',
-      'API access',
-      'Facebook Ads',
-    ],
-    isHighlighted: false,
-  },
+    title: 'Infrastructure',
+    price: '',
+    features: ['Kubernetes', 'Terraform', 'Google Cloud', 'AWS', 'Docker', 'Linux'],
+    isHighlighted: false
+  }
 ];
 
 const Pricing = (): JSX.Element => {
@@ -51,43 +39,23 @@ const Pricing = (): JSX.Element => {
   return (
     <Box>
       <Box marginBottom={4}>
-        <Typography
-          variant={'h4'}
-          align={'center'}
-          gutterBottom
-          sx={{ fontWeight: 700 }}
-        >
-          Flexible and transparent pricing
+        <Typography variant={'h4'} align={'center'} gutterBottom sx={{ fontWeight: 700 }}>
+          Technology Stack
         </Typography>
-        <Typography
-          variant={'h6'}
-          component={'p'}
-          color={'text.secondary'}
-          align={'center'}
-        >
-          Whatever your status, our offers evolve according to your needs.
+        <Typography variant={'h6'} component={'p'} color={'text.secondary'} align={'center'}>
+          Empowering Innovation with Cutting-edge Tools
         </Typography>
       </Box>
       <Grid container spacing={4}>
         {mock.map((item, i) => (
           <Grid item xs={12} md={4} key={i}>
-            <Box
-              component={Card}
-              height={1}
-              display={'flex'}
-              flexDirection={'column'}
-              boxShadow={item.isHighlighted ? 4 : 0}
-            >
+            <Box component={Card} height={1} display={'flex'} flexDirection={'column'} boxShadow={item.isHighlighted ? 4 : 0}>
               <CardContent
                 sx={{
-                  padding: 4,
+                  padding: 4
                 }}
               >
-                <Box
-                  marginBottom={4}
-                  display={'flex'}
-                  justifyContent={'space-between'}
-                >
+                <Box marginBottom={4} display={'flex'} justifyContent={'space-between'}>
                   <Typography variant={'h4'}>
                     <Box component={'span'} fontWeight={600}>
                       {item.title}
@@ -99,38 +67,16 @@ const Pricing = (): JSX.Element => {
                         {item.price}
                       </Box>
                     </Typography>
-                    <Typography variant={'subtitle2'} color={'text.secondary'}>
-                      /mo
-                    </Typography>
+                    <Typography variant={'subtitle2'} color={'text.secondary'}></Typography>
                   </Box>
                 </Box>
                 <Grid container spacing={1}>
                   {item.features.map((feature, j) => (
                     <Grid item xs={12} key={j}>
-                      <Box
-                        component={ListItem}
-                        disableGutters
-                        width={'auto'}
-                        padding={0}
-                      >
-                        <Box
-                          component={ListItemAvatar}
-                          minWidth={'auto !important'}
-                          marginRight={2}
-                        >
-                          <Box
-                            component={Avatar}
-                            bgcolor={theme.palette.primary.main}
-                            width={20}
-                            height={20}
-                          >
-                            <svg
-                              width={12}
-                              height={12}
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
+                      <Box component={ListItem} disableGutters width={'auto'} padding={0}>
+                        <Box component={ListItemAvatar} minWidth={'auto !important'} marginRight={2}>
+                          <Box component={Avatar} bgcolor={theme.palette.primary.main} width={20} height={20}>
+                            <svg width={12} height={12} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                               <path
                                 fillRule="evenodd"
                                 d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -146,11 +92,11 @@ const Pricing = (): JSX.Element => {
                 </Grid>
               </CardContent>
               <Box flexGrow={1} />
-              <CardActions sx={{ justifyContent: 'flex-end', padding: 4 }}>
+              {/* <CardActions sx={{ justifyContent: 'flex-end', padding: 4 }}>
                 <Button size={'large'} variant={'contained'}>
                   Learn more
                 </Button>
-              </CardActions>
+              </CardActions> */}
             </Box>
           </Grid>
         ))}

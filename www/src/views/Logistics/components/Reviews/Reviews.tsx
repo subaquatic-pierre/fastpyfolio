@@ -12,25 +12,23 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 const mock = [
   {
     feedback:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    name: 'Clara Bertoletti',
-    title: 'MUI lover',
-    avatar: 'https://assets.maccarianagency.com/avatars/img4.jpg',
-  },
-  {
-    feedback:
-      'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    name: 'Jhon Anderson',
-    title: 'Senior Frontend Developer',
-    avatar: 'https://assets.maccarianagency.com/avatars/img5.jpg',
-  },
-  {
-    feedback:
-      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    name: 'Chary Smith',
-    title: 'SEO at Comoti',
-    avatar: 'https://assets.maccarianagency.com/avatars/img6.jpg',
-  },
+      '👋 Software engineer & full-stack enthusiast | Robust solutions, cloud architect 🚀 | Expert in AWS, Terraform, Kubernetes, Docker, Linux | DevOps Agile | Rust, Python, React, Typescript ',
+    name: 'Pierre Du Toit',
+    title: 'Software Engineer | Cloud Architect',
+    avatar: '/images/pierre.jpeg'
+  }
+  // {
+  //   feedback: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+  //   name: 'Jhon Anderson',
+  //   title: 'Senior Frontend Developer',
+  //   avatar: 'https://assets.maccarianagency.com/avatars/img5.jpg'
+  // },
+  // {
+  //   feedback: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+  //   name: 'Chary Smith',
+  //   title: 'SEO at Comoti',
+  //   avatar: 'https://assets.maccarianagency.com/avatars/img6.jpg'
+  // }
 ];
 
 const Reviews = (): JSX.Element => {
@@ -44,24 +42,17 @@ const Reviews = (): JSX.Element => {
           gutterBottom
           sx={{
             fontWeight: 700,
-            color: 'common.white',
+            color: 'common.white'
           }}
         >
-          Trusted by the world’s most innovative businesses – big and small
+          Meet the Face Behind the Code
         </Typography>
-        <Typography
-          variant="h6"
-          align={'center'}
-          data-aos={'fade-up'}
-          sx={{ color: 'common.white' }}
-        >
-          Companies from across the globe have had fantastic experiences using
-          theFront.
-          <br />
-          Here’s what they have to say.
+        <Typography variant="h6" align={'center'} data-aos={'fade-up'} sx={{ color: 'common.white' }}>
+          Get to know the person behind the screen. Here's a glimpse into my journey and experiences in the tech world.
         </Typography>
       </Box>
       <Grid container spacing={2}>
+        <Grid item md={4} xs={0} />
         {mock.map((item, i) => (
           <Grid item xs={12} md={4} key={i}>
             <Box
@@ -81,23 +72,15 @@ const Reviews = (): JSX.Element => {
               <CardContent
                 sx={{
                   display: 'flex',
-                  flexDirection: 'column',
+                  flexDirection: 'column'
                 }}
               >
                 <Box sx={{ paddingBottom: 2 }}>
                   <ListItem component="div" disableGutters sx={{ padding: 0 }}>
                     <ListItemAvatar sx={{ marginRight: 3 }}>
-                      <Avatar
-                        src={item.avatar}
-                        variant={'rounded'}
-                        sx={{ width: 100, height: 100, borderRadius: 2 }}
-                      />
+                      <Avatar src={item.avatar} variant={'rounded'} sx={{ width: 100, height: 100, borderRadius: 2 }} />
                     </ListItemAvatar>
-                    <ListItemText
-                      sx={{ margin: 0 }}
-                      primary={item.name}
-                      secondary={item.title}
-                    />
+                    <ListItemText sx={{ margin: 0 }} primary={item.name} secondary={item.title} />
                   </ListItem>
                 </Box>
                 <Typography color="text.secondary">{item.feedback}</Typography>

@@ -2,28 +2,14 @@ import React from 'react';
 import { alpha, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 
-import Main from 'layouts/Main';
 import Container from 'components/Container';
-import {
-  About,
-  AboutBottom,
-  Features,
-  Hero,
-  Integrations,
-  Jobs,
-  News,
-  Pricings,
-  Reviews,
-  Team,
-  Trucking,
-  Video,
-} from './components';
+import { About, AboutBottom, Features, Hero, Integrations, Jobs, News, Pricings, Reviews, Team, Trucking, Video } from './components';
 
 const Logistics = (): JSX.Element => {
   const theme = useTheme();
 
   return (
-    <Main>
+    <>
       <Box
         bgcolor={'alternate.main'}
         sx={{
@@ -37,12 +23,9 @@ const Logistics = (): JSX.Element => {
             left: '5%',
             height: '100%',
             backgroundSize: '18px 18px',
-            backgroundImage: `radial-gradient(${alpha(
-              theme.palette.primary.dark,
-              0.4,
-            )} 20%, transparent 20%)`,
-            opacity: 0.2,
-          },
+            backgroundImage: `radial-gradient(${alpha(theme.palette.primary.dark, 0.4)} 20%, transparent 20%)`,
+            opacity: 0.2
+          }
         }}
       >
         <Box position={'relative'} zIndex={3}>
@@ -52,7 +35,8 @@ const Logistics = (): JSX.Element => {
       <Container>
         <Trucking />
       </Container>
-      <About />
+      {/* <About /> */}
+      <Video />
       <Container>
         <Features />
       </Container>
@@ -64,7 +48,6 @@ const Logistics = (): JSX.Element => {
       <Container>
         <Team />
       </Container>
-      <Video />
       <Box bgcolor={'#11092d'}>
         <Container>
           <Integrations />
@@ -86,7 +69,7 @@ const Logistics = (): JSX.Element => {
           <Reviews />
         </Container>
       </Box>
-    </Main>
+    </>
   );
 };
 

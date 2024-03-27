@@ -68,11 +68,11 @@ const SidebarNav = ({ pages }: Props): JSX.Element => {
         <Box
           sx={{
             maxWidth: '100px',
-            objectFit: 'contain',
-            ...(mode === 'dark' && {
-              WebkitFilter: 'brightness(0) invert(1)',
-              filter: 'brightness(0) invert(1)'
-            })
+            objectFit: 'contain'
+            // ...(mode === 'dark' && {
+            //   WebkitFilter: 'brightness(0) invert(1)',
+            //   filter: 'brightness(0) invert(1)'
+            // })
           }}
           component={'img'}
           src={settings.logo}
@@ -82,12 +82,26 @@ const SidebarNav = ({ pages }: Props): JSX.Element => {
 
       <Box paddingX={2} paddingY={2}>
         <Stack spacing={2}>
-          <LinkNavItem title={'About Us'} path="/about-us" id={'about-us'} />
-          <LinkNavItem title={'Services'} path="/services" id={'services'} />
-          <LinkNavItem title={'Contact Us'} path="/contact-us" id={'contact'} />
+          {/* <LinkNavItem title={'About Us'} path="/about-us" id={'about-us'} /> */}
+          {/* <LinkNavItem title={'Services'} path="/services" id={'services'} /> */}
+          {/* <LinkNavItem title={'Contact Us'} path="/contact-us" id={'contact'} /> */}
+          {/* <LinkNavItem title={'Blog'} path="/blog" id={'blog'} /> */}
+          <LinkNavItem title={'Projects'} path="/projects" id={'projects'} />
           <LinkNavItem title={'Blog'} path="/blog" id={'blog'} />
-          <NavItem title={'Demo Pages'} id={'pages'} items={pagesState} />
+          {/* <NavItem title={'Demo Pages'} id={'pages'} items={pagesState} /> */}
         </Stack>
+        <Box marginTop={2}>
+          <Button
+            size={'large'}
+            variant="contained"
+            fullWidth
+            component={Link}
+            href="/contact"
+            // target={'blank'}
+          >
+            Get In Touch
+          </Button>
+        </Box>
         {/* <Box>
           <NavItem title={'Landings'} items={landingPages} />
         </Box>

@@ -3,6 +3,6 @@
 module.exports = {
   reactStrictMode: false,
   images: {
-    domains: ['flagcdn.com']
+    domains: ['flagcdn.com', 'assets.maccarianagency.com', 'localhost']
   }
 };
