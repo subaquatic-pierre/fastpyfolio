@@ -11,7 +11,7 @@ const mock = [
   'https://assets.maccarianagency.com/svg/logos/fitbit-original.svg',
   'https://assets.maccarianagency.com/svg/logos/netflix-original.svg',
   'https://assets.maccarianagency.com/svg/logos/google-original.svg',
-  'https://assets.maccarianagency.com/svg/logos/paypal-original.svg',
+  'https://assets.maccarianagency.com/svg/logos/paypal-original.svg'
 ];
 
 const Partners = (): JSX.Element => {
@@ -43,10 +43,7 @@ const Partners = (): JSX.Element => {
                     src={item}
                     alt="..."
                     sx={{
-                      filter:
-                        theme.palette.mode === 'dark'
-                          ? 'brightness(0) invert(0.7)'
-                          : 'none',
+                      filter: theme.palette.mode === 'dark' ? 'brightness(0) invert(0.7)' : 'none'
                     }}
                   />
                 </Box>

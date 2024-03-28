@@ -17,7 +17,7 @@ const ProfileTab = ({ handleLogout }: Props) => {
   const router = useRouter();
   const [selectedIndex, setSelectedIndex] = useState(0);
   const handleListItemClick = (event: React.MouseEvent<HTMLDivElement>, index: number) => {
-    router.push('/profile');
+    router.push('/admin/profile');
     setSelectedIndex(index);
   };
 

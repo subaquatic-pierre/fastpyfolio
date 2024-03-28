@@ -14,33 +14,33 @@ const mock = [
   {
     name: 'Clara Bertoletti',
     title: 'MUI lover',
-    avatar: 'https://assets.maccarianagency.com/avatars/img4.jpg',
+    avatar: 'https://assets.maccarianagency.com/avatars/img4.jpg'
   },
   {
     name: 'Jhon Anderson',
     title: 'Senior Frontend Developer',
-    avatar: 'https://assets.maccarianagency.com/avatars/img5.jpg',
+    avatar: 'https://assets.maccarianagency.com/avatars/img5.jpg'
   },
   {
     name: 'Chary Smith',
     title: 'SEO at Comoti',
-    avatar: 'https://assets.maccarianagency.com/avatars/img6.jpg',
+    avatar: 'https://assets.maccarianagency.com/avatars/img6.jpg'
   },
   {
     name: 'Clara Bertoletti',
     title: 'MUI lover',
-    avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
+    avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg'
   },
   {
     name: 'Jhon Anderson',
     title: 'Senior Frontend Developer',
-    avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
+    avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg'
   },
   {
     name: 'Chary Smith',
     title: 'SEO at Comoti',
-    avatar: 'https://assets.maccarianagency.com/avatars/img3.jpg',
-  },
+    avatar: 'https://assets.maccarianagency.com/avatars/img3.jpg'
+  }
 ];
 
 const Team = (): JSX.Element => {
@@ -52,7 +52,7 @@ const Team = (): JSX.Element => {
         <Typography
           sx={{
             textTransform: 'uppercase',
-            fontWeight: 700,
+            fontWeight: 700
           }}
           gutterBottom
           color={'text.secondary'}
@@ -66,35 +66,23 @@ const Team = (): JSX.Element => {
           gutterBottom
           sx={{
             fontWeight: 700,
-            marginTop: theme.spacing(1),
+            marginTop: theme.spacing(1)
           }}
         >
           Small team. Big hearts.
         </Typography>
         <Typography variant="h6" align={'center'} color={'text.secondary'}>
-          Our focus is always on finding the best people to work with. Our bar
-          is high, but you look ready to take on the challenge.
+          Our focus is always on finding the best people to work with. Our bar is high, but you look ready to take on the challenge.
         </Typography>
       </Box>
       <Grid container spacing={2}>
         {mock.map((item, i) => (
           <Grid item xs={12} md={4} key={i}>
-            <Box
-              width={1}
-              height={1}
-              component={Card}
-              boxShadow={0}
-              variant={'outlined'}
-              bgcolor={'alternate.main'}
-            >
+            <Box width={1} height={1} component={Card} boxShadow={0} variant={'outlined'} bgcolor={'alternate.main'}>
               <CardContent sx={{ padding: 3 }}>
                 <ListItem component="div" disableGutters sx={{ padding: 0 }}>
                   <ListItemAvatar sx={{ marginRight: 3 }}>
-                    <Avatar
-                      src={item.avatar}
-                      variant={'rounded'}
-                      sx={{ width: 100, height: 100, borderRadius: 2 }}
-                    />
+                    <Avatar src={item.avatar} variant={'rounded'} sx={{ width: 100, height: 100, borderRadius: 2 }} />
                   </ListItemAvatar>
                   <ListItemText
                     sx={{ margin: 0 }}

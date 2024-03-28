@@ -23,11 +23,7 @@ const SidebarNav = ({ pages, onClose }: Props): JSX.Element => {
 
   return (
     <Box paddingBottom={2}>
-      <Box
-        justifyContent={'flex-end'}
-        onClick={() => onClose()}
-        display={{ xs: 'flex', md: 'none' }}
-      >
+      <Box justifyContent={'flex-end'} onClick={() => onClose()} display={{ xs: 'flex', md: 'none' }}>
         <CloseIcon fontSize="small" />
       </Box>
       <Box paddingX={2}>
@@ -39,7 +35,7 @@ const SidebarNav = ({ pages, onClose }: Props): JSX.Element => {
                 fontWeight: 700,
                 textTransform: 'uppercase',
                 marginBottom: 1,
-                display: 'block',
+                display: 'block'
               }}
             >
               {item.groupTitle}
@@ -54,15 +50,9 @@ const SidebarNav = ({ pages, onClose }: Props): JSX.Element => {
                     fullWidth
                     sx={{
                       justifyContent: 'flex-start',
-                      color:
-                        activeLink === p.href
-                          ? theme.palette.primary.main
-                          : theme.palette.text.primary,
-                      backgroundColor:
-                        activeLink === p.href
-                          ? alpha(theme.palette.primary.main, 0.1)
-                          : 'transparent',
-                      fontWeight: activeLink === p.href ? 600 : 400,
+                      color: activeLink === p.href ? theme.palette.primary.main : theme.palette.text.primary,
+                      backgroundColor: activeLink === p.href ? alpha(theme.palette.primary.main, 0.1) : 'transparent',
+                      fontWeight: activeLink === p.href ? 600 : 400
                     }}
                     onClick={() => onClose()}
                   >

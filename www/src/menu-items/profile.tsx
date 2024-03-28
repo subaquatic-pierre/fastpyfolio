@@ -12,16 +12,16 @@ import { NavItemType } from 'types/menu';
 
 const profile: NavItemType = {
   id: 'group-profile',
-  title: 'Profile',
+  title: 'User',
   type: 'group',
   children: [
     {
       id: 'profile',
-      title: 'User Profile',
+      title: 'Profile',
       type: 'item',
       icon: UserOutlined,
-      url: '/profile/personal'
-    },
+      url: '/admin/profile'
+    }
     // {
     //   id: 'certifications',
     //   title: 'Certifications',
@@ -29,13 +29,13 @@ const profile: NavItemType = {
     //   icon: FileTextOutlined,
     //   url: '/profile/certifications'
     // },
-    {
-      id: 'message',
-      title: 'My Messages',
-      type: 'item',
-      icon: MessageOutlined,
-      url: '/profile/messages'
-    }
+    // {
+    //   id: 'message',
+    //   title: 'My Messages',
+    //   type: 'item',
+    //   icon: MessageOutlined,
+    //   url: '/profile/messages'
+    // }
     // {
     //   id: 'stream',
     //   title: 'Session Recordings',

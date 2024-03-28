@@ -63,7 +63,8 @@ export const reduceSiteSettings = (data: any): SiteSettings => {
       loaded: true
     };
 
-    return settings;
+    // return settings;
+    return defaultSiteSettings;
   } catch (e) {
     console.debug('Error reducing site settings');
     return defaultSiteSettings;

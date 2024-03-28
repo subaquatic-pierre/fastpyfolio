@@ -12,6 +12,17 @@ export type User = {
   role: UserRoleEnum;
 };
 
+export type UserProfile = {
+  id: number;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
+  firstName: string | null;
+  lastName: string | null;
+  contact: string | null;
+  user: User;
+};
+
 export type UserRoleEnum = 'admin' | 'user';
 
 export type JWTToken = {

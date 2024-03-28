@@ -4,15 +4,7 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Main from 'layouts/Main';
 import Container from 'components/Container';
-import {
-  About,
-  Advantages,
-  Features,
-  Integrations,
-  Reviews,
-  Team,
-  VideoSection,
-} from './components';
+import { About, Advantages, Features, Integrations, Reviews, Team, VideoSection } from './components';
 
 const Service = (): JSX.Element => {
   const theme = useTheme();
@@ -24,7 +16,7 @@ const Service = (): JSX.Element => {
           backgroundImage: `linear-gradient(120deg, ${theme.palette.background.paper} 0%, ${theme.palette.alternate.main} 100%)`,
           position: 'relative',
           marginTop: -13,
-          paddingTop: 13,
+          paddingTop: 13
         }}
       >
         <Container position={'relative'} zIndex={3}>
@@ -44,13 +36,10 @@ const Service = (): JSX.Element => {
             bottom: 0,
             right: 0,
             zIndex: 1,
-            height: '35%',
+            height: '35%'
           }}
         >
-          <polygon
-            fill={theme.palette.background.paper}
-            points="0,273 1921,273 1921,0 "
-          />
+          <polygon fill={theme.palette.background.paper} points="0,273 1921,273 1921,0 " />
         </Box>
       </Box>
       <Container>

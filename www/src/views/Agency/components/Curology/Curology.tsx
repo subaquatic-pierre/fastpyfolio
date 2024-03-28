@@ -16,7 +16,7 @@ const Curology = (): JSX.Element => {
         sx={{
           fontWeight: 900,
           color: theme.palette.common.white,
-          textTransform: 'uppercase',
+          textTransform: 'uppercase'
         }}
       >
         Curology
@@ -27,7 +27,7 @@ const Curology = (): JSX.Element => {
         color="text.primary"
         align={'center'}
         sx={{
-          color: theme.palette.common.white,
+          color: theme.palette.common.white
         }}
       >
         Curology custom skincare

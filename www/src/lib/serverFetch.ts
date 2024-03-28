@@ -1,3 +1,4 @@
+import { defaultSiteSettings } from 'models/settings';
 import { SiteSettings, reduceSiteSettings } from 'models/settings';
 import { ApiRequest, ApiResponse } from './api';
 import axios from 'axios';
@@ -29,7 +30,7 @@ export const serverApiRequest = async <Model = object>({
 export const getSiteSettings = async (): Promise<SiteSettings> => {
   const res = await serverApiRequest<{ data: any }>({ endpoint: GET_SITE_SETTINGS });
 
-  const siteSettings = reduceSiteSettings(res.data.data);
+  const siteSettings = reduceSiteSettings(res);
 
   return {
     ...siteSettings

@@ -19,7 +19,7 @@ import { CREATE_MESSAGE, GET_MESSAGES, GET_USERS, GET_ADMINS } from 'lib/endpoin
 const initialState: ChatStateProps = {
   error: null,
   chats: [],
-  user: blankUser,
+  user: blankUser as any,
   users: []
 };
 

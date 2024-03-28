@@ -1,7 +1,6 @@
 apiVersion: v1
 items:
   # --- API BACKEND ---
-
   - apiVersion: apps/v1
     kind: Deployment
     metadata:
@@ -10,35 +9,27 @@ items:
       name: fastpyfolio-api
       namespace: fastpyfolio
     spec:
-      progressDeadlineSeconds: 600
       replicas: 1
-      revisionHistoryLimit: 10
       selector:
         matchLabels:
           app: fastpyfolio-api
-      strategy:
-        rollingUpdate:
-          maxSurge: 25%
-          maxUnavailable: 25%
-        type: RollingUpdate
       template:
         metadata:
           labels:
             app: fastpyfolio-api
         spec:
           containers:
-            - image: docker-user/fastpyfolio-api:0.10
+            - image: subaquaticpierre/fastpyfolio-api:0.9
               imagePullPolicy: IfNotPresent
               name: fastpyfolio-api
               envFrom:
                 - configMapRef:
-                    name: fastpyfolio-config
+                    name: fastpyfolio-api-config
 
-          imagePullSecrets:
-            - name: regcred-docker
+          # imagePullSecrets:
+          #   - name: regcred-docker
 
   # --- WWW BACKEND ---
-
   - apiVersion: apps/v1
     kind: Deployment
     metadata:
@@ -47,32 +38,25 @@ items:
       name: fastpyfolio-www
       namespace: fastpyfolio
     spec:
-      progressDeadlineSeconds: 600
       replicas: 1
-      revisionHistoryLimit: 10
       selector:
         matchLabels:
           app: fastpyfolio-www
-      strategy:
-        rollingUpdate:
-          maxSurge: 25%
-          maxUnavailable: 25%
-        type: RollingUpdate
       template:
         metadata:
           labels:
             app: fastpyfolio-www
         spec:
           containers:
-            - image: docker-user/fastpyfolio-www:0.10
+            - image: subaquaticpierre/fastpyfolio-www:0.9
               imagePullPolicy: IfNotPresent
               name: fastpyfolio-www
               envFrom:
                 - configMapRef:
-                    name: fastpyfolio-config
+                    name: fastpyfolio-www-config
 
-          imagePullSecrets:
-            - name: regcred-docker
+          # imagePullSecrets:
+          #   - name: regcred-docker
 
 kind: List
 metadata:

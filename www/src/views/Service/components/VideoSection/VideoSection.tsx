@@ -16,7 +16,7 @@ const VideoSection = (): JSX.Element => {
           sx={{
             maxWidth: 450,
             position: 'relative',
-            marginX: 'auto',
+            marginX: 'auto'
           }}
         >
           <Box
@@ -25,26 +25,14 @@ const VideoSection = (): JSX.Element => {
               borderRadius: '2.75rem',
               boxShadow: 1,
               width: '75% !important',
-              marginX: 'auto',
+              marginX: 'auto'
             }}
           >
             <Box>
-              <Box
-                position={'relative'}
-                zIndex={2}
-                maxWidth={1}
-                height={'auto'}
-                sx={{ verticalAlign: 'middle' }}
-              >
+              <Box position={'relative'} zIndex={2} maxWidth={1} height={'auto'} sx={{ verticalAlign: 'middle' }}>
                 <PhoneSkeletonIllustration />
               </Box>
-              <Box
-                position={'absolute'}
-                top={'2.4%'}
-                left={'4%'}
-                width={'92.4%'}
-                height={'96%'}
-              >
+              <Box position={'absolute'} top={'2.4%'} left={'4%'} width={'92.4%'} height={'96%'}>
                 <Box
                   component={'img'}
                   loading="lazy"
@@ -59,10 +47,7 @@ const VideoSection = (): JSX.Element => {
                   sx={{
                     objectFit: 'cover',
                     borderRadius: '2.5rem',
-                    filter:
-                      theme.palette.mode === 'dark'
-                        ? 'brightness(0.7)'
-                        : 'none',
+                    filter: theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none'
                   }}
                 />
               </Box>
@@ -77,7 +62,7 @@ const VideoSection = (): JSX.Element => {
               variant="h4"
               color="text.primary"
               sx={{
-                fontWeight: 700,
+                fontWeight: 700
               }}
             >
               Now available on Google Play market and Apple Store
@@ -85,17 +70,10 @@ const VideoSection = (): JSX.Element => {
           </Box>
           <Box marginBottom={3}>
             <Typography variant="h6" component="p" color="text.secondary">
-              Don't listen to what they say go and see. Travelling with our app
-              is easy. Join the biggest community of travellers.
+              Don't listen to what they say go and see. Travelling with our app is easy. Join the biggest community of travellers.
             </Typography>
           </Box>
-          <Box
-            height={1}
-            width={1}
-            maxHeight={300}
-            maxWidth={{ xs: '100%', sm: 400 }}
-            marginTop={3}
-          >
+          <Box height={1} width={1} maxHeight={300} maxWidth={{ xs: '100%', sm: 400 }} marginTop={3}>
             <Box
               component={'iframe'}
               title="video"

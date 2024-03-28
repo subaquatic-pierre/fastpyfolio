@@ -13,22 +13,22 @@ const mock = [
   'https://assets.maccarianagency.com/svg/logos/paypal-original.svg',
   'https://assets.maccarianagency.com/svg/logos/hubspot-original.svg',
   'https://assets.maccarianagency.com/svg/logos/mapbox-original.svg',
-  'https://assets.maccarianagency.com/svg/logos/slack-original.svg',
+  'https://assets.maccarianagency.com/svg/logos/slack-original.svg'
 ];
 
 const Partners = (): JSX.Element => {
   const theme = useTheme();
   const isXs = useMediaQuery(theme.breakpoints.up('xs'), {
-    defaultMatches: true,
+    defaultMatches: true
   });
   const isSm = useMediaQuery(theme.breakpoints.up('sm'), {
-    defaultMatches: true,
+    defaultMatches: true
   });
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-    defaultMatches: true,
+    defaultMatches: true
   });
   const isLg = useMediaQuery(theme.breakpoints.up('lg'), {
-    defaultMatches: true,
+    defaultMatches: true
   });
 
   let slidesToShow = 2;
@@ -53,7 +53,7 @@ const Partners = (): JSX.Element => {
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 2000
   };
 
   return (
@@ -68,7 +68,7 @@ const Partners = (): JSX.Element => {
               src={item}
               alt="..."
               sx={{
-                filter: 'brightness(0) invert(1)',
+                filter: 'brightness(0) invert(1)'
               }}
             />
           </Box>

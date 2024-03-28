@@ -10,7 +10,7 @@ import LaptopSkeletonIllustration from 'svg/illustrations/LaptopSkeleton';
 const Hero = (): JSX.Element => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-    defaultMatches: true,
+    defaultMatches: true
   });
 
   const LeftSide = () => (
@@ -23,10 +23,7 @@ const Hero = (): JSX.Element => {
             variant={'inherit'}
             color={'primary'}
             sx={{
-              background: `linear-gradient(180deg, transparent 82%, ${alpha(
-                theme.palette.secondary.main,
-                0.3,
-              )} 0%)`,
+              background: `linear-gradient(180deg, transparent 82%, ${alpha(theme.palette.secondary.main, 0.3)} 0%)`
             }}
           >
             targeted leads
@@ -34,20 +31,14 @@ const Hero = (): JSX.Element => {
         </Typography>
       </Box>
       <Typography variant="h6" component="p" color={'text.secondary'}>
-        Our mission is to spread education that is easy accessible and everyone
-        can learn.
+        Our mission is to spread education that is easy accessible and everyone can learn.
       </Typography>
-      <Box
-        display="flex"
-        flexWrap="wrap"
-        justifyContent={'flex-start'}
-        marginTop={4}
-      >
+      <Box display="flex" flexWrap="wrap" justifyContent={'flex-start'} marginTop={4}>
         {[
           'https://assets.maccarianagency.com/svg/logos/airbnb-original.svg',
           'https://assets.maccarianagency.com/svg/logos/amazon-original.svg',
           'https://assets.maccarianagency.com/svg/logos/fitbit-original.svg',
-          'https://assets.maccarianagency.com/svg/logos/netflix-original.svg',
+          'https://assets.maccarianagency.com/svg/logos/netflix-original.svg'
         ].map((item, i) => (
           <Box maxWidth={70} marginTop={2} marginRight={4} key={i}>
             <Box
@@ -57,10 +48,7 @@ const Hero = (): JSX.Element => {
               src={item}
               alt="..."
               sx={{
-                filter:
-                  theme.palette.mode === 'dark'
-                    ? 'brightness(0) invert(0.7)'
-                    : 'contrast(0) brightness(0)',
+                filter: theme.palette.mode === 'dark' ? 'brightness(0) invert(0.7)' : 'contrast(0) brightness(0)'
               }}
             />
           </Box>
@@ -83,7 +71,7 @@ const Hero = (): JSX.Element => {
             marginX: 'auto',
             perspective: 1500,
             transformStyle: 'preserve-3d',
-            perspectiveOrigin: 0,
+            perspectiveOrigin: 0
           }}
         >
           <Box
@@ -91,17 +79,11 @@ const Hero = (): JSX.Element => {
               position: 'relative',
               marginX: 'auto',
               transform: 'rotateY(-35deg) rotateX(15deg) translateZ(0)',
-              maxWidth: '96%',
+              maxWidth: '96%'
             }}
           >
             <Box>
-              <Box
-                position={'relative'}
-                zIndex={2}
-                maxWidth={1}
-                height={'auto'}
-                sx={{ verticalAlign: 'middle' }}
-              >
+              <Box position={'relative'} zIndex={2} maxWidth={1} height={'auto'} sx={{ verticalAlign: 'middle' }}>
                 <LaptopSkeletonIllustration />
               </Box>
               <Box
@@ -122,10 +104,7 @@ const Hero = (): JSX.Element => {
                   height={1}
                   sx={{
                     objectFit: 'cover',
-                    filter:
-                      theme.palette.mode === 'dark'
-                        ? 'brightness(0.7)'
-                        : 'none',
+                    filter: theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none'
                   }}
                 />
               </Box>

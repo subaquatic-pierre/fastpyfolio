@@ -9,18 +9,18 @@ import { UserRoleEnum } from 'models/auth';
 // ==============================|| MENU ITEMS ||============================== //
 type MenuItems = { items: NavItemType[] };
 
-const adminMenuItems: { items: NavItemType[] } = {
-  items: [admin]
-};
+// const adminMenuItems: { items: NavItemType[] } = {
+//   items: [admin, profile]
+// };
 
 const userMenuItems: { items: NavItemType[] } = {
-  items: [admin]
+  items: [admin, profile]
 };
 
 const getMenuItems = (role: UserRoleEnum | null): MenuItems => {
   switch (role) {
-    case 'admin':
-      return adminMenuItems;
+    // case 'admin':
+    //   return adminMenuItems;
 
     default:
       return userMenuItems;

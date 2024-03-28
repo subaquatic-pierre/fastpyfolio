@@ -16,7 +16,7 @@ const Trek = (): JSX.Element => {
         sx={{
           fontWeight: 900,
           color: theme.palette.common.white,
-          textTransform: 'uppercase',
+          textTransform: 'uppercase'
         }}
       >
         Trek
@@ -27,7 +27,7 @@ const Trek = (): JSX.Element => {
         color="text.primary"
         align={'center'}
         sx={{
-          color: theme.palette.common.white,
+          color: theme.palette.common.white
         }}
       >
         The world's best bikes and cycling gear

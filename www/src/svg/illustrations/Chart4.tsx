@@ -1,21 +1,12 @@
 import React from 'react';
 import { useTheme } from '@mui/material/styles';
 
-const Chart4 = ({
-  width = 274,
-  height = 208,
-}: IllustrationProps): JSX.Element => {
+const Chart4 = ({ width = 274, height = 208 }: IllustrationProps): JSX.Element => {
   const theme = useTheme();
   const colorPaper = theme.palette.background.paper;
   const colorPrimaryMain = theme.palette.primary.main;
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={width}
-      height={height}
-      fill="none"
-      viewBox="0 0 274 208"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} fill="none" viewBox="0 0 274 208">
       <rect width={width} height={height} fill={colorPaper} rx="12"></rect>
       <path
         fill={colorPrimaryMain}

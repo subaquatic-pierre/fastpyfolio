@@ -19,6 +19,8 @@
   },
   "rules": {
     "react/jsx-filename-extension": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "@next/next/no-img-element": "off",
     "no-param-reassign": "off",
     "react/no-unescaped-entities": "off",
     "react/prop-types": "off",
@@ -36,7 +38,7 @@
     "react/display-name": "off",
     "import/no-unresolved": ["off", { "caseSensitive": false }],
     "no-restricted-imports": [
-      "error",
+      "off",
       {
         "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
       }

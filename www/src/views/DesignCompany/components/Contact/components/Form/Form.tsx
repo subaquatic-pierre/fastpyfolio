@@ -24,15 +24,8 @@ const validationSchema = yup.object({
     .min(2, 'Please enter a valid name')
     .max(50, 'Please enter a valid name')
     .required('Please specify your last name'),
-  email: yup
-    .string()
-    .trim()
-    .email('Please enter a valid email address')
-    .required('Email is required.'),
-  message: yup
-    .string()
-    .trim()
-    .required('Please specify your message'),
+  email: yup.string().trim().email('Please enter a valid email address').required('Email is required.'),
+  message: yup.string().trim().required('Please specify your message')
 });
 
 const Form = (): JSX.Element => {
@@ -42,7 +35,7 @@ const Form = (): JSX.Element => {
     firstName: '',
     lastName: '',
     email: '',
-    message: '',
+    message: ''
   };
 
   const onSubmit = (values) => {
@@ -52,18 +45,12 @@ const Form = (): JSX.Element => {
   const formik = useFormik({
     initialValues,
     validationSchema: validationSchema,
-    onSubmit,
+    onSubmit
   });
 
   return (
     <Box>
-      <Box
-        padding={{ xs: 3, sm: 6 }}
-        width={1}
-        component={Card}
-        boxShadow={1}
-        marginBottom={4}
-      >
+      <Box padding={{ xs: 3, sm: 6 }} width={1} component={Card} boxShadow={1} marginBottom={4}>
         <form noValidate autoComplete="off" onSubmit={formik.handleSubmit}>
           <Grid container spacing={4}>
             <Grid item xs={12} sm={6}>
@@ -77,9 +64,7 @@ const Form = (): JSX.Element => {
                 fullWidth
                 value={formik.values.firstName}
                 onChange={formik.handleChange}
-                error={
-                  formik.touched.firstName && Boolean(formik.errors.firstName)
-                }
+                error={formik.touched.firstName && Boolean(formik.errors.firstName)}
                 // @ts-ignore
                 helperText={formik.touched.firstName && formik.errors.firstName}
               />
@@ -95,9 +80,7 @@ const Form = (): JSX.Element => {
                 fullWidth
                 value={formik.values.lastName}
                 onChange={formik.handleChange}
-                error={
-                  formik.touched.lastName && Boolean(formik.errors.lastName)
-                }
+                error={formik.touched.lastName && Boolean(formik.errors.lastName)}
                 // @ts-ignore
                 helperText={formik.touched.lastName && formik.errors.lastName}
               />
@@ -137,14 +120,7 @@ const Form = (): JSX.Element => {
               />
             </Grid>
             <Grid item container justifyContent={'center'} xs={12}>
-              <Button
-                sx={{ height: 54, minWidth: 150 }}
-                variant="contained"
-                color="primary"
-                size="medium"
-                type="submit"
-                fullWidth
-              >
+              <Button sx={{ height: 54, minWidth: 150 }} variant="contained" color="primary" size="medium" type="submit" fullWidth>
                 Submit
               </Button>
             </Grid>
@@ -155,30 +131,15 @@ const Form = (): JSX.Element => {
               <Box>
                 <Typography component="p" variant="body2" align="left">
                   By clicking on "submit" you agree to our{' '}
-                  <Box
-                    component="a"
-                    href=""
-                    color={theme.palette.text.primary}
-                    fontWeight={'700'}
-                  >
+                  <Box component="a" href="" color={theme.palette.text.primary} fontWeight={'700'}>
                     Privacy Policy
                   </Box>
                   ,{' '}
-                  <Box
-                    component="a"
-                    href=""
-                    color={theme.palette.text.primary}
-                    fontWeight={'700'}
-                  >
+                  <Box component="a" href="" color={theme.palette.text.primary} fontWeight={'700'}>
                     Data Policy
                   </Box>{' '}
                   and{' '}
-                  <Box
-                    component="a"
-                    href=""
-                    color={theme.palette.text.primary}
-                    fontWeight={'700'}
-                  >
+                  <Box component="a" href="" color={theme.palette.text.primary} fontWeight={'700'}>
                     Cookie Policy
                   </Box>
                   .

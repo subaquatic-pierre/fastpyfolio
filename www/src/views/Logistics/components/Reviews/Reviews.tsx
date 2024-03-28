@@ -12,7 +12,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 const mock = [
   {
     feedback:
-      '👋 Software engineer & full-stack enthusiast | Robust solutions, cloud architect 🚀 | Expert in AWS, Terraform, Kubernetes, Docker, Linux | DevOps Agile | Rust, Python, React, Typescript ',
+      "👋 Hey! I'm a passionate software engineer with a drive for crafting robust solutions and architecting cloud infrastructure that propels businesses forward. My toolkit includes languages such as Rust, Python, React, and Typescript, enabling me to tackle diverse challenges and deliver innovative solutions. Let's build the future together! 🚀",
     name: 'Pierre Du Toit',
     title: 'Software Engineer | Cloud Architect',
     avatar: '/images/pierre.jpeg'

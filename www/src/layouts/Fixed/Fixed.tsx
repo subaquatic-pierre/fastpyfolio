@@ -45,20 +45,10 @@ const Fixed = ({ children }: Props): JSX.Element => {
           <Topbar onSidebarOpen={handleSidebarOpen} />
         </Container>
       </AppBar>
-      <Sidebar
-        onClose={handleSidebarClose}
-        open={open}
-        variant={isMd ? 'permanent' : 'temporary'}
-        pages={[]}
-      />
+      <Sidebar onClose={handleSidebarClose} open={open} variant={isMd ? 'permanent' : 'temporary'} pages={[]} />
       <main>
         <Box height={{ xs: 58, sm: 66, md: 71 }} />
-        <Box
-          display="flex"
-          flex="1 1 auto"
-          overflow="hidden"
-          paddingLeft={{ md: '256px' }}
-        >
+        <Box display="flex" flex="1 1 auto" overflow="hidden" paddingLeft={{ md: '256px' }}>
           <Box display="flex" flex="1 1 auto" overflow="hidden">
             <Box flex="1 1 auto" height="100%" overflow="auto">
               {children}

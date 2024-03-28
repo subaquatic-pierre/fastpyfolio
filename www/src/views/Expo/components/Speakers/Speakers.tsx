@@ -16,23 +16,23 @@ const mock = [
   {
     name: 'Chary Smith',
     title: 'SEO at Comoti',
-    avatar: 'https://assets.maccarianagency.com/avatars/img3.jpg',
+    avatar: 'https://assets.maccarianagency.com/avatars/img3.jpg'
   },
   {
     name: 'Clara Bertoletti',
     title: 'Junior Designer',
-    avatar: 'https://assets.maccarianagency.com/avatars/img4.jpg',
+    avatar: 'https://assets.maccarianagency.com/avatars/img4.jpg'
   },
   {
     name: 'Jhon Anderson',
     title: 'Senior Frontend Developer',
-    avatar: 'https://assets.maccarianagency.com/avatars/img5.jpg',
+    avatar: 'https://assets.maccarianagency.com/avatars/img5.jpg'
   },
   {
     name: 'Chary Smith',
     title: 'SEO at Comoti',
-    avatar: 'https://assets.maccarianagency.com/avatars/img6.jpg',
-  },
+    avatar: 'https://assets.maccarianagency.com/avatars/img6.jpg'
+  }
 ];
 
 const Speakers = (): JSX.Element => {
@@ -51,12 +51,9 @@ const Speakers = (): JSX.Element => {
           top: 0,
           right: 0,
           backgroundSize: '18px 18px',
-          backgroundImage: `radial-gradient(${alpha(
-            theme.palette.primary.dark,
-            0.4,
-          )} 20%, transparent 20%)`,
-          opacity: 0.2,
-        },
+          backgroundImage: `radial-gradient(${alpha(theme.palette.primary.dark, 0.4)} 20%, transparent 20%)`,
+          opacity: 0.2
+        }
       }}
     >
       <Box zIndex={2} position={'relative'}>
@@ -64,7 +61,7 @@ const Speakers = (): JSX.Element => {
           <Typography
             sx={{
               textTransform: 'uppercase',
-              fontWeight: 'medium',
+              fontWeight: 'medium'
             }}
             gutterBottom
             color={'secondary'}
@@ -72,21 +69,10 @@ const Speakers = (): JSX.Element => {
           >
             Our speakers
           </Typography>
-          <Typography
-            variant={'h4'}
-            gutterBottom
-            align={'center'}
-            sx={{ fontWeight: 700 }}
-          >
+          <Typography variant={'h4'} gutterBottom align={'center'} sx={{ fontWeight: 700 }}>
             The most importent speakers
           </Typography>
-          <Typography
-            variant={'h6'}
-            component={'p'}
-            color={'text.secondary'}
-            align={'center'}
-            data-aos="fade-up"
-          >
+          <Typography variant={'h6'} component={'p'} color={'text.secondary'} align={'center'} data-aos="fade-up">
             There arge many variations ohf passages of sorem gpsum ilable,
             <br />
             but the majority have suffered alteration in.
@@ -111,33 +97,14 @@ const Speakers = (): JSX.Element => {
               data-aos-duration={600}
             >
               <Box component={Card} boxShadow={0} bgcolor={'transparent'}>
-                <Box
-                  component={CardMedia}
-                  borderRadius={2}
-                  width={1}
-                  height={1}
-                  minHeight={320}
-                  image={item.avatar}
-                />
+                <Box component={CardMedia} borderRadius={2} width={1} height={1} minHeight={320} image={item.avatar} />
                 <CardContent>
-                  <ListItemText
-                    primary={item.name}
-                    secondary={item.title}
-                    primaryTypographyProps={{ fontWeight: 700 }}
-                  />
+                  <ListItemText primary={item.name} secondary={item.title} primaryTypographyProps={{ fontWeight: 700 }} />
                   <Box marginTop={1}>
-                    <IconButton
-                      aria-label="facebook"
-                      size={'small'}
-                      color={'primary'}
-                    >
+                    <IconButton aria-label="facebook" size={'small'} color={'primary'}>
                       <FacebookIcon />
                     </IconButton>
-                    <IconButton
-                      aria-label="twitter"
-                      size={'small'}
-                      color={'primary'}
-                    >
+                    <IconButton aria-label="twitter" size={'small'} color={'primary'}>
                       <TwitterIcon />
                     </IconButton>
                   </Box>

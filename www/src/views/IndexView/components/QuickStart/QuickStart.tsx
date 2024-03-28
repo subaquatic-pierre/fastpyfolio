@@ -18,20 +18,14 @@ const QuickStart = (): JSX.Element => {
             align={'center'}
             gutterBottom
             sx={{
-              fontWeight: 700,
+              fontWeight: 700
             }}
           >
             Build tools and full documention
           </Typography>
-          <Typography
-            variant="h6"
-            component="p"
-            color="text.secondary"
-            sx={{ fontWeight: 400 }}
-            align={'center'}
-          >
-            Components, plugins, and build tools are all thoroughly documented
-            with live examples and markup for easier use and customization.
+          <Typography variant="h6" component="p" color="text.secondary" sx={{ fontWeight: 400 }} align={'center'}>
+            Components, plugins, and build tools are all thoroughly documented with live examples and markup for easier use and
+            customization.
           </Typography>
         </Box>
       </Box>

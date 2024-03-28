@@ -3,17 +3,7 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Main from 'layouts/Main';
 import Container from 'components/Container';
-import {
-  About,
-  Advantages,
-  Contact,
-  Description,
-  Hero,
-  PromoNumbers,
-  Partners,
-  Speakers,
-  VideoSection,
-} from './components';
+import { About, Advantages, Contact, Description, Hero, PromoNumbers, Partners, Speakers, VideoSection } from './components';
 
 const Expo = (): JSX.Element => {
   return (

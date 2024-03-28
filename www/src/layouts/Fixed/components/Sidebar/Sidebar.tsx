@@ -26,15 +26,15 @@ const Sidebar = ({ pages, open, variant, onClose }: Props): JSX.Element => {
           width: '100%',
           maxWidth: 256,
           top: { xs: 0, md: 71 },
-          height: { xs: '100%', md: 'calc(100% - 71px)' },
-        },
+          height: { xs: '100%', md: 'calc(100% - 71px)' }
+        }
       }}
     >
       <Box
         sx={{
           height: '100%',
           padding: 1,
-          paddingTop: { xs: 2, sm: 3 },
+          paddingTop: { xs: 2, sm: 3 }
         }}
       >
         <SidebarNav pages={pages} onClose={onClose} />

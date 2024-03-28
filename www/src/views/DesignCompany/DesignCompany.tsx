@@ -4,14 +4,7 @@ import Box from '@mui/material/Box';
 
 import Main from 'layouts/Main';
 import Container from 'components/Container';
-import {
-  Partners,
-  CaseStudy1,
-  CaseStudy2,
-  CaseStudy3,
-  Hero,
-  Contact,
-} from './components';
+import { Partners, CaseStudy1, CaseStudy2, CaseStudy3, Hero, Contact } from './components';
 
 const DesignCompany = (): JSX.Element => {
   const theme = useTheme();
@@ -36,7 +29,7 @@ const DesignCompany = (): JSX.Element => {
       <Box
         position={'relative'}
         sx={{
-          backgroundColor: theme.palette.alternate.main,
+          backgroundColor: theme.palette.alternate.main
         }}
       >
         <Container>
@@ -51,13 +44,10 @@ const DesignCompany = (): JSX.Element => {
           viewBox="0 0 1920 100.1"
           sx={{
             width: '100%',
-            marginBottom: theme.spacing(-1),
+            marginBottom: theme.spacing(-1)
           }}
         >
-          <path
-            fill={theme.palette.background.paper}
-            d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"
-          ></path>
+          <path fill={theme.palette.background.paper} d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"></path>
         </Box>
       </Box>
     </Main>

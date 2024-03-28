@@ -16,7 +16,7 @@ const Larq = (): JSX.Element => {
         sx={{
           fontWeight: 900,
           color: theme.palette.common.white,
-          textTransform: 'uppercase',
+          textTransform: 'uppercase'
         }}
       >
         Larq
@@ -27,7 +27,7 @@ const Larq = (): JSX.Element => {
         color="text.primary"
         align={'center'}
         sx={{
-          color: theme.palette.common.white,
+          color: theme.palette.common.white
         }}
       >
         Self-cleaning water bottle

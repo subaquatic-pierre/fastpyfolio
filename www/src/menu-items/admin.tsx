@@ -29,14 +29,21 @@ const admin: NavItemType = {
       type: 'item',
       icon: DashboardOutlined,
       url: '/admin'
+    },
+    {
+      id: 'blogs',
+      title: 'Blogs',
+      type: 'item',
+      icon: AimOutlined,
+      url: '/admin/blogs'
+    },
+    {
+      id: 'projects',
+      title: 'Projects',
+      type: 'item',
+      icon: CalendarOutlined,
+      url: '/admin/projects'
     }
-    // {
-    //   id: 'scanner',
-    //   title: 'Scanner',
-    //   type: 'item',
-    //   icon: CameraOutlined,
-    //   url: '/admin/scanner'
-    // },
     // {
     //   id: 'schedule',
     //   title: 'Schedule',

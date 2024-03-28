@@ -11,7 +11,7 @@ import Grid from '@mui/material/Grid';
 const VideoSection = (): JSX.Element => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-    defaultMatches: true,
+    defaultMatches: true
   });
 
   return (
@@ -19,26 +19,16 @@ const VideoSection = (): JSX.Element => {
       <Grid item container alignItems={'center'} xs={12} md={6}>
         <Box data-aos={isMd ? 'fade-right' : 'fade-up'}>
           <Box marginBottom={2}>
-            <Typography
-              color={'primary'}
-              component={'span'}
-              variant="h4"
-              sx={{ fontWeight: 700 }}
-            >
+            <Typography color={'primary'} component={'span'} variant="h4" sx={{ fontWeight: 700 }}>
               Why partner with theFront?
             </Typography>
           </Box>
           <Box marginBottom={3}>
             <Typography variant="h6" component="p" color="text.secondary">
-              Our mission is to spread education that is easy accessible and
-              everyone can learn.
+              Our mission is to spread education that is easy accessible and everyone can learn.
             </Typography>
           </Box>
-          <Box
-            display="flex"
-            flexDirection={'column'}
-            justifyContent={'center'}
-          >
+          <Box display="flex" flexDirection={'column'} justifyContent={'center'}>
             <Box marginBottom={2}>
               <Typography variant="body1" component="p">
                 Join over 5000 subscribers for our newsletter
@@ -50,15 +40,11 @@ const VideoSection = (): JSX.Element => {
               autoComplete="off"
               sx={{
                 '& .MuiInputBase-input.MuiOutlinedInput-input': {
-                  bgcolor: 'background.paper',
-                },
+                  bgcolor: 'background.paper'
+                }
               }}
             >
-              <Box
-                display="flex"
-                flexDirection={{ xs: 'column', sm: 'row' }}
-                alignItems={{ xs: 'stretched', sm: 'flex-start' }}
-              >
+              <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} alignItems={{ xs: 'stretched', sm: 'flex-start' }}>
                 <Box
                   flex={'1 1 auto'}
                   component={TextField}
@@ -85,13 +71,7 @@ const VideoSection = (): JSX.Element => {
         </Box>
       </Grid>
       <Grid item xs={12} md={6}>
-        <Box
-          height={1}
-          width={1}
-          display={'flex'}
-          justifyContent={'center'}
-          alignItems={'center'}
-        >
+        <Box height={1} width={1} display={'flex'} justifyContent={'center'} alignItems={'center'}>
           <Box height={1} width={1} maxHeight={600}>
             <Box
               component={'iframe'}

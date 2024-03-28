@@ -13,27 +13,25 @@ import Grid from '@mui/material/Grid';
 const mock = [
   {
     title: 300,
-    subtitle:
-      '300 + component compositions, which will help you to build any page easily.',
-    suffix: '+',
+    subtitle: '300 + component compositions, which will help you to build any page easily.',
+    suffix: '+'
   },
   {
     title: 45,
-    subtitle:
-      '45 + landing and supported pages to Build a professional website.',
-    suffix: '+',
+    subtitle: '45 + landing and supported pages to Build a professional website.',
+    suffix: '+'
   },
   {
     title: 99,
     subtitle: '99% of our customers rated 5-star our themes over 5 years.',
-    suffix: '%',
-  },
+    suffix: '%'
+  }
 ];
 
 const Process = (): JSX.Element => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-    defaultMatches: true,
+    defaultMatches: true
   });
 
   const [viewPortEntered, setViewPortEntered] = useState(false);
@@ -54,8 +52,7 @@ const Process = (): JSX.Element => {
               We are a small agency of talented designers & developers.
             </Typography>
             <Typography color="text.secondary">
-              Unlike teams from big agencies, we will treat your project as
-              ours. We will walk you through our smooth and simple process.
+              Unlike teams from big agencies, we will treat your project as ours. We will walk you through our smooth and simple process.
             </Typography>
           </Box>
           <Box>
@@ -64,18 +61,8 @@ const Process = (): JSX.Element => {
                 <Grid key={i} item xs={12} md={4}>
                   <Typography variant="h4" gutterBottom color="primary">
                     <Box fontWeight={600}>
-                      <VisibilitySensor
-                        onChange={(isVisible) =>
-                          setViewPortVisibility(isVisible)
-                        }
-                        delayedCall
-                      >
-                        <CountUp
-                          duration={2}
-                          end={viewPortEntered ? item.title : 0}
-                          start={0}
-                          suffix={item.suffix}
-                        />
+                      <VisibilitySensor onChange={(isVisible) => setViewPortVisibility(isVisible)} delayedCall>
+                        <CountUp duration={2} end={viewPortEntered ? item.title : 0} start={0} suffix={item.suffix} />
                       </VisibilitySensor>
                     </Box>
                   </Typography>
@@ -95,7 +82,7 @@ const Process = (): JSX.Element => {
           xs={12}
           md={6}
           sx={{
-            display: { xs: 'none', md: 'flex' },
+            display: { xs: 'none', md: 'flex' }
           }}
         >
           <Box component={Card} boxShadow={4} height={1} width={1}>
@@ -106,8 +93,7 @@ const Process = (): JSX.Element => {
               minHeight={300}
               image="https://assets.maccarianagency.com/backgrounds/img4.jpg"
               sx={{
-                filter:
-                  theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none',
+                filter: theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none'
               }}
             />
           </Box>

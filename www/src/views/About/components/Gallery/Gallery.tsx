@@ -10,7 +10,7 @@ const Gallery = (): JSX.Element => {
   const theme = useTheme();
 
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-    defaultMatches: true,
+    defaultMatches: true
   });
 
   const photos = [
@@ -18,32 +18,32 @@ const Gallery = (): JSX.Element => {
       src: 'https://assets.maccarianagency.com/backgrounds/img23.jpg',
       source: 'https://assets.maccarianagency.com/backgrounds/img23.jpg',
       rows: 2,
-      cols: 1,
+      cols: 1
     },
     {
       src: 'https://assets.maccarianagency.com/backgrounds/img25.jpg',
       source: 'https://assets.maccarianagency.com/backgrounds/img25.jpg',
       rows: 1,
-      cols: 2,
+      cols: 2
     },
     {
       src: 'https://assets.maccarianagency.com/backgrounds/img22.jpg',
       source: 'https://assets.maccarianagency.com/backgrounds/img22.jpg',
       rows: 1,
-      cols: 1,
+      cols: 1
     },
     {
       src: 'https://assets.maccarianagency.com/backgrounds/img24.jpg',
       source: 'https://assets.maccarianagency.com/backgrounds/img24.jpg',
       rows: 1,
-      cols: 1,
+      cols: 1
     },
     {
       src: 'https://assets.maccarianagency.com/backgrounds/img21.jpg',
       source: 'https://assets.maccarianagency.com/backgrounds/img21.jpg',
       rows: 1,
-      cols: 2,
-    },
+      cols: 2
+    }
   ];
 
   const photosToShow = isMd ? photos : photos.slice(0, photos.length - 1);
@@ -54,7 +54,7 @@ const Gallery = (): JSX.Element => {
         <Typography
           sx={{
             textTransform: 'uppercase',
-            fontWeight: 700,
+            fontWeight: 700
           }}
           gutterBottom
           color={'text.secondary'}
@@ -68,29 +68,19 @@ const Gallery = (): JSX.Element => {
           gutterBottom
           sx={{
             fontWeight: 700,
-            marginTop: theme.spacing(1),
+            marginTop: theme.spacing(1)
           }}
         >
           Small team. Big hearts.
         </Typography>
         <Typography variant="h6" align={'center'} color={'text.secondary'}>
-          Our focus is always on finding the best people to work with. Our bar
-          is high, but you look ready to take on the challenge.
+          Our focus is always on finding the best people to work with. Our bar is high, but you look ready to take on the challenge.
         </Typography>
       </Box>
       <Box>
-        <ImageList
-          variant="quilted"
-          cols={4}
-          rowHeight={isMd ? 300 : 220}
-          gap={isMd ? 16 : 8}
-        >
+        <ImageList variant="quilted" cols={4} rowHeight={isMd ? 300 : 220} gap={isMd ? 16 : 8}>
           {photosToShow.map((item, i) => (
-            <ImageListItem
-              key={i}
-              cols={isMd ? item.cols || 1 : 2}
-              rows={isMd ? item.rows || 1 : 1}
-            >
+            <ImageListItem key={i} cols={isMd ? item.cols || 1 : 2} rows={isMd ? item.rows || 1 : 1}>
               <img
                 height={'100%'}
                 width={'100%'}
@@ -99,10 +89,9 @@ const Gallery = (): JSX.Element => {
                 loading="lazy"
                 style={{
                   objectFit: 'cover',
-                  filter:
-                    theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none',
+                  filter: theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none',
                   cursor: 'poiner',
-                  borderRadius: 8,
+                  borderRadius: 8
                 }}
               />
             </ImageListItem>

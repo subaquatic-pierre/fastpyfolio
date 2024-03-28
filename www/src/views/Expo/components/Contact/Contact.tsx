@@ -20,12 +20,9 @@ const Contact = (): JSX.Element => {
           top: 0,
           right: 0,
           backgroundSize: '18px 18px',
-          backgroundImage: `radial-gradient(${alpha(
-            theme.palette.primary.dark,
-            0.4,
-          )} 20%, transparent 20%)`,
-          opacity: 0.2,
-        },
+          backgroundImage: `radial-gradient(${alpha(theme.palette.primary.dark, 0.4)} 20%, transparent 20%)`,
+          opacity: 0.2
+        }
       }}
     >
       <Box position={'relative'} zIndex={2}>
@@ -34,7 +31,7 @@ const Contact = (): JSX.Element => {
             <Typography
               variant="h4"
               sx={{
-                fontWeight: 700,
+                fontWeight: 700
               }}
             >
               Get in touch
@@ -59,47 +56,28 @@ const Contact = (): JSX.Element => {
             style={{
               minHeight: 300,
               borderRadius: 8,
-              filter:
-                theme.palette.mode === 'dark'
-                  ? 'grayscale(0.5) opacity(0.7)'
-                  : 'none',
+              filter: theme.palette.mode === 'dark' ? 'grayscale(0.5) opacity(0.7)' : 'none'
             }}
           />
         </Box>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
-            <Typography
-              variant={'body1'}
-              gutterBottom
-              sx={{ fontWeight: 'medium' }}
-            >
+            <Typography variant={'body1'} gutterBottom sx={{ fontWeight: 'medium' }}>
               Call us:
             </Typography>
             <Typography variant={'subtitle1'}>+39 34 111 222</Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography
-              variant={'body1'}
-              gutterBottom
-              sx={{ fontWeight: 'medium' }}
-            >
+            <Typography variant={'body1'} gutterBottom sx={{ fontWeight: 'medium' }}>
               Email us:
             </Typography>
-            <Typography variant={'subtitle1'}>
-              hi@maccarianagency.com
-            </Typography>
+            <Typography variant={'subtitle1'}>hi@maccarianagency.com</Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography
-              variant={'body1'}
-              gutterBottom
-              sx={{ fontWeight: 'medium' }}
-            >
+            <Typography variant={'body1'} gutterBottom sx={{ fontWeight: 'medium' }}>
               Address:
             </Typography>
-            <Typography variant={'subtitle1'}>
-              Via E. Gola 4, Milan MI, Italy
-            </Typography>
+            <Typography variant={'subtitle1'}>Via E. Gola 4, Milan MI, Italy</Typography>
           </Grid>
         </Grid>
       </Box>

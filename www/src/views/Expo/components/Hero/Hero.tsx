@@ -20,15 +20,8 @@ const validationSchema = yup.object({
     .min(2, 'Please enter a valid name')
     .max(50, 'Please enter a valid name')
     .required('Please specify your name'),
-  email: yup
-    .string()
-    .trim()
-    .email('Please enter a valid email address')
-    .required('Email is required.'),
-  password: yup
-    .string()
-    .required('Please specify your password')
-    .min(8, 'The password should have at minimum length of 8'),
+  email: yup.string().trim().email('Please enter a valid email address').required('Email is required.'),
+  password: yup.string().required('Please specify your password').min(8, 'The password should have at minimum length of 8')
 });
 
 const Hero = (): JSX.Element => {
@@ -41,7 +34,7 @@ const Hero = (): JSX.Element => {
         gutterBottom
         sx={{
           fontWeight: 900,
-          color: 'common.white',
+          color: 'common.white'
         }}
       >
         Join the world's leading companies at theFront 2021
@@ -52,15 +45,13 @@ const Hero = (): JSX.Element => {
         color="text.primary"
         sx={{
           fontWeight: 500,
-          color: 'common.white',
+          color: 'common.white'
         }}
       >
-        Whether it’s Porsche, Stripe, Intercom, Amazon, or Google, something
-        about TheFront works for our global partners.
+        Whether it’s Porsche, Stripe, Intercom, Amazon, or Google, something about TheFront works for our global partners.
         <br />
-        Want more information? Download our overview and a member of our
-        specialist team will be in touch to talk about your goals for TheFront
-        2021.
+        Want more information? Download our overview and a member of our specialist team will be in touch to talk about your goals for
+        TheFront 2021.
       </Typography>
     </Box>
   );
@@ -69,7 +60,7 @@ const Hero = (): JSX.Element => {
     const initialValues = {
       fullName: '',
       email: '',
-      password: '',
+      password: ''
     };
 
     const onSubmit = (values) => {
@@ -79,7 +70,7 @@ const Hero = (): JSX.Element => {
     const formik = useFormik({
       initialValues,
       validationSchema: validationSchema,
-      onSubmit,
+      onSubmit
     });
 
     return (
@@ -97,9 +88,7 @@ const Hero = (): JSX.Element => {
                 fullWidth
                 value={formik.values.fullName}
                 onChange={formik.handleChange}
-                error={
-                  formik.touched.fullName && Boolean(formik.errors.fullName)
-                }
+                error={formik.touched.fullName && Boolean(formik.errors.fullName)}
                 // @ts-ignore
                 helperText={formik.touched.fullName && formik.errors.fullName}
               />
@@ -133,22 +122,13 @@ const Hero = (): JSX.Element => {
                 fullWidth
                 value={formik.values.password}
                 onChange={formik.handleChange}
-                error={
-                  formik.touched.password && Boolean(formik.errors.password)
-                }
+                error={formik.touched.password && Boolean(formik.errors.password)}
                 // @ts-ignore
                 helperText={formik.touched.password && formik.errors.password}
               />
             </Box>
             <Box>
-              <Button
-                sx={{ height: 54 }}
-                variant="contained"
-                color="primary"
-                size="medium"
-                fullWidth
-                type="submit"
-              >
+              <Button sx={{ height: 54 }} variant="contained" color="primary" size="medium" fullWidth type="submit">
                 Create an account
               </Button>
             </Box>
@@ -158,30 +138,15 @@ const Hero = (): JSX.Element => {
             <Box>
               <Typography component="p" variant="body2" align="left">
                 By creating you account you agree to our{' '}
-                <Box
-                  component="a"
-                  href=""
-                  color={theme.palette.text.primary}
-                  fontWeight={'700'}
-                >
+                <Box component="a" href="" color={theme.palette.text.primary} fontWeight={'700'}>
                   Privacy Policy
                 </Box>
                 ,{' '}
-                <Box
-                  component="a"
-                  href=""
-                  color={theme.palette.text.primary}
-                  fontWeight={'700'}
-                >
+                <Box component="a" href="" color={theme.palette.text.primary} fontWeight={'700'}>
                   Data Policy
                 </Box>{' '}
                 and{' '}
-                <Box
-                  component="a"
-                  href=""
-                  color={theme.palette.text.primary}
-                  fontWeight={'700'}
-                >
+                <Box component="a" href="" color={theme.palette.text.primary} fontWeight={'700'}>
                   Cookie Policy
                 </Box>
                 .
@@ -202,9 +167,8 @@ const Hero = (): JSX.Element => {
         marginTop: -13,
         paddingTop: 13,
         backgroundColor: theme.palette.alternate.main,
-        background:
-          'url(https://assets.maccarianagency.com/backgrounds/img19.jpg) no-repeat center',
-        backgroundSize: 'cover',
+        background: 'url(https://assets.maccarianagency.com/backgrounds/img19.jpg) no-repeat center',
+        backgroundSize: 'cover'
       }}
     >
       <Box
@@ -219,7 +183,7 @@ const Hero = (): JSX.Element => {
           backgroundColor: theme.palette.primary.main,
           backgroundImage: `linear-gradient(315deg, ${theme.palette.primary.main} 0%, #000000 74%)`,
           opacity: '0.8',
-          zIndex: 1,
+          zIndex: 1
         }}
       />
       <Container position={'relative'} zIndex={2}>

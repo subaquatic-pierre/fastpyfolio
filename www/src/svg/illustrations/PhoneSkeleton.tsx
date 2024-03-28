@@ -5,13 +5,7 @@ const PhoneSkeleton = (): JSX.Element => {
   const theme = useTheme();
 
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      x={0}
-      y={0}
-      enableBackground="new 0 0 444 908"
-      viewBox="0 0 444 908"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" x={0} y={0} enableBackground="new 0 0 444 908" viewBox="0 0 444 908">
       <path
         fill={theme.palette.background.paper}
         stroke={theme.palette.alternate.dark}
@@ -25,15 +19,7 @@ const PhoneSkeleton = (): JSX.Element => {
         strokeWidth="4"
         d="M243.3 37.3h-46.4c-2 0-3.6-1.6-3.6-3.6h0c0-2 1.6-3.6 3.6-3.6h46.4c2 0 3.6 1.6 3.6 3.6h0c0 2-1.6 3.6-3.6 3.6z"
       ></path>
-      <circle
-        cx="270"
-        cy="33.7"
-        r="5.5"
-        fill="none"
-        stroke={theme.palette.alternate.dark}
-        strokeMiterlimit="10"
-        strokeWidth="4"
-      ></circle>
+      <circle cx="270" cy="33.7" r="5.5" fill="none" stroke={theme.palette.alternate.dark} strokeMiterlimit="10" strokeWidth="4"></circle>
       <path
         fill={theme.palette.alternate.dark}
         d="M285.7 880.3h-127c-1.4 0-2.6-1.2-2.6-2.6 0-1.4 1.2-2.6 2.6-2.6h127c1.4 0 2.6 1.2 2.6 2.6 0 1.5-1.2 2.6-2.6 2.6z"

@@ -4,16 +4,7 @@ import Divider from '@mui/material/Divider';
 
 import Main from 'layouts/Main';
 import Container from 'components/Container';
-import {
-  Contact,
-  Gallery,
-  Hero,
-  Partners,
-  Story,
-  Team,
-  WhoWeAre,
-  Application,
-} from './components';
+import { Contact, Gallery, Hero, Partners, Story, Team, WhoWeAre, Application } from './components';
 
 const About = (): JSX.Element => {
   return (

@@ -14,7 +14,7 @@ export const RESET_PASSWORD = '/api/auth/reset-password';
 export const USER = '/api/auth/me';
 export const EMAIL_CONFIRMATION = '/api/auth/send-email-confirmation';
 
-export const GET_SITE_SETTINGS = '/api/auth/site-settings';
+export const GET_SITE_SETTINGS = '/api/site-settings';
 
 export const GET_PROFILE = (id: string) => `/api/profiles/${id}?${populateUserParams}`;
 

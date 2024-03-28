@@ -48,8 +48,7 @@ const Hero = (): JSX.Element => {
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
-          backgroundImage:
-            'url(https://assets.maccarianagency.com/backgrounds/img52.jpg)',
+          backgroundImage: 'url(https://assets.maccarianagency.com/backgrounds/img52.jpg)'
         }}
       />
       <Box
@@ -62,7 +61,7 @@ const Hero = (): JSX.Element => {
           width: 1,
           height: 1,
           background: alpha('#161c2d', 0.4),
-          zIndex: 1,
+          zIndex: 1
         }}
       />
       <Container position={'relative'} zIndex={2}>
@@ -73,7 +72,7 @@ const Hero = (): JSX.Element => {
             sx={{
               fontWeight: 900,
               color: 'common.white',
-              textTransform: 'uppercase',
+              textTransform: 'uppercase'
             }}
           >
             About us
@@ -83,11 +82,10 @@ const Hero = (): JSX.Element => {
             component="p"
             color="text.primary"
             sx={{
-              color: 'common.white',
+              color: 'common.white'
             }}
           >
-            We are founded by a leading academic and researcher in the field of
-            Industrial Systems Engineering.
+            We are founded by a leading academic and researcher in the field of Industrial Systems Engineering.
           </Typography>
         </Box>
       </Container>

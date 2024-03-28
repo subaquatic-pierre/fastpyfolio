@@ -21,7 +21,7 @@ interface Props {
 
 const LogoSection = ({ reverse, isIcon, sx, to, transparent = false }: Props) => {
   return (
-    <NextLink href={'/'}>
+    <NextLink href={'/admin'}>
       <ButtonBase disableRipple sx={sx}>
         <Box position="relative" height={isIcon ? 30 : 80} width={isIcon ? 30 : 80}>
           {transparent ? (

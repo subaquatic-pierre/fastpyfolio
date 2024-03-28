@@ -8,7 +8,7 @@ import { Map, Form } from './components';
 const Contact = (): JSX.Element => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-    defaultMatches: true,
+    defaultMatches: true
   });
 
   return (

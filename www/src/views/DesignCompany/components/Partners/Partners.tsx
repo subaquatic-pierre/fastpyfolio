@@ -12,7 +12,7 @@ const Partners = (): JSX.Element => {
         'https://assets.maccarianagency.com/svg/logos/fitbit-original.svg',
         'https://assets.maccarianagency.com/svg/logos/netflix-original.svg',
         'https://assets.maccarianagency.com/svg/logos/google-original.svg',
-        'https://assets.maccarianagency.com/svg/logos/paypal-original.svg',
+        'https://assets.maccarianagency.com/svg/logos/paypal-original.svg'
       ].map((item, i) => (
         <Box maxWidth={90} marginTop={2} marginRight={4} key={i}>
           <Box
@@ -22,10 +22,7 @@ const Partners = (): JSX.Element => {
             src={item}
             alt="..."
             sx={{
-              filter:
-                theme.palette.mode === 'dark'
-                  ? 'brightness(0) invert(0.7)'
-                  : 'brightness(0)',
+              filter: theme.palette.mode === 'dark' ? 'brightness(0) invert(0.7)' : 'brightness(0)'
             }}
           />
         </Box>

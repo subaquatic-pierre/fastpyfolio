@@ -12,7 +12,7 @@ import Container from 'components/Container';
 const About = (): JSX.Element => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-    defaultMatches: true,
+    defaultMatches: true
   });
 
   const LeftSide = () => (
@@ -24,26 +24,15 @@ const About = (): JSX.Element => {
       </Box>
       <Box marginBottom={4}>
         <Typography variant="h6" color="text.secondary" gutterBottom>
-          Drawing thousands of the world's technology leaders together to learn
-          and do business
+          Drawing thousands of the world's technology leaders together to learn and do business
         </Typography>
         <Typography component="p">
-          Meh synth Schlitz, tempor duis single-origin coffee ea next level
-          ethnic fingerstache fanny pack nostrud. Photo booth anim 8-bit hella,
-          PBR 3 wolf moon beard Helvetica.
+          Meh synth Schlitz, tempor duis single-origin coffee ea next level ethnic fingerstache fanny pack nostrud. Photo booth anim 8-bit
+          hella, PBR 3 wolf moon beard Helvetica.
         </Typography>
       </Box>
-      <Box
-        display="flex"
-        flexDirection={{ xs: 'column', sm: 'row' }}
-        alignItems={{ xs: 'stretched', sm: 'flex-start' }}
-      >
-        <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          fullWidth={isMd ? false : true}
-        >
+      <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} alignItems={{ xs: 'stretched', sm: 'flex-start' }}>
+        <Button variant="contained" color="primary" size="large" fullWidth={isMd ? false : true}>
           Apply to exhibit
         </Button>
         <Box
@@ -67,8 +56,8 @@ const About = (): JSX.Element => {
         sx={{
           height: { xs: 'auto', md: 1 },
           '& img': {
-            objectFit: 'cover',
-          },
+            objectFit: 'cover'
+          }
         }}
       >
         <Box
@@ -89,15 +78,11 @@ const About = (): JSX.Element => {
       sx={{
         width: 1,
         height: 1,
-        overflow: 'hidden',
+        overflow: 'hidden'
       }}
     >
       <Container paddingX={0} paddingY={0} maxWidth={{ sm: 1, md: 1236 }}>
-        <Box
-          display={'flex'}
-          flexDirection={{ xs: 'column', md: 'row' }}
-          position={'relative'}
-        >
+        <Box display={'flex'} flexDirection={{ xs: 'column', md: 'row' }} position={'relative'}>
           <Box width={1} order={{ xs: 2, md: 1 }}>
             <Container>
               <LeftSide />
@@ -108,21 +93,21 @@ const About = (): JSX.Element => {
               flex: { xs: '0 0 100%', md: '0 0 50%' },
               position: 'relative',
               maxWidth: { xs: '100%', md: '50%' },
-              order: { xs: 1, md: 2 },
+              order: { xs: 1, md: 2 }
             }}
           >
             <Box
               sx={{
                 width: { xs: 1, md: '50vw' },
                 height: '100%',
-                position: 'relative',
+                position: 'relative'
               }}
             >
               <Box
                 sx={{
                   width: '100%',
                   height: '100%',
-                  overflow: 'hidden',
+                  overflow: 'hidden'
                 }}
               >
                 <Box
@@ -131,7 +116,7 @@ const About = (): JSX.Element => {
                     left: '0%',
                     width: 1,
                     height: 1,
-                    position: { xs: 'relative', md: 'absolute' },
+                    position: { xs: 'relative', md: 'absolute' }
                   }}
                 >
                   <RightSide />

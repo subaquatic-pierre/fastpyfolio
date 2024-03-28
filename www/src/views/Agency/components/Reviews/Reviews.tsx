@@ -18,17 +18,13 @@ const Reviews = (): JSX.Element => {
         maxWidth={{ xs: 80, sm: 100, md: 120 }}
         marginBottom={2}
         sx={{
-          filter:
-            theme.palette.mode === 'dark'
-              ? 'brightness(0) invert(0.7)'
-              : 'none',
+          filter: theme.palette.mode === 'dark' ? 'brightness(0) invert(0.7)' : 'none'
         }}
       />
       <Typography variant={'h6'} component={'p'} align={'center'}>
         First class templates.
         <br />
-        These guys know what they're doing: great code quality, clear naming
-        conventions and clear code structure.
+        These guys know what they're doing: great code quality, clear naming conventions and clear code structure.
         <br />
         Plain awesome and a pleasure to work with.
       </Typography>

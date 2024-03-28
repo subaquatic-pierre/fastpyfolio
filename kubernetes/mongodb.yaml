@@ -22,22 +22,11 @@ items:
         spec:
           containers:
             - name: fastpyfolio-mongodb
-              image: mongo:6.0
-              env:
-                - name: MONGO_INITDB_ROOT_USERNAME_FILE
-                  value: /etc/k8-test/admin/MONGO_ROOT_USERNAME
-                - name: MONGO_INITDB_ROOT_PASSWORD_FILE
-                  value: /etc/k8-test/admin/MONGO_ROOT_PASSWORD
+              image: mongo:7.0
+              envFrom:
+                - configMapRef:
+                    name: fastpyfolio-mongo-config
               volumeMounts:
-                - name: k8-test
-                  mountPath: /etc/k8-test
-                  readOnly: true
-                - name: mongodb-scripts
-                  mountPath: /docker-entrypoint-initdb.d
-                  readOnly: true
-                - name: mongodb-configmap
-                  mountPath: /config
-                  readOnly: true
                 - name: mongodb-data
                   mountPath: /data/db
 
@@ -45,37 +34,6 @@ items:
             name: orion
 
           volumes:
-            - name: k8-test
-              secret:
-                secretName: mongodb-secret
-                items:
-                  - key: MONGO_ROOT_USERNAME
-                    path: admin/MONGO_ROOT_USERNAME
-                    mode: 0444
-                  - key: MONGO_ROOT_PASSWORD
-                    path: admin/MONGO_ROOT_PASSWORD
-                    mode: 0444
-                  - key: MONGO_USERNAME
-                    path: MONGO_USERNAME
-                    mode: 0444
-                  - key: MONGO_PASSWORD
-                    path: MONGO_PASSWORD
-                    mode: 0444
-                  - key: MONGO_USERS_LIST
-                    path: MONGO_USERS_LIST
-                    mode: 0444
-            - name: mongodb-scripts
-              configMap:
-                name: mongodb-configmap
-                items:
-                  - key: ensure-users.js
-                    path: ensure-users.js
-            - name: mongodb-configmap
-              configMap:
-                name: mongodb-configmap
-                items:
-                  - key: mongo.conf
-                    path: mongo.conf
             - name: mongodb-data
               persistentVolumeClaim:
                 claimName: mongodb-pvc
@@ -85,7 +43,7 @@ items:
   - kind: StorageClass
     apiVersion: storage.k8s.io/v1
     metadata:
-      name: mongodb-storageclass
+      name: mongodb-sc
       namespace: fastpyfolio
     provisioner: kubernetes.io/no-provisioner
     volumeBindingMode: WaitForFirstConsumer
@@ -105,7 +63,7 @@ items:
       accessModes:
         - ReadWriteOnce
       persistentVolumeReclaimPolicy: Retain
-      storageClassName: mongodb-storageclass
+      storageClassName: mongodb-sc
       local:
         path: /data/fastpyfolio/mongodb
       nodeAffinity:
@@ -125,7 +83,7 @@ items:
       name: mongodb-pvc
       namespace: fastpyfolio
     spec:
-      storageClassName: mongodb-storageclass
+      storageClassName: mongodb-sc
       accessModes:
         - ReadWriteOnce
       volumeMode: Filesystem
@@ -136,61 +94,6 @@ items:
       selector:
         matchLabels:
           kubernetes.io/hostname: orion
-
-  # --- CONFIG MAP ---
-
-  - apiVersion: v1
-    kind: ConfigMap
-    metadata:
-      name: mongodb-configmap
-      namespace: fastpyfolio
-    data:
-      mongo.conf: |
-        storage:
-          dbPath: /data/db
-      ensure-users.js: |
-        const targetDbStr = 'test';
-        const rootUser = cat('/etc/k8-test/admin/MONGO_ROOT_USERNAME');
-        const rootPass = cat('/etc/k8-test/admin/MONGO_ROOT_PASSWORD');
-        const usersStr = cat('/etc/k8-test/MONGO_USERS_LIST');
-        const adminDb = db.getSiblingDB('admin');
-        adminDb.auth(rootUser, rootPass);
-        print('Successfully authenticated admin user');
-        const targetDb = db.getSiblingDB(targetDbStr);
-        const customRoles = adminDb
-          .getRoles({rolesInfo: 1, showBuiltinRoles: false})
-          .map(role => role.role)
-          .filter(Boolean);
-        usersStr
-          .trim()
-          .split(';')
-          .map(s => s.split(':'))
-          .forEach(user => {
-            const username = user[0];
-            const rolesStr = user[1];
-            const password = user[2];
-            if (!rolesStr || !password) {
-              return;
-            }
-            const roles = rolesStr.split(',');
-            const userDoc = {
-              user: username,
-              pwd: password,
-            };
-            userDoc.roles = roles.map(role => {
-              if (!~customRoles.indexOf(role)) {
-                return role;
-              }
-              return {role: role, db: 'admin'};
-            });
-            try {
-              targetDb.createUser(userDoc);
-            } catch (err) {
-              if (!~err.message.toLowerCase().indexOf('duplicate')) {
-                throw err;
-              }
-            }
-          });
 
 kind: List
 metadata:

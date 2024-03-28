@@ -14,7 +14,7 @@ import PhoneSkeletonIllustration from 'svg/illustrations/PhoneSkeleton';
 const Features = (): JSX.Element => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-    defaultMatches: true,
+    defaultMatches: true
   });
 
   return (
@@ -26,8 +26,7 @@ const Features = (): JSX.Element => {
               The powerful and flexible theme for all kinds of businesses
             </Typography>
             <Typography color="text.secondary" variant={'h6'}>
-              Send one-off and automated email, push, and in-app messages to
-              people.
+              Send one-off and automated email, push, and in-app messages to people.
               <br />
               Create better stories.
             </Typography>
@@ -37,33 +36,13 @@ const Features = (): JSX.Element => {
               'Lifetime updates & introduction and working',
               'Tech support & mutual funds',
               'Tons of assets & lifetime updates',
-              'Integration ready & tech support',
+              'Integration ready & tech support'
             ].map((item, i) => (
               <Grid item xs={12} key={i}>
-                <Box
-                  component={ListItem}
-                  disableGutters
-                  width={'auto'}
-                  padding={0}
-                >
-                  <Box
-                    component={ListItemAvatar}
-                    minWidth={'auto !important'}
-                    marginRight={2}
-                  >
-                    <Box
-                      component={Avatar}
-                      bgcolor={theme.palette.secondary.main}
-                      width={20}
-                      height={20}
-                    >
-                      <svg
-                        width={12}
-                        height={12}
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
+                <Box component={ListItem} disableGutters width={'auto'} padding={0}>
+                  <Box component={ListItemAvatar} minWidth={'auto !important'} marginRight={2}>
+                    <Box component={Avatar} bgcolor={theme.palette.secondary.main} width={20} height={20}>
+                      <svg width={12} height={12} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path
                           fillRule="evenodd"
                           d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -84,7 +63,7 @@ const Features = (): JSX.Element => {
           sx={{
             maxWidth: 450,
             position: 'relative',
-            marginX: 'auto',
+            marginX: 'auto'
           }}
         >
           <Box
@@ -93,26 +72,14 @@ const Features = (): JSX.Element => {
               borderRadius: '2.75rem',
               boxShadow: 1,
               width: '75% !important',
-              marginX: 'auto',
+              marginX: 'auto'
             }}
           >
             <Box>
-              <Box
-                position={'relative'}
-                zIndex={2}
-                maxWidth={1}
-                height={'auto'}
-                sx={{ verticalAlign: 'middle' }}
-              >
+              <Box position={'relative'} zIndex={2} maxWidth={1} height={'auto'} sx={{ verticalAlign: 'middle' }}>
                 <PhoneSkeletonIllustration />
               </Box>
-              <Box
-                position={'absolute'}
-                top={'2.4%'}
-                left={'4%'}
-                width={'92.4%'}
-                height={'96%'}
-              >
+              <Box position={'absolute'} top={'2.4%'} left={'4%'} width={'92.4%'} height={'96%'}>
                 <Box
                   component={'img'}
                   loading="lazy"
@@ -127,10 +94,7 @@ const Features = (): JSX.Element => {
                   sx={{
                     objectFit: 'cover',
                     borderRadius: '2.5rem',
-                    filter:
-                      theme.palette.mode === 'dark'
-                        ? 'brightness(0.7)'
-                        : 'none',
+                    filter: theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none'
                   }}
                 />
               </Box>

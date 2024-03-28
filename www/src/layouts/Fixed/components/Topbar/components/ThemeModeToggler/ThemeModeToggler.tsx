@@ -17,18 +17,11 @@ const ThemeModeToggler = (): JSX.Element => {
         borderRadius: 2,
         minWidth: 'auto',
         padding: 1,
-        borderColor: alpha(theme.palette.divider, 0.2),
+        borderColor: alpha(theme.palette.divider, 0.2)
       }}
     >
       {mode === 'light' ? (
-        <svg
-          width={24}
-          height={24}
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
+        <svg width={24} height={24} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -37,14 +30,7 @@ const ThemeModeToggler = (): JSX.Element => {
           />
         </svg>
       ) : (
-        <svg
-          width={24}
-          height={24}
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
+        <svg width={24} height={24} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"

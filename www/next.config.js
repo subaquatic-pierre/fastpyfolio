@@ -2,7 +2,8 @@
 
 module.exports = {
   reactStrictMode: false,
+  output: 'standalone',
   images: {
-    domains: ['flagcdn.com', 'assets.maccarianagency.com', 'localhost']
+    domains: ['flagcdn.com', 'assets.maccarianagency.com', 'localhost', 'fastpyfolio.nebuladev.io']
   }
 };
