@@ -19,10 +19,4 @@ async def health_check():
 
 @router.get("/site-settings")
 async def get_me(req: Request):
-    return {"data": {
-        "id":1,
-        "attributes":{
-            "title":"Cool Title"
-        }
-    }}
-    
+    return {"data": {"id": 1, "attributes": {"title": "Cool Title"}}}
