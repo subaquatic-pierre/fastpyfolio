@@ -1,5 +1,5 @@
 data/
-# api/uploads/*
+api/uploads
 
 **/env/**
 **/env.*

@@ -1,0 +1,59 @@
+apiVersion: v1
+items:
+  # --- STORAGE CLASS ---
+  - kind: StorageClass
+    apiVersion: storage.k8s.io/v1
+    metadata:
+      name: api-uploads-sc
+      namespace: fastpyfolio
+    provisioner: kubernetes.io/no-provisioner
+    volumeBindingMode: WaitForFirstConsumer
+    allowVolumeExpansion: true
+
+  # --- PERSISTENT VOLUME ---
+  - apiVersion: v1
+    kind: PersistentVolume
+    metadata:
+      name: api-uploads-pv
+      namespace: fastpyfolio
+    spec:
+      capacity:
+        storage: 2Gi
+      volumeMode: Filesystem
+      accessModes:
+        - ReadWriteOnce
+      persistentVolumeReclaimPolicy: Retain
+      storageClassName: api-uploads-sc
+      local:
+        path: /data/fastpyfolio/api/uploads
+      nodeAffinity:
+        required:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                    - orion
+
+  # --- PERSISTENT VOLUME CLAIM ---
+  - kind: PersistentVolumeClaim
+    apiVersion: v1
+    metadata:
+      name: api-uploads-pvc
+      namespace: fastpyfolio
+    spec:
+      storageClassName: api-uploads-sc
+      accessModes:
+        - ReadWriteOnce
+      volumeMode: Filesystem
+      volumeName: api-uploads-pv
+      resources:
+        requests:
+          storage: 2Gi
+      selector:
+        matchLabels:
+          kubernetes.io/hostname: orion
+
+kind: List
+metadata:
+  resourceVersion: ""

@@ -26,6 +26,15 @@ items:
                 - configMapRef:
                     name: fastpyfolio-api-config
 
+              volumeMounts:
+                - name: api-uploads
+                  mountPath: /app/uploads
+
+          volumes:
+            - name: api-uploads
+              persistentVolumeClaim:
+                claimName: api-uploads-pvc
+
           # imagePullSecrets:
           #   - name: regcred-docker
 
