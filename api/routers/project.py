@@ -1,6 +1,7 @@
 import json
 from fastapi import APIRouter, Request, Header
 from bson.objectid import ObjectId
+from bson.errors import InvalidId
 from fastapi import APIRouter, Depends, Request, status, HTTPException
 
 from typing import List
@@ -9,6 +10,7 @@ from schemas.project import (
     CreateProjectRes,
     CreateProjectReq,
     DeleteProjectRes,
+    UpdateProjectReq,
 )
 from models.project import Project
 
@@ -23,21 +25,38 @@ async def list_projects(req: Request) -> List[ProjectSchema]:
 
 @router.get("/{id}")
 async def get_project(id: str) -> ProjectSchema:
-    project = Project.find_one({"_id": ObjectId(id)})
-    return project.to_json()
+    try:
+        id = ObjectId(id)
+        project = Project.find_one({"_id": ObjectId(id)})
+        if not project:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Project not found",
+            )
+        return project.to_json()
+    except Exception as e:
+        slug = id
+        project = Project.find_one({"slug": slug})
+        if not project:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Project not found",
+            )
+        return project.to_json()
 
 
 @router.put("/{id}")
-async def update_project(id: str, body: ProjectSchema) -> ProjectSchema:
+async def update_project(id: str, body: UpdateProjectReq) -> ProjectSchema:
     project = Project.find_one({"_id": ObjectId(id)})
     if project:
         for attr, value in body:
-            setattr(project, attr, value)
+            if value is not None:
+                setattr(project, attr, value)
 
         result = project.save()
-        updated_project = Project.find_one({"_id": result.inserted_id})
+        updated_project = Project.find_one({"_id": ObjectId(id)})
 
-        if not result:
+        if not result or not updated_project:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="Unable to update project",

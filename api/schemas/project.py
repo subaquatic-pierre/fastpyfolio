@@ -1,4 +1,4 @@
-from typing import Annotated, List
+from typing import Annotated, List, Optional
 
 from pydantic import BaseModel
 from models.model import ModelId
@@ -6,13 +6,14 @@ from schemas.base import BaseSchema, BaseModelSchema
 
 
 class CreateProjectReq(BaseSchema):
-    content: str | None
     title: str
     description: str
-    tags: List[str]
-    category: str | None
-    www_url: str | None
-    github_url: str | None
+    tags: List[str] = []
+    content: str | None
+    category: str | None = None
+    www_url: str | None = None
+    github_url: str | None = None
+    slug: str | None = None
 
 
 # Inherit all fields from create project request schema
@@ -31,3 +32,14 @@ class CreateProjectRes(BaseSchema):
 class DeleteProjectRes(BaseSchema):
     status: str
     delete_count: int
+
+
+class UpdateProjectReq(BaseSchema):
+    title: Optional[str] = None
+    description: Optional[str] = None
+    tags: Optional[List[str]] = None
+    content: Optional[str] = None
+    category: Optional[str] = None
+    www_url: Optional[str] = None
+    github_url: Optional[str] = None
+    slug: Optional[str] = None

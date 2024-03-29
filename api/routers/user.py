@@ -4,29 +4,34 @@ from bson.objectid import ObjectId
 
 from models.user import User
 from schemas.user import UserSchema, UpdateUserReq, DeleteUserRes
-from auth.utils import hash_password, authorize_req
+from auth.utils import hash_password, auth_required
 
 
 router = APIRouter()
 
 
 @router.get("/")
+@auth_required
 async def list_users(req: Request) -> List[UserSchema]:
-    # authorize_req(req)
     users = User.find_many()
     return [user.to_json() for user in users]
 
 
 @router.get("/{id}")
+@auth_required
 async def get_user(req: Request, id: str) -> UserSchema:
-    # authorize_req(req)
     user = User.find_one({"_id": ObjectId(id)})
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found",
+        )
     return user.to_json()
 
 
 @router.put("/{id}")
+@auth_required
 async def update_user(id: str, body: UpdateUserReq) -> UserSchema:
-    # authorize_req(req)
     user = User.find_one({"_id": ObjectId(id)})
     if user:
         for attr, value in body:
@@ -50,13 +55,13 @@ async def update_user(id: str, body: UpdateUserReq) -> UserSchema:
     else:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="The user belonging to this token no logger exist",
+            detail="The user belonging to this token no longer exist",
         )
 
 
 @router.delete("/{id}")
+@auth_required
 async def delete_user(id: str) -> DeleteUserRes:
-    # authorize_req(req)
     delete_res = User.delete(id)
 
     return {

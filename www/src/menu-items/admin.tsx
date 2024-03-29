@@ -35,14 +35,14 @@ const admin: NavItemType = {
       title: 'Blogs',
       type: 'item',
       icon: AimOutlined,
-      url: '/admin/blogs'
+      url: '/admin/blog'
     },
     {
       id: 'projects',
       title: 'Projects',
       type: 'item',
       icon: CalendarOutlined,
-      url: '/admin/projects'
+      url: '/admin/project'
     }
     // {
     //   id: 'schedule',

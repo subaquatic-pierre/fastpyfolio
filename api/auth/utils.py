@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from jose import JWTError, jwt
 from fastapi import HTTPException, status, Request
+from functools import wraps
 
 from auth.context import pwd_context
 from db import UserCollection
@@ -88,3 +89,22 @@ def authorize_req(request: Request):
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Unable to access resource",
         )
+
+
+def authorize_req(request: Request):
+    token = get_token_from_request(request)
+    user = get_current_user(token)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Unable to access resource",
+        )
+
+
+def auth_required(func):
+    @wraps(func)
+    async def wrapper(*args, **kwargs):
+        authorize_req(kwargs["req"])
+        return await func(*args, **kwargs)
+
+    return wrapper

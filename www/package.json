@@ -54,6 +54,8 @@
     "react-compare-slider": "^3.0.1",
     "react-countup": "^6.5.3",
     "react-device-detect": "^2.2.3",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
     "react-fast-marquee": "^1.6.2",

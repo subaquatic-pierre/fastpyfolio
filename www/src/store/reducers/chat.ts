@@ -12,7 +12,10 @@ import { blankUser } from 'utils/blankData';
 import { User } from 'models/auth';
 import { Message, reduceMessage, reduceMessages } from 'models/message';
 
-import { CREATE_MESSAGE, GET_MESSAGES, GET_USERS, GET_ADMINS } from 'lib/endpoints';
+const CREATE_MESSAGE = '';
+const GET_MESSAGES = '';
+const GET_USERS = '';
+const GET_ADMINS = '';
 
 // ==============================|| SLICE - CHAT||============================== //
 

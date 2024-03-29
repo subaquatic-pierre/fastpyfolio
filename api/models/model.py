@@ -96,9 +96,9 @@ class DBModel(BaseModel, ABC):
         collection = cls._get_collection()
 
         items = collection.find(data)
-        users = [cls(id=item["_id"], **item) for item in items]
+        projects = [cls(id=item["_id"], **item) for item in items]
 
-        return users
+        return projects
 
     @classmethod
     def _get_collection(cls) -> Collection:

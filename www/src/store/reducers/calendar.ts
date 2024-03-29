@@ -10,7 +10,9 @@ import { dispatch } from 'store';
 // types
 import { CalendarProps } from 'types/calendar';
 import { apiReqWithAuth } from 'lib/api';
-import { CALENDAR_EVENTS, CALENDAR_EVENTS_POPULATE_SPEAKER } from 'lib/endpoints';
+
+const CALENDAR_EVENTS = '';
+const CALENDAR_EVENTS_POPULATE_SPEAKER = '';
 
 const reduceCreateEventAttrs = (data: { data }): EventInput => {
   const event = {
