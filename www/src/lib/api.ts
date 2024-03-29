@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { GET_PROFILE, PROFILES } from './endpoints';
-import { reduceProfile } from 'models/auth';
 
 const apiHost = process.env.NEXT_PUBLIC_API_URL;
 

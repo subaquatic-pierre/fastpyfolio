@@ -2,8 +2,8 @@ import { defaultSiteSettings } from 'models/settings';
 import { SiteSettings, reduceSiteSettings } from 'models/settings';
 import { ApiRequest, ApiResponse } from './api';
 import axios from 'axios';
-import { GET_SITE_SETTINGS } from 'lib/endpoints';
-import { Blog, reduceBlog } from 'models/blog';
+import { GET_SITE_SETTINGS, LIST_PROJECT } from 'lib/endpoints';
+import { Project, reduceProjects } from 'models/project';
 
 let severSiteApiHost = process.env.NEXT_PUBLIC_API_URL;
 
@@ -35,4 +35,12 @@ export const getSiteSettings = async (): Promise<SiteSettings> => {
   return {
     ...siteSettings
   };
+};
+
+export const getProjects = async (): Promise<Project[]> => {
+  const res = await serverApiRequest<any[]>({ endpoint: LIST_PROJECT() });
+
+  const projects = reduceProjects(res.data);
+
+  return projects;
 };
