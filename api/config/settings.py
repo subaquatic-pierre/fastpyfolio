@@ -7,6 +7,7 @@ load_dotenv()
 class Settings:
     HOST: str = os.getenv("HOST", "0.0.0.0")
     PORT: int = int(os.getenv("PORT", 8000))
+    HOSTNAME: str = os.getenv("NEXT_PUBLIC_API_URL", "http://localhost:8001")
 
     DB_HOST: str = os.getenv("MONGODB_HOST")
     DB_PORT: int = int(os.getenv("MONGODB_PORT"))
@@ -21,6 +22,11 @@ class Settings:
 
     CLIENT_ORIGIN: str = os.getenv("CLIENT_ORIGIN")
     DEBUG: bool = os.getenv("ENV", "dev") == "dev"
+
+    ROOT_DIR = os.path.abspath(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    )
+    UPLOADS_PATH = os.path.join(ROOT_DIR, "uploads")
 
 
 settings = Settings()
