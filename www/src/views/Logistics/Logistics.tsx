@@ -48,7 +48,7 @@ const Logistics = (): JSX.Element => {
       <Container>
         <Team />
       </Container>
-      <Box bgcolor={'#11092d'}>
+      <Box bgcolor={'alternate.main'}>
         <Container>
           <Integrations />
         </Container>
@@ -64,7 +64,7 @@ const Logistics = (): JSX.Element => {
       <Container>
         <AboutBottom />
       </Container>
-      <Box bgcolor={'primary.main'}>
+      <Box bgcolor={'alternate.main'}>
         <Container>
           <Reviews />
         </Container>

@@ -15,7 +15,7 @@ const Video = (): JSX.Element => {
         backgroundPosition: 'center center',
         backgroundSize: 'cover',
         width: '100%',
-        height: '300px',
+        minHeight: '300px',
         '&:after': {
           content: '""',
           position: 'absolute',

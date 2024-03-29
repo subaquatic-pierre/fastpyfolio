@@ -2,8 +2,9 @@ import { defaultSiteSettings } from 'models/settings';
 import { SiteSettings, reduceSiteSettings } from 'models/settings';
 import { ApiRequest, ApiResponse } from './api';
 import axios from 'axios';
-import { GET_SITE_SETTINGS, LIST_PROJECT } from 'lib/endpoints';
+import { GET_SITE_SETTINGS, LIST_BLOG, LIST_PROJECT } from 'lib/endpoints';
 import { Project, reduceProjects } from 'models/project';
+import { Blog, reduceBlogs } from 'models/blog';
 
 let severSiteApiHost = process.env.NEXT_PUBLIC_API_URL;
 
@@ -43,4 +44,13 @@ export const getProjects = async (): Promise<Project[]> => {
   const projects = reduceProjects(res.data);
 
   return projects;
+};
+
+export const getBlogs = async (): Promise<Blog[]> => {
+  // const res = await serverApiRequest<any[]>({ endpoint: LIST_BLOG() });
+
+  // const projects = reduceBlogs(res.data);
+
+  // return projects;
+  return [];
 };

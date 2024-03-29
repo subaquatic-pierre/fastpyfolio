@@ -21,32 +21,9 @@ interface Props {
 }
 
 const SidebarNav = ({ pages }: Props): JSX.Element => {
-  const [pagesState, setPagesState] = useState([
-    {
-      title: 'Agency',
-      href: '/agency'
-    },
-    {
-      title: 'Design Company',
-      href: '/design-company'
-    },
-    {
-      title: 'Expo',
-      href: '/expo'
-    }
-  ]);
   const settings = useSettings();
   const theme = useTheme();
   const { mode } = theme.palette;
-
-  const {
-    landings: landingPages,
-    secondary: secondaryPages,
-    company: companyPages,
-    account: accountPages,
-    portfolio: portfolioPages,
-    blog: blogPages
-  } = pages;
 
   return (
     <Box>
@@ -87,7 +64,7 @@ const SidebarNav = ({ pages }: Props): JSX.Element => {
           {/* <LinkNavItem title={'Contact Us'} path="/contact-us" id={'contact'} /> */}
           {/* <LinkNavItem title={'Blog'} path="/blog" id={'blog'} /> */}
           <LinkNavItem title={'Projects'} path="/projects" id={'projects'} />
-          <LinkNavItem title={'Blog'} path="/blog" id={'blog'} />
+          <LinkNavItem title={'Blog'} path="/blogs" id={'blog'} />
           {/* <NavItem title={'Demo Pages'} id={'pages'} items={pagesState} /> */}
         </Stack>
         <Box marginTop={2}>

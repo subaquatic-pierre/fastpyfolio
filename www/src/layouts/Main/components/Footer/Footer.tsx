@@ -15,7 +15,7 @@ const Footer = (): JSX.Element => {
   const { mode } = theme.palette;
 
   const linkSX = {
-    color: theme.palette.common.white,
+    color: mode === 'dark' ? theme.palette.common.white : theme.palette.common.black,
     fontSize: '0.875rem',
     fontWeight: 400,
     opacity: '0.6',

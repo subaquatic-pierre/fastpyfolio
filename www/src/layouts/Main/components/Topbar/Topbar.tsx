@@ -28,20 +28,6 @@ interface Props {
 }
 
 const Topbar = ({ onSidebarOpen, pages, colorInvert = false }: Props): JSX.Element => {
-  const [pagesState, setPagesState] = useState([
-    {
-      title: 'Agency',
-      href: '/agency'
-    },
-    {
-      title: 'Design Company',
-      href: '/design-company'
-    },
-    {
-      title: 'Expo',
-      href: '/expo'
-    }
-  ]);
   const settings = useSettings();
   const theme = useTheme();
   const { mode } = theme.palette;
@@ -106,7 +92,7 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }: Props): JSX.Eleme
           {/* <NavItem title={'Services'} path="/services" id={'services'} colorInvert={colorInvert} /> */}
           {/* <NavItem title={'Contact'} path="/contact-us" id={'contact'} colorInvert={colorInvert} /> */}
           <NavItem title={'Projects'} path="/projects" id={'projects'} colorInvert={colorInvert} />
-          <NavItem title={'Blog'} path="/blog" id={'blog'} colorInvert={colorInvert} />
+          <NavItem title={'Blog'} path="/blogs" id={'blog'} colorInvert={colorInvert} />
           {/* <NavItem title={'Demo Pages'} id={'pages'} items={pagesState} colorInvert={colorInvert} /> */}
         </Stack>
         <Stack mx={4} spacing={2} direction="row">
@@ -133,6 +119,9 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }: Props): JSX.Eleme
         </Box>
       </Box>
       <Box sx={{ display: { xs: 'flex', md: 'none' } }} alignItems={'center'}>
+        <Box mr={2}>
+          <ThemeModeToggler />
+        </Box>
         <Button
           onClick={() => onSidebarOpen()}
           aria-label="Menu"

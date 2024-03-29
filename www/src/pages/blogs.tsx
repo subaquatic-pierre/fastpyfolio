@@ -1,22 +1,22 @@
 import Page from 'components/Page';
 import Main from 'layouts/Main';
-import { getSiteSettings, getProjects } from 'lib/serverFetch';
+import { getSiteSettings, getBlogs } from 'lib/serverFetch';
 import { SiteSettings } from 'models/settings';
 import { GetStaticProps } from 'next';
 import React from 'react';
-import ProjectNewsRoom from 'views/ProjectNewsRoom';
+import BlogNewsroom from 'views/BlogNewsroom';
 import Logistics from 'views/Logistics';
 
 interface PageProps {
   settings: SiteSettings;
-  projects: any[];
+  blogs: any[];
 }
 
-const IndexPage: React.FC<PageProps> = ({ settings, projects }): JSX.Element => {
+const IndexPage: React.FC<PageProps> = ({ settings, blogs }): JSX.Element => {
   return (
-    <Main colorInvert={true}>
+    <Main colorInvert>
       <Page settings={settings} title={settings.title}>
-        <ProjectNewsRoom />
+        <BlogNewsroom />
       </Page>
     </Main>
   );
@@ -26,12 +26,12 @@ export default IndexPage;
 
 export const getStaticProps: GetStaticProps<PageProps> = async () => {
   const settings = await getSiteSettings();
-  const projects = await getProjects();
+  const blogs = await getBlogs();
 
   return {
     props: {
       settings,
-      projects
+      blogs
     },
     revalidate: 10
   };

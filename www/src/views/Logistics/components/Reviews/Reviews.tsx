@@ -41,13 +41,12 @@ const Reviews = (): JSX.Element => {
           data-aos={'fade-up'}
           gutterBottom
           sx={{
-            fontWeight: 700,
-            color: 'common.white'
+            fontWeight: 700
           }}
         >
           Meet the Face Behind the Code
         </Typography>
-        <Typography variant="h6" align={'center'} data-aos={'fade-up'} sx={{ color: 'common.white' }}>
+        <Typography variant="h6" align={'center'} data-aos={'fade-up'}>
           Get to know the person behind the screen. Here's a glimpse into my journey and experiences in the tech world.
         </Typography>
       </Box>

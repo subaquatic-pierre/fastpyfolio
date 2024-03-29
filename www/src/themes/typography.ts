@@ -15,12 +15,12 @@ const Typography = (mode: ThemeMode, fontFamily: FontFamily, theme: Theme): Typo
   fontWeightBold: 600,
   h1: {
     fontWeight: 600,
-    fontSize: '2.375rem',
+    fontSize: '3.5rem',
     lineHeight: 1.21
   },
   h2: {
     fontWeight: 600,
-    fontSize: '1.875rem',
+    fontSize: '3.0rem',
     lineHeight: 1.27
   },
   h3: {
@@ -30,17 +30,17 @@ const Typography = (mode: ThemeMode, fontFamily: FontFamily, theme: Theme): Typo
   },
   h4: {
     fontWeight: 600,
-    fontSize: '1.25rem',
+    fontSize: '1.4rem',
     lineHeight: 1.4
   },
   h5: {
     fontWeight: 600,
-    fontSize: '1.1rem',
+    fontSize: '1.2rem',
     lineHeight: 1.5
   },
   h6: {
     fontWeight: 400,
-    fontSize: '1rem',
+    fontSize: '1.1rem',
     lineHeight: 1.57
   },
   caption: {
@@ -49,11 +49,11 @@ const Typography = (mode: ThemeMode, fontFamily: FontFamily, theme: Theme): Typo
     lineHeight: 1.66
   },
   body1: {
-    fontSize: '0.9',
+    fontSize: '1rem',
     lineHeight: 1.57
   },
   body2: {
-    fontSize: '0.8rem',
+    fontSize: '0.9rem',
     lineHeight: 1.66
   },
   subtitle1: {

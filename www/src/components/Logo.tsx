@@ -8,6 +8,7 @@ import { SxProps } from '@mui/system';
 import { APP_ADMIN_DEFAULT_PATH } from 'config';
 import Image from 'next/image';
 import { basePath } from 'utils/const';
+import { useRouter } from 'next/router';
 
 // ==============================|| MAIN LOGO ||============================== //
 
@@ -20,8 +21,9 @@ interface Props {
 }
 
 const LogoSection = ({ reverse, isIcon, sx, to, transparent = false }: Props) => {
+  const router = useRouter();
   return (
-    <NextLink href={'/admin'}>
+    <NextLink href={router.asPath.includes('/login') ? '/' : '/admin'}>
       <ButtonBase disableRipple sx={sx}>
         <Box position="relative" height={isIcon ? 30 : 80} width={isIcon ? 30 : 80}>
           {transparent ? (

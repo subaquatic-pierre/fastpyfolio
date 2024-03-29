@@ -30,10 +30,10 @@ const Integrations = (): JSX.Element => {
   return (
     <Box>
       <Stack marginBottom={4} alignItems="center">
-        <Typography variant={'h4'} gutterBottom align={'center'} sx={{ fontWeight: 700, color: 'common.white' }}>
+        <Typography variant={'h4'} gutterBottom align={'center'}>
           Revolutionizing Data Management
         </Typography>
-        <Typography maxWidth={600} variant={'h6'} component={'p'} color={'text.secondary'} align={'center'} sx={{ color: 'common.white' }}>
+        <Typography maxWidth={600} variant={'h6'} component={'p'} color={'text.secondary'} align={'center'}>
           Introducing cutting-edge storage solutions tailored for modern business demands. Prioritizing security, availability, and
           scalability, these innovations redefine data management paradigms.
         </Typography>
@@ -48,13 +48,18 @@ const Integrations = (): JSX.Element => {
                 alignItems: 'center'
               }}
             >
-              <Box component={'img'} width={{ xs: 60, md: 80 }} height={{ xs: 60, md: 80 }} marginBottom={2} src={item.icon} />
-              <Typography variant={'h6'} gutterBottom align={'center'} sx={{ fontWeight: 600, color: 'common.white' }}>
+              <Box
+                component={'img'}
+                width={{ xs: 60, md: 80 }}
+                height={{ xs: 60, md: 80 }}
+                marginBottom={2}
+                src={item.icon}
+                sx={{ filter: 'brightness(70%)' }}
+              />
+              <Typography variant={'h6'} gutterBottom align={'center'} sx={{ fontWeight: 600 }}>
                 {item.title}
               </Typography>
-              <Typography sx={{ color: 'common.white' }} align={'center'}>
-                {item.subtitle}
-              </Typography>
+              <Typography align={'center'}>{item.subtitle}</Typography>
             </Box>
           </Grid>
         ))}
