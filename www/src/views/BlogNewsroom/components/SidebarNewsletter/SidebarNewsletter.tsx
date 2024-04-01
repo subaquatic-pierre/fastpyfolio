@@ -13,26 +13,19 @@ import Link from '@mui/material/Link';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 const validationSchema = yup.object({
-  email: yup
-    .string()
-    .trim()
-    .email('Please enter a valid email address')
-    .required('Email is required.'),
-  password: yup
-    .string()
-    .required('Please specify your password')
-    .min(8, 'The password should have at minimum length of 8'),
+  email: yup.string().trim().email('Please enter a valid email address').required('Email is required.'),
+  password: yup.string().required('Please specify your password').min(8, 'The password should have at minimum length of 8')
 });
 
 const SidebarNewsletter = (): JSX.Element => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-    defaultMatches: true,
+    defaultMatches: true
   });
 
   const initialValues = {
     email: '',
-    password: '',
+    password: ''
   };
 
   const onSubmit = (values) => {
@@ -42,30 +35,22 @@ const SidebarNewsletter = (): JSX.Element => {
   const formik = useFormik({
     initialValues,
     validationSchema: validationSchema,
-    onSubmit,
+    onSubmit
   });
 
   return (
-    <Box
-      component={Card}
-      variant={'outlined'}
-      padding={2}
-      bgcolor={'transparent'}
-    >
+    <Box component={Card} variant={'outlined'} padding={2} bgcolor={'transparent'}>
       <Grid container spacing={4}>
         {isMd ? (
           <Grid item container justifyContent={'center'} xs={12}>
             <Box height={1} width={1} maxWidth={'80%'}>
               <Box
                 component={'img'}
-                src={
-                  'https://assets.maccarianagency.com/svg/illustrations/drawkit-illustration2.svg'
-                }
+                src={'https://assets.maccarianagency.com/svg/illustrations/drawkit-illustration2.svg'}
                 width={1}
                 height={1}
                 sx={{
-                  filter:
-                    theme.palette.mode === 'dark' ? 'brightness(0.8)' : 'none',
+                  filter: theme.palette.mode === 'dark' ? 'brightness(0.8)' : 'none'
                 }}
               />
             </Box>
@@ -76,7 +61,7 @@ const SidebarNewsletter = (): JSX.Element => {
             variant="h6"
             sx={{
               fontWeight: 700,
-              marginBottom: 2,
+              marginBottom: 2
             }}
           >
             Please login to comment
@@ -109,17 +94,10 @@ const SidebarNewsletter = (): JSX.Element => {
                   marginBottom={2}
                 >
                   <Box marginBottom={{ xs: 1, sm: 0 }}>
-                    <Typography variant={'subtitle2'}>
-                      Enter your password
-                    </Typography>
+                    <Typography variant={'subtitle2'}>Enter your password</Typography>
                   </Box>
                   <Typography variant={'subtitle2'}>
-                    <Link
-                      component={'a'}
-                      color={'primary'}
-                      href={'/password-reset-simple'}
-                      underline={'none'}
-                    >
+                    <Link component={'a'} color={'primary'} href={'/password-reset-simple'} underline={'none'}>
                       Forgot your password?
                     </Link>
                   </Typography>
@@ -132,9 +110,7 @@ const SidebarNewsletter = (): JSX.Element => {
                   fullWidth
                   value={formik.values.password}
                   onChange={formik.handleChange}
-                  error={
-                    formik.touched.password && Boolean(formik.errors.password)
-                  }
+                  error={formik.touched.password && Boolean(formik.errors.password)}
                   // @ts-ignore
                   helperText={formik.touched.password && formik.errors.password}
                 />
@@ -152,12 +128,7 @@ const SidebarNewsletter = (): JSX.Element => {
                   <Box marginBottom={{ xs: 1, sm: 0 }}>
                     <Typography variant={'subtitle2'}>
                       Don't have an account yet?{' '}
-                      <Link
-                        component={'a'}
-                        color={'primary'}
-                        href={'/signup-simple'}
-                        underline={'none'}
-                      >
+                      <Link component={'a'} color={'primary'} href={'/signup-simple'} underline={'none'}>
                         Sign up here.
                       </Link>
                     </Typography>

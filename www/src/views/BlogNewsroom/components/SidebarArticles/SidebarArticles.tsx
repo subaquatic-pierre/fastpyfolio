@@ -15,9 +15,9 @@ const mock = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     title: 'Lorem ipsum dolor sit amet',
     author: {
-      name: 'Clara Bertoletti',
+      name: 'Clara Bertoletti'
     },
-    date: '04 Aug',
+    date: '04 Aug'
   },
   {
     image: 'https://assets.maccarianagency.com/backgrounds/img14.jpg',
@@ -25,9 +25,9 @@ const mock = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     title: 'Consectetur adipiscing elit',
     author: {
-      name: 'Jhon Anderson',
+      name: 'Jhon Anderson'
     },
-    date: '12 Sep',
+    date: '12 Sep'
   },
   {
     image: 'https://assets.maccarianagency.com/backgrounds/img15.jpg',
@@ -35,9 +35,9 @@ const mock = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     title: 'Lorem ipsum dolor sit amet',
     author: {
-      name: 'Clara Bertoletti',
+      name: 'Clara Bertoletti'
     },
-    date: '04 Aug',
+    date: '04 Aug'
   },
   {
     image: 'https://assets.maccarianagency.com/backgrounds/img16.jpg',
@@ -45,10 +45,10 @@ const mock = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     title: 'Consectetur adipiscing elit',
     author: {
-      name: 'Jhon Anderson',
+      name: 'Jhon Anderson'
     },
-    date: '12 Sep',
-  },
+    date: '12 Sep'
+  }
 ];
 
 const SidebarArticles = (): JSX.Element => {
@@ -60,7 +60,7 @@ const SidebarArticles = (): JSX.Element => {
         data-aos={'fade-up'}
         sx={{
           fontWeight: 700,
-          marginBottom: 2,
+          marginBottom: 2
         }}
       >
         Upcoming updates
@@ -79,7 +79,7 @@ const SidebarArticles = (): JSX.Element => {
             >
               <Box
                 sx={{
-                  width: { xs: 1, md: '50%' },
+                  width: { xs: 1, md: '50%' }
                 }}
               >
                 <Box
@@ -93,23 +93,14 @@ const SidebarArticles = (): JSX.Element => {
                     objectFit: 'cover',
                     maxHeight: 120,
                     borderRadius: 2,
-                    filter:
-                      theme.palette.mode === 'dark'
-                        ? 'brightness(0.7)'
-                        : 'none',
+                    filter: theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none'
                   }}
                 />
               </Box>
-              <CardContent
-                sx={{ padding: 1, '&:last-child': { paddingBottom: 1 } }}
-              >
+              <CardContent sx={{ padding: 1, '&:last-child': { paddingBottom: 1 } }}>
                 <Typography fontWeight={700}>{item.title}</Typography>
                 <Box marginY={1 / 4}>
-                  <Typography
-                    variant={'caption'}
-                    color={'text.secondary'}
-                    component={'i'}
-                  >
+                  <Typography variant={'caption'} color={'text.secondary'} component={'i'}>
                     {item.author.name} - {item.date}
                   </Typography>
                 </Box>

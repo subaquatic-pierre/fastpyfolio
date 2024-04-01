@@ -17,7 +17,7 @@ from models.project import Project
 router = APIRouter()
 
 
-@router.get("/")
+@router.get("")
 async def list_projects(req: Request) -> List[ProjectSchema]:
     projects = Project.find_many()
     return [project.to_json() for project in projects]
@@ -71,7 +71,7 @@ async def update_project(id: str, body: UpdateProjectReq) -> ProjectSchema:
         )
 
 
-@router.post("/")
+@router.post("")
 async def create_project(body: CreateProjectReq) -> CreateProjectRes:
     data = json.loads(body.model_dump_json())
     project = Project(**data)

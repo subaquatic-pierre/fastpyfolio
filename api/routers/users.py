@@ -10,7 +10,7 @@ from auth.utils import hash_password, auth_required
 router = APIRouter()
 
 
-@router.get("/")
+@router.get("")
 @auth_required
 async def list_users(req: Request) -> List[UserSchema]:
     users = User.find_many()

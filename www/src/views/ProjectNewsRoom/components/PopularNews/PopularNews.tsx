@@ -18,9 +18,9 @@ const mock = [
     tags: ['UX', 'Design', 'Themes', 'Photography'],
     author: {
       name: 'Clara Bertoletti',
-      avatar: 'https://assets.maccarianagency.com/avatars/img3.jpg',
+      avatar: 'https://assets.maccarianagency.com/avatars/img3.jpg'
     },
-    date: '04 Aug',
+    date: '04 Aug'
   },
   {
     image: 'https://assets.maccarianagency.com/backgrounds/img25.jpg',
@@ -30,10 +30,10 @@ const mock = [
     tags: ['UX', 'Design', 'Themes', 'Photography'],
     author: {
       name: 'Jhon Anderson',
-      avatar: 'https://assets.maccarianagency.com/avatars/img5.jpg',
+      avatar: 'https://assets.maccarianagency.com/avatars/img5.jpg'
     },
-    date: '12 Sep',
-  },
+    date: '12 Sep'
+  }
 ];
 
 const PopularNews = (): JSX.Element => {
@@ -47,17 +47,12 @@ const PopularNews = (): JSX.Element => {
           align={'center'}
           gutterBottom
           sx={{
-            fontWeight: 700,
+            fontWeight: 700
           }}
         >
           The most popular news
         </Typography>
-        <Typography
-          variant="h6"
-          color={'text.secondary'}
-          align={'center'}
-          data-aos={'fade-up'}
-        >
+        <Typography variant="h6" color={'text.secondary'} align={'center'} data-aos={'fade-up'}>
           Keep up to date with what we're working on!
           <br />
           theFront is an ever evolving theme with regular updates.
@@ -75,13 +70,13 @@ const PopularNews = (): JSX.Element => {
               display={'flex'}
               flexDirection={{
                 xs: 'column',
-                md: i % 2 === 0 ? 'row-reverse' : 'row',
+                md: i % 2 === 0 ? 'row-reverse' : 'row'
               }}
               sx={{ backgroundImage: 'none', bgcolor: 'transparent' }}
             >
               <Box
                 sx={{
-                  width: { xs: 1, md: '50%' },
+                  width: { xs: 1, md: '50%' }
                 }}
               >
                 <Box
@@ -95,10 +90,7 @@ const PopularNews = (): JSX.Element => {
                     objectFit: 'cover',
                     maxHeight: 360,
                     borderRadius: 2,
-                    filter:
-                      theme.palette.mode === 'dark'
-                        ? 'brightness(0.7)'
-                        : 'none',
+                    filter: theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none'
                   }}
                 />
               </Box>
@@ -109,7 +101,7 @@ const PopularNews = (): JSX.Element => {
                   width: { xs: 1, md: '50%' },
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'center',
+                  justifyContent: 'center'
                 }}
               >
                 <Box>
@@ -126,25 +118,15 @@ const PopularNews = (): JSX.Element => {
                     />
                   ))}
                 </Box>
-                <Typography
-                  variant={'h6'}
-                  fontWeight={700}
-                  sx={{ textTransform: 'uppercase' }}
-                >
+                <Typography variant={'h6'} fontWeight={700} sx={{ textTransform: 'uppercase' }}>
                   {item.title}
                 </Typography>
                 <Box marginY={1}>
-                  <Typography
-                    variant={'caption'}
-                    color={'text.secondary'}
-                    component={'i'}
-                  >
+                  <Typography variant={'caption'} color={'text.secondary'} component={'i'}>
                     {item.author.name} - {item.date}
                   </Typography>
                 </Box>
-                <Typography color="text.secondary">
-                  {item.description}
-                </Typography>
+                <Typography color="text.secondary">{item.description}</Typography>
                 <Box marginTop={2} display={'flex'} justifyContent={'flex-end'}>
                   <Button
                     endIcon={
@@ -157,12 +139,7 @@ const PopularNews = (): JSX.Element => {
                         width={24}
                         height={24}
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </Box>
                     }
                   >

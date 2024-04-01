@@ -23,7 +23,7 @@ const mock = [
   'Good',
   'Beautiful design',
   'Material design',
-  'UI',
+  'UI'
 ];
 
 const Tags = (): JSX.Element => {
@@ -34,21 +34,14 @@ const Tags = (): JSX.Element => {
         align={'center'}
         sx={{
           fontWeight: 700,
-          marginBottom: 2,
+          marginBottom: 2
         }}
       >
         Tag cloud
       </Typography>
       <Box display={'flex'} flexWrap={'wrap'} justifyContent={'center'}>
         {mock.map((item) => (
-          <Chip
-            key={item}
-            component={'a'}
-            href={''}
-            label={item}
-            clickable
-            sx={{ margin: 0.5 }}
-          />
+          <Chip key={item} component={'a'} href={''} label={item} clickable sx={{ margin: 0.5 }} />
         ))}
       </Box>
     </Box>

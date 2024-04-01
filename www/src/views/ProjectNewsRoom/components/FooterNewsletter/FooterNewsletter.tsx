@@ -8,20 +8,10 @@ const FooterNewsletter = (): JSX.Element => {
   return (
     <Box>
       <Box marginBottom={4}>
-        <Typography
-          fontWeight={700}
-          variant={'h4'}
-          align={'center'}
-          gutterBottom
-        >
+        <Typography fontWeight={700} variant={'h4'} align={'center'} gutterBottom>
           Get our stories delivered
         </Typography>
-        <Typography
-          variant={'h6'}
-          component={'p'}
-          color={'text.secondary'}
-          align={'center'}
-        >
+        <Typography variant={'h6'} component={'p'} color={'text.secondary'} align={'center'}>
           From us to your inbox weekly.
         </Typography>
       </Box>
@@ -32,8 +22,8 @@ const FooterNewsletter = (): JSX.Element => {
           autoComplete="off"
           sx={{
             '& .MuiInputBase-input.MuiOutlinedInput-input': {
-              bgcolor: 'background.paper',
-            },
+              bgcolor: 'background.paper'
+            }
           }}
         >
           <Box
@@ -51,7 +41,7 @@ const FooterNewsletter = (): JSX.Element => {
               fullWidth
               height={54}
               sx={{
-                maxWidth: 422,
+                maxWidth: 422
               }}
             />
             <Box

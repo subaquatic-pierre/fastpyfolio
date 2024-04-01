@@ -12,15 +12,14 @@ import Chip from '@mui/material/Chip';
 const mock = [
   {
     image: 'https://assets.maccarianagency.com/backgrounds/img1.jpg',
-    description:
-      'Sed ut perspiciatis unde omnis iste natus error sit voluptatem',
+    description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem',
     title: 'Eiusmod tempor incididunt',
     tags: ['UX', 'Design', 'Themes', 'Photography'],
     author: {
       name: 'Clara Bertoletti',
-      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
+      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg'
     },
-    date: '10 Sep',
+    date: '10 Sep'
   },
   {
     image: 'https://assets.maccarianagency.com/backgrounds/img4.jpg',
@@ -29,34 +28,32 @@ const mock = [
     tags: ['UX', 'Design', 'Themes', 'Photography'],
     author: {
       name: 'Jhon Anderson',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
+      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg'
     },
-    date: '02 Aug',
+    date: '02 Aug'
   },
   {
     image: 'https://assets.maccarianagency.com/backgrounds/img2.jpg',
-    description:
-      'Qui blanditiis praesentium voluptatum deleniti atque corrupti',
+    description: 'Qui blanditiis praesentium voluptatum deleniti atque corrupti',
     title: 'Unde omnis iste natus',
     tags: ['UX', 'Design', 'Themes', 'Photography'],
     author: {
       name: 'Chary Smith',
-      avatar: 'https://assets.maccarianagency.com/avatars/img3.jpg',
+      avatar: 'https://assets.maccarianagency.com/avatars/img3.jpg'
     },
-    date: '05 Mar',
+    date: '05 Mar'
   },
   {
     image: 'https://assets.maccarianagency.com/backgrounds/img3.jpg',
-    description:
-      'Sed ut perspiciatis unde omnis iste natus error sit voluptatem',
+    description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem',
     title: 'Eiusmod tempor incididunt',
     tags: ['UX', 'Design', 'Themes', 'Photography'],
     author: {
       name: 'Clara Bertoletti',
-      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
+      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg'
     },
-    date: '10 Sep',
-  },
+    date: '10 Sep'
+  }
 ];
 
 const LatestStories = (): JSX.Element => {
@@ -74,18 +71,10 @@ const LatestStories = (): JSX.Element => {
           <Typography fontWeight={700} variant={'h6'} gutterBottom>
             Latest stories
           </Typography>
-          <Typography color={'text.secondary'}>
-            Here’s what we’ve been up to recently.
-          </Typography>
+          <Typography color={'text.secondary'}>Here’s what we’ve been up to recently.</Typography>
         </Box>
         <Box display="flex" marginTop={{ xs: 2, md: 0 }}>
-          <Box
-            component={Button}
-            variant="outlined"
-            color="primary"
-            size="large"
-            marginLeft={2}
-          >
+          <Box component={Button} variant="outlined" color="primary" size="large" marginLeft={2}>
             View all
           </Box>
         </Box>
@@ -103,8 +92,8 @@ const LatestStories = (): JSX.Element => {
                 textDecoration: 'none',
                 transition: 'all .2s ease-in-out',
                 '&:hover': {
-                  transform: `translateY(-${theme.spacing(1 / 2)})`,
-                },
+                  transform: `translateY(-${theme.spacing(1 / 2)})`
+                }
               }}
             >
               <Box component={Card} width={1} height={1}>
@@ -114,10 +103,7 @@ const LatestStories = (): JSX.Element => {
                   sx={{
                     height: { xs: 300, md: 360 },
                     position: 'relative',
-                    filter:
-                      theme.palette.mode === 'dark'
-                        ? 'brightness(0.7)'
-                        : 'none',
+                    filter: theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none'
                   }}
                 />
                 <CardContent
@@ -125,38 +111,19 @@ const LatestStories = (): JSX.Element => {
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
-                    alignItems: 'center',
+                    alignItems: 'center'
                   }}
                 >
-                  <Box
-                    display={'flex'}
-                    justifyContent={'center'}
-                    flexWrap={'wrap'}
-                  >
+                  <Box display={'flex'} justifyContent={'center'} flexWrap={'wrap'}>
                     {item.tags.map((item) => (
-                      <Chip
-                        key={item}
-                        label={item}
-                        size={'small'}
-                        sx={{ marginBottom: 1, marginRight: 1 }}
-                      />
+                      <Chip key={item} label={item} size={'small'} sx={{ marginBottom: 1, marginRight: 1 }} />
                     ))}
                   </Box>
-                  <Typography
-                    variant={'h6'}
-                    fontWeight={700}
-                    align={'center'}
-                    sx={{ textTransform: 'uppercase' }}
-                  >
+                  <Typography variant={'h6'} fontWeight={700} align={'center'} sx={{ textTransform: 'uppercase' }}>
                     {item.title}
                   </Typography>
                   <Box marginY={1}>
-                    <Typography
-                      variant={'caption'}
-                      align={'center'}
-                      color={'text.secondary'}
-                      component={'i'}
-                    >
+                    <Typography variant={'caption'} align={'center'} color={'text.secondary'} component={'i'}>
                       {item.author.name} - {item.date}
                     </Typography>
                   </Box>

@@ -13,14 +13,13 @@ import Avatar from '@mui/material/Avatar';
 const mock = [
   {
     image: 'https://assets.maccarianagency.com/backgrounds/img13.jpg',
-    description:
-      'Sed ut perspiciatis unde omnis iste natus error sit voluptatem',
+    description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem',
     title: 'Eiusmod tempor incididunt',
     author: {
       name: 'Clara Bertoletti',
-      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
+      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg'
     },
-    date: '10 Sep',
+    date: '10 Sep'
   },
   {
     image: 'https://assets.maccarianagency.com/backgrounds/img14.jpg',
@@ -28,21 +27,20 @@ const mock = [
     title: 'Sed ut perspiciatis',
     author: {
       name: 'Jhon Anderson',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
+      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg'
     },
-    date: '02 Aug',
+    date: '02 Aug'
   },
   {
     image: 'https://assets.maccarianagency.com/backgrounds/img17.jpg',
-    description:
-      'Qui blanditiis praesentium voluptatum deleniti atque corrupti',
+    description: 'Qui blanditiis praesentium voluptatum deleniti atque corrupti',
     title: 'Unde omnis iste natus',
     author: {
       name: 'Chary Smith',
-      avatar: 'https://assets.maccarianagency.com/avatars/img3.jpg',
+      avatar: 'https://assets.maccarianagency.com/avatars/img3.jpg'
     },
-    date: '05 Mar',
-  },
+    date: '05 Mar'
+  }
 ];
 
 const FeaturedArticles = (): JSX.Element => {
@@ -60,18 +58,10 @@ const FeaturedArticles = (): JSX.Element => {
           <Typography fontWeight={700} variant={'h4'} gutterBottom>
             Featured stories
           </Typography>
-          <Typography color={'text.secondary'}>
-            Here’s what we’ve been up to recently.
-          </Typography>
+          <Typography color={'text.secondary'}>Here’s what we’ve been up to recently.</Typography>
         </Box>
         <Box display="flex" marginTop={{ xs: 2, md: 0 }}>
-          <Box
-            component={Button}
-            variant="outlined"
-            color="primary"
-            size="large"
-            marginLeft={2}
-          >
+          <Box component={Button} variant="outlined" color="primary" size="large" marginLeft={2}>
             View all
           </Box>
         </Box>
@@ -89,27 +79,18 @@ const FeaturedArticles = (): JSX.Element => {
                 textDecoration: 'none',
                 transition: 'all .2s ease-in-out',
                 '&:hover': {
-                  transform: `translateY(-${theme.spacing(1 / 2)})`,
-                },
+                  transform: `translateY(-${theme.spacing(1 / 2)})`
+                }
               }}
             >
-              <Box
-                component={Card}
-                width={1}
-                height={1}
-                boxShadow={0}
-                sx={{ bgcolor: 'transparent', backgroundImage: 'none' }}
-              >
+              <Box component={Card} width={1} height={1} boxShadow={0} sx={{ bgcolor: 'transparent', backgroundImage: 'none' }}>
                 <CardMedia
                   image={item.image}
                   title={item.title}
                   sx={{
                     height: { xs: 300, md: 360 },
                     position: 'relative',
-                    filter:
-                      theme.palette.mode === 'dark'
-                        ? 'brightness(0.7)'
-                        : 'none',
+                    filter: theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none'
                   }}
                 />
                 <Box
@@ -128,32 +109,19 @@ const FeaturedArticles = (): JSX.Element => {
                     <Typography variant={'h6'} gutterBottom>
                       {item.title}
                     </Typography>
-                    <Typography color="text.secondary">
-                      {item.description}
-                    </Typography>
+                    <Typography color="text.secondary">{item.description}</Typography>
                   </Box>
                   <Box flexGrow={1} />
                   <Box padding={2} display={'flex'} flexDirection={'column'}>
                     <Box marginBottom={2}>
                       <Divider />
                     </Box>
-                    <Box
-                      display={'flex'}
-                      justifyContent={'space-between'}
-                      alignItems={'center'}
-                    >
+                    <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
                       <Box display={'flex'} alignItems={'center'}>
-                        <Avatar
-                          src={item.author.avatar}
-                          sx={{ marginRight: 1 }}
-                        />
-                        <Typography color={'text.secondary'}>
-                          {item.author.name}
-                        </Typography>
+                        <Avatar src={item.author.avatar} sx={{ marginRight: 1 }} />
+                        <Typography color={'text.secondary'}>{item.author.name}</Typography>
                       </Box>
-                      <Typography color={'text.secondary'}>
-                        {item.date}
-                      </Typography>
+                      <Typography color={'text.secondary'}>{item.date}</Typography>
                     </Box>
                   </Box>
                 </Box>

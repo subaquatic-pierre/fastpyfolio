@@ -20,7 +20,7 @@ async def get_file(req: Request, filename: str):
     return FileResponse(filepath)
 
 
-@router.post("/")
+@router.post("")
 async def upload_file(req: Request, file: UploadFile):
     contents = file.file.read()
     filepath = path.join(req.app.config.UPLOADS_PATH, file.filename)
