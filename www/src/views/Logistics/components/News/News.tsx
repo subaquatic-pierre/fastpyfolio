@@ -9,6 +9,7 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
+import Link from 'next/link';
 
 const mock = [
   {
@@ -78,7 +79,7 @@ const News = (): JSX.Element => {
         </Grid>
         <Grid item xs={12} md={4}>
           <Grid container spacing={isMd ? 4 : 2} direction="column">
-            <Grid item xs={12} data-aos="fade-up">
+            {/* <Grid item xs={12} data-aos="fade-up">
               <Box component={Card} bgcolor={'primary.main'}>
                 <CardContent>
                   <Typography variant="h6" gutterBottom color="text.primary" sx={{ color: 'common.white' }}>
@@ -89,7 +90,7 @@ const News = (): JSX.Element => {
                   </Typography>
                 </CardContent>
               </Box>
-            </Grid>
+            </Grid> */}
             <Grid item xs={12} data-aos="fade-up">
               <Box component={Card}>
                 <CardContent>
@@ -100,6 +101,8 @@ const News = (): JSX.Element => {
                     variant="contained"
                     color="primary"
                     size="large"
+                    LinkComponent={Link}
+                    href="/blogs"
                     endIcon={
                       <Box
                         component={'svg'}

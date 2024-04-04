@@ -1,8 +1,7 @@
 import json
-from fastapi import APIRouter, Request, Header
+from fastapi import APIRouter, Request
 from bson.objectid import ObjectId
-from bson.errors import InvalidId
-from fastapi import APIRouter, Depends, Request, status, HTTPException
+from fastapi import APIRouter, Request, status, HTTPException
 
 from typing import List
 from schemas.project import (
@@ -66,8 +65,8 @@ async def update_project(id: str, body: UpdateProjectReq) -> ProjectSchema:
 
     else:
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Not authorized to update project",
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Unable to find project",
         )
 
 

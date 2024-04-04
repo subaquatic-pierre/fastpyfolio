@@ -22,3 +22,4 @@ export const GET_BLOG_BY_ID = (id: string | number) => `/cms/blogs/${id}?populat
 // Projects
 export const LIST_PROJECT = (pageNumber = 0, pageSize = 25) => `/api/projects`;
 export const GET_PROJECT = (slugOrId: string) => `/api/projects/${slugOrId}`;
+export const UPLOAD = '/api/uploads';

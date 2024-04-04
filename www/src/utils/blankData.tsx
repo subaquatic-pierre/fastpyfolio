@@ -1,5 +1,7 @@
 import { User } from 'models/auth';
 import { Box } from '@mui/material';
+import { Seo } from 'models/settings';
+import { Blog } from 'models/blog';
 
 const defaultFileUrl = `/images/avatar-group.png`;
 
@@ -27,4 +29,23 @@ export const blankUser: User = {
   createdAt: '',
   updatedAt: '',
   role: 'admin'
+};
+
+export const blankSeo: Seo = {
+  title: '',
+  description: '',
+  image: '',
+  metaTags: []
+};
+
+export const blankBlog: Blog = {
+  id: -1,
+  title: '',
+  slug: '',
+  description: '',
+  content: {},
+  createdAt: '2024-02-29T09:07:33.919Z',
+  updatedAt: '2024-02-29T09:07:33.919Z',
+  author: blankUser,
+  seo: blankSeo
 };

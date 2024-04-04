@@ -11,6 +11,7 @@ export const APP_DEFAULT_PATH = '/';
 export const APP_ADMIN_DEFAULT_PATH = '/admin';
 export const HORIZONTAL_MAX_ITEM = 6;
 export const DRAWER_WIDTH = 260;
+export const WWW_HOST = process.env.NEXT_PUBLIC_WWW_HOST;
 
 // ==============================|| THEME CONFIG  ||============================== //
 

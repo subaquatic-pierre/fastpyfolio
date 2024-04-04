@@ -1,7 +1,5 @@
-from typing import Annotated, List, Optional
+from typing import List, Optional
 
-from pydantic import BaseModel
-from models.model import ModelId
 from schemas.base import BaseSchema, BaseModelSchema
 
 

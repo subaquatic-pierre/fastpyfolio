@@ -1,34 +1,89 @@
 import { useEffect, useState } from 'react';
 
 // material-ui
-import { Grid, Typography, Box } from '@mui/material';
+import { Grid, Typography, Box, Stack, CircularProgress, Button, DialogTitle, Dialog, DialogActions } from '@mui/material';
+
+import { dispatch } from 'store';
+import { openSnackbar } from 'store/reducers/snackbar';
 
 // project imports
 import Layout from 'layouts';
-import useAuth from 'hooks/useAuth';
 
 import Page from 'components/Page';
 import MainCard from 'components/MainCard';
-import Loader from 'components/Loader';
 import { useRouter } from 'next/router';
+import { sleep } from 'utils/sleep';
+import { apiReqWithAuth } from 'lib/api';
+import { LIST_BLOG, GET_BLOG_BY_ID } from 'lib/endpoints';
+
+import { Blog, reduceBlog } from 'models/blog';
+import Editor from 'components/Editor';
+import BlogForm from 'components/BlogForm';
+import { getBlogBySlug } from 'lib/clientFetch';
+import { blankBlog } from 'utils/blankData';
+import { SiteSettings } from 'models/settings';
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
+import { getSiteSettings } from 'lib/serverFetch';
+import SeoForm from 'components/SeoForm';
 
 // ==============================|| Dashboard PAGE ||============================== //
 
-const Dashboard = () => {
+interface PageProps {
+  settings: SiteSettings;
+}
+
+const BlogDetailPage: React.FC<PageProps> = ({ settings }) => {
+  const [blogData, setBlogData] = useState<Blog>(null);
+  const router = useRouter();
+  const slug = router.query.slug;
+
+  const handleLoad = async () => {
+    if (slug) {
+      if (slug === 'new') {
+        setBlogData(blankBlog);
+      } else {
+        const blog = await getBlogBySlug(slug as string);
+        if (blog) setBlogData(blog);
+      }
+    }
+  };
+
+  useEffect(() => {
+    handleLoad();
+  }, [slug]);
+
   return (
     <Layout admin>
-      <Page title="Admin">
-        <MainCard title="Sample Card">
-          <Typography variant="body2">
-            Lorem ipsum dolor sit amen, consenter nipissing eli, sed do elusion tempos incident ut laborers et doolie magna alissa. Ut enif
-            ad minim venice, quin nostrum exercitation illampu laborings nisi ut liquid ex ea commons construal. Duos aube grue dolor in
-            reprehended in voltage veil esse colum doolie eu fujian bulla parian. Exceptive sin ocean cuspidate non president, sunk in culpa
-            qui officiate descent molls anim id est labours.
-          </Typography>
-        </MainCard>
+      <Page title="Blog Detail Page" settings={settings}>
+        <Stack spacing={2}>
+          <MainCard>
+            {blogData ? (
+              <Box>
+                <BlogForm blogData={blogData} />
+              </Box>
+            ) : (
+              <Stack minHeight={300} justifyContent="center" alignItems="center">
+                <CircularProgress />
+              </Stack>
+            )}
+          </MainCard>
+          {blogData && blogData.id !== -1 && (
+            <SeoForm endpoint={GET_BLOG_BY_ID(blogData.id)} method={'PUT'} title={'Title'} description={'Description'} image={'Image'} />
+          )}
+        </Stack>
       </Page>
     </Layout>
   );
 };
 
-export default Dashboard;
+export default BlogDetailPage;
+
+export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
+  const settings = await getSiteSettings();
+
+  return {
+    props: {
+      settings
+    }
+  };
+};

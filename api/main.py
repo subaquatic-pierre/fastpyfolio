@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
 from config.settings import settings
-from routers import auth, index, uploads, projects, users
+from routers import auth, index, uploads, projects, users, blogs
 
 app = FastAPI()
 app.config = settings
@@ -22,6 +22,7 @@ app.include_router(index.router, tags=["Index"], prefix="/api")
 app.include_router(auth.router, tags=["Auth"], prefix="/api/auth")
 app.include_router(users.router, tags=["Users"], prefix="/api/users")
 app.include_router(projects.router, tags=["Projects"], prefix="/api/projects")
+app.include_router(blogs.router, tags=["Blogs"], prefix="/api/blogs")
 app.include_router(uploads.router, tags=["Uploads"], prefix="/api/uploads")
 
 

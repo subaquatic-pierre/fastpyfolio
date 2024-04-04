@@ -1,4 +1,5 @@
 import { User } from './auth';
+import { Seo } from './settings';
 
 export type Blog = {
   id: number;
@@ -7,9 +8,10 @@ export type Blog = {
   slug: string;
   content: object;
   featuredImageUrl?: string;
-  createdAt?: Date;
-  updateAt?: Date;
+  createdAt?: string;
+  updatedAt?: string;
   author: Partial<User>;
+  seo: Seo;
 };
 
 export const reduceBlog = (data: any): Blog | null => {
