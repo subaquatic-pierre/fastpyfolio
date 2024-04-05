@@ -2,7 +2,7 @@ import { User } from './auth';
 import { Seo } from './settings';
 
 export type Blog = {
-  id: number;
+  id: string;
   title: string;
   description: string;
   slug: string;
@@ -10,19 +10,13 @@ export type Blog = {
   featuredImageUrl?: string;
   createdAt?: string;
   updatedAt?: string;
-  author: Partial<User>;
-  seo: Seo;
+  authorId: string;
 };
 
 export const reduceBlog = (data: any): Blog | null => {
   try {
     let blog: Blog = {
-      id: data.id,
-      ...data.attributes,
-      createdAt: new Date(data.attributes.createdAt),
-      updateAt: new Date(data.attributes.updateAt),
-      content: JSON.parse(data.attributes.content),
-      author: data.user
+      ...data
     };
 
     return blog;
@@ -34,7 +28,7 @@ export const reduceBlog = (data: any): Blog | null => {
 
 export const reduceBlogs = (data: any): Blog[] | null => {
   const blogs = [];
-  for (const item of data.data.data) {
+  for (const item of data) {
     try {
       const blog = reduceBlog(item);
 

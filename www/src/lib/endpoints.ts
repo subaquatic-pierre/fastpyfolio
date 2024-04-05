@@ -14,10 +14,8 @@ export const EMAIL_CONFIRMATION = '/api/auth/send-email-confirmation';
 export const GET_SITE_SETTINGS = '/api/site-settings';
 
 // Blogs
-export const LIST_BLOG = (pageNumber = 0, pageSize = 25) =>
-  `/api/blogs?populate[0]=seo.metaTags&pagination[pageSize]=${pageSize}&pagination[page]=${pageNumber}`;
-export const GET_BLOG_BY_SLUG = (slug: string) => `/cms/blogs?filters[slug][$eq]=${slug}&populate[0]=seo.metaTags`;
-export const GET_BLOG_BY_ID = (id: string | number) => `/cms/blogs/${id}?populate[0]=seo.metaTags`;
+export const LIST_BLOG = (pageNumber = 0, pageSize = 25) => `/api/blogs`;
+export const GET_BLOG = (slugOrId: string) => `/api/blogs/${slugOrId}`;
 
 // Projects
 export const LIST_PROJECT = (pageNumber = 0, pageSize = 25) => `/api/projects`;

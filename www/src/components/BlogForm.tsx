@@ -22,12 +22,12 @@ import { Blog } from 'models/blog';
 import { FormFiles } from 'types/dropzone';
 
 import Editor from 'components/Editor';
-import { getBlogBySlug } from 'lib/clientFetch';
+import { RemoteApi } from 'lib/fetch';
 import { slugify } from 'utils/slug';
 import useAuth from 'hooks/useAuth';
 import EditorJS from '@editorjs/editorjs';
 import { ApiMethod, apiReqWithAuth } from 'lib/api';
-import { LIST_BLOG, GET_BLOG_BY_ID } from 'lib/endpoints';
+import { LIST_BLOG, GET_BLOG } from 'lib/endpoints';
 import { useRouter } from 'next/router';
 import SingleFileUpload from 'components/Dropzone/SingleFile';
 import { uploadBlogImage } from 'lib/upload';
@@ -45,7 +45,7 @@ const emptyFiles: FormFiles = {
 };
 
 const BlogForm: React.FC<Props> = ({ blogData }) => {
-  const [selectedId, setSelected] = useState<number>(null);
+  const [selectedId, setSelected] = useState<string>(null);
   const router = useRouter();
   const { user } = useAuth();
   const editorRef = useRef<EditorJS>();
@@ -83,6 +83,7 @@ const BlogForm: React.FC<Props> = ({ blogData }) => {
   };
 
   const handleSaveClick = async () => {
+    const fetchApi = new RemoteApi();
     // ensure slug is not 'new'
     if (formik.values.slug === 'new') {
       setSubmitErrors({ slug: "Slug cannot be 'new'" });
@@ -96,27 +97,29 @@ const BlogForm: React.FC<Props> = ({ blogData }) => {
       return;
     }
 
-    const prevBlog = await getBlogBySlug(blogData.slug);
+    try {
+      const prevBlog = await fetchApi.getBlog(formik.values.slug);
 
-    // check that slug is not already taken
-    // first if checks that new blog does not use same slug as an existing blog
-    // second check is to ensure if the blog is being updated only same blog can have same slug
-    if ((prevBlog && blogData.id === -1) || (prevBlog && prevBlog.id !== blogData.id)) {
-      setSubmitErrors({ slug: 'Slug already used' });
-      dispatch(
-        openSnackbar({
-          open: true,
-          message: 'There was an error, please check input errors',
-          variant: 'alert',
-          alert: {
-            color: 'error'
-          },
-          close: false
-        })
-      );
+      // check that slug is not already taken
+      // first if checks that new blog does not use same slug as an existing blog
+      // second check is to ensure if the blog is being updated only same blog can have same slug
+      if (prevBlog && prevBlog.id !== blogData.id) {
+        setSubmitErrors({ slug: 'Slug already used' });
+        dispatch(
+          openSnackbar({
+            open: true,
+            message: 'There was an error, please check input errors',
+            variant: 'alert',
+            alert: {
+              color: 'error'
+            },
+            close: false
+          })
+        );
 
-      return;
-    }
+        return;
+      }
+    } catch (e) {}
 
     if (editorRef.current) {
       const editor = editorRef.current;
@@ -128,8 +131,8 @@ const BlogForm: React.FC<Props> = ({ blogData }) => {
       let featuredImageUrl = '';
 
       // update endpoint, method and success message if blog is update
-      if (blogData.id !== -1) {
-        endpoint = GET_BLOG_BY_ID(blogData.id);
+      if (blogData.id !== '') {
+        endpoint = GET_BLOG(blogData.id);
         method = 'PUT';
         message = 'Blog updated successfully';
       }
@@ -158,12 +161,8 @@ const BlogForm: React.FC<Props> = ({ blogData }) => {
         const data = {
           ...formik.values,
           content: JSON.stringify(blogContent),
-          author: user.email,
-          featuredImageUrl,
-          // only add default seo data if is new blog create
-          ...(blogData.id === -1 && {
-            seo: { title: formik.values.title, description: formik.values.description, image: featuredImageUrl }
-          })
+          authorId: user.id,
+          featuredImageUrl
         };
 
         // remove id field from formik data before api call
@@ -172,7 +171,7 @@ const BlogForm: React.FC<Props> = ({ blogData }) => {
         await apiReqWithAuth({
           endpoint,
           method,
-          data: { data }
+          data
         });
 
         dispatch(
@@ -228,7 +227,7 @@ const BlogForm: React.FC<Props> = ({ blogData }) => {
       if (!selectedId) {
         throw new Error('No blog selected');
       }
-      await apiReqWithAuth({ endpoint: GET_BLOG_BY_ID(selectedId), method: 'DELETE' });
+      await apiReqWithAuth({ endpoint: GET_BLOG(selectedId), method: 'DELETE' });
       router.push('/admin/blog');
     } catch (e) {
       message = 'There was an error deleting the blog';
@@ -262,7 +261,7 @@ const BlogForm: React.FC<Props> = ({ blogData }) => {
     delete submitErrors[e.target.name];
     setSubmitErrors(submitErrors);
     const slugTouched = formik.touched.slug;
-    if (e.target.name === 'title' && !slugTouched && blogData.id === -1) {
+    if (e.target.name === 'title' && !slugTouched && blogData.id === '') {
       formik.setFieldValue('slug', slugify(e.target.value));
     }
     formik.setFieldValue(e.target.name, e.target.value);
@@ -366,7 +365,7 @@ const BlogForm: React.FC<Props> = ({ blogData }) => {
         </Grid>
         <Grid item xs={12}>
           <Stack direction="row" justifyContent="end" spacing={1}>
-            {blogData.id !== -1 && (
+            {blogData.id !== '' && (
               <Button onClick={() => setSelected(blogData.id)} variant="contained" color="error">
                 Delete
               </Button>

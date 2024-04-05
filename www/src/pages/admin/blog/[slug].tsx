@@ -14,16 +14,15 @@ import MainCard from 'components/MainCard';
 import { useRouter } from 'next/router';
 import { sleep } from 'utils/sleep';
 import { apiReqWithAuth } from 'lib/api';
-import { LIST_BLOG, GET_BLOG_BY_ID } from 'lib/endpoints';
+import { LIST_BLOG, GET_BLOG } from 'lib/endpoints';
 
 import { Blog, reduceBlog } from 'models/blog';
 import Editor from 'components/Editor';
 import BlogForm from 'components/BlogForm';
-import { getBlogBySlug } from 'lib/clientFetch';
 import { blankBlog } from 'utils/blankData';
 import { SiteSettings } from 'models/settings';
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
-import { getSiteSettings } from 'lib/serverFetch';
+import { RemoteApi, RequestOrigin } from 'lib/fetch';
 import SeoForm from 'components/SeoForm';
 
 // ==============================|| Dashboard PAGE ||============================== //
@@ -38,11 +37,12 @@ const BlogDetailPage: React.FC<PageProps> = ({ settings }) => {
   const slug = router.query.slug;
 
   const handleLoad = async () => {
+    const api = new RemoteApi();
     if (slug) {
       if (slug === 'new') {
         setBlogData(blankBlog);
       } else {
-        const blog = await getBlogBySlug(slug as string);
+        const blog = await api.getBlog(slug as string);
         if (blog) setBlogData(blog);
       }
     }
@@ -67,9 +67,6 @@ const BlogDetailPage: React.FC<PageProps> = ({ settings }) => {
               </Stack>
             )}
           </MainCard>
-          {blogData && blogData.id !== -1 && (
-            <SeoForm endpoint={GET_BLOG_BY_ID(blogData.id)} method={'PUT'} title={'Title'} description={'Description'} image={'Image'} />
-          )}
         </Stack>
       </Page>
     </Layout>
@@ -79,7 +76,8 @@ const BlogDetailPage: React.FC<PageProps> = ({ settings }) => {
 export default BlogDetailPage;
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
-  const settings = await getSiteSettings();
+  const api = new RemoteApi(RequestOrigin.NextBackend);
+  const settings = await api.getSiteSettings();
 
   return {
     props: {

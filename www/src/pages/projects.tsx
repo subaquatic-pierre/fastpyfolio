@@ -1,6 +1,6 @@
 import Page from 'components/Page';
 import Main from 'layouts/Main';
-import { getSiteSettings, getProjects } from 'lib/serverFetch';
+import { RemoteApi, RequestOrigin } from 'lib/fetch';
 import { SiteSettings } from 'models/settings';
 import { GetStaticProps } from 'next';
 import React from 'react';
@@ -25,8 +25,10 @@ const IndexPage: React.FC<PageProps> = ({ settings, projects }): JSX.Element => 
 export default IndexPage;
 
 export const getStaticProps: GetStaticProps<PageProps> = async () => {
-  const settings = await getSiteSettings();
-  const projects = await getProjects();
+  const api = new RemoteApi(RequestOrigin.NextBackend);
+
+  const settings = await api.getSiteSettings();
+  const projects = await api.getProjects();
 
   return {
     props: {

@@ -2,6 +2,7 @@ import { User } from 'models/auth';
 import { Box } from '@mui/material';
 import { Seo } from 'models/settings';
 import { Blog } from 'models/blog';
+import { Project } from 'models/project';
 
 const defaultFileUrl = `/images/avatar-group.png`;
 
@@ -39,13 +40,20 @@ export const blankSeo: Seo = {
 };
 
 export const blankBlog: Blog = {
-  id: -1,
+  id: '',
   title: '',
   slug: '',
   description: '',
   content: {},
   createdAt: '2024-02-29T09:07:33.919Z',
   updatedAt: '2024-02-29T09:07:33.919Z',
-  author: blankUser,
-  seo: blankSeo
+  authorId: '660281a7a40452e4268940e0'
+};
+
+export const blankProject: Project = {
+  id: '',
+  title: '',
+  slug: '',
+  createdAt: '',
+  updatedAt: ''
 };

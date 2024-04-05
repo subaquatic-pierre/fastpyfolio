@@ -14,6 +14,7 @@ export type ApiRequest = {
   method?: ApiMethod;
   data?: object;
   headers?: object;
+  serverSide?: boolean;
 };
 
 export const apiReq = async <Model = object>({ endpoint, method = 'GET', data, headers }: ApiRequest): Promise<ApiResponse<Model>> => {

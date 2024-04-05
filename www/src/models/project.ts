@@ -5,7 +5,7 @@ export type Project = {
   title: string;
   slug: string;
   createdAt: string;
-  updateAt: string;
+  updatedAt: string;
   category?: string;
   description?: string;
   githubUrl?: string;

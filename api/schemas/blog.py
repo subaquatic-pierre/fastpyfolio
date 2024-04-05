@@ -1,4 +1,5 @@
 from typing import Optional
+from models.model import ModelId
 
 from schemas.base import BaseSchema, BaseModelSchema
 
@@ -6,10 +7,11 @@ from schemas.base import BaseSchema, BaseModelSchema
 class CreateBlogReq(BaseSchema):
     title: str
     description: str
-    featured_image: str
+    featured_image_url: str
     content: str
-    category: str
     slug: str
+    author_id: str
+    category: str = "Uncategorized"
 
 
 # Inherit all fields from create Blog request schema
@@ -17,7 +19,7 @@ class CreateBlogReq(BaseSchema):
 # from BaseSchema. Not used as request body schema for documentation
 # purpose as to exclude id from examples in documentation
 class BlogSchema(CreateBlogReq, BaseModelSchema):
-    pass
+    author_id: ModelId | None = None
 
 
 class CreateBlogRes(BaseSchema):
@@ -34,6 +36,6 @@ class UpdateBlogReq(BaseSchema):
     title: Optional[str] = None
     slug: Optional[str] = None
     description: Optional[str] = None
-    featured_image: Optional[str] = None
+    featured_image_url: Optional[str] = None
     category: Optional[str] = None
     content: Optional[str] = None

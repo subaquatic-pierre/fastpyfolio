@@ -30,7 +30,6 @@ import LinearWithLabel from 'components/@extended/progress/LinearWithLabel';
 import { dispatch } from 'store';
 import { openSnackbar } from 'store/reducers/snackbar';
 
-import { LIST_BLOG, GET_BLOG_BY_ID } from 'lib/endpoints';
 import Page from 'components/Page';
 import MainCard from 'components/MainCard';
 import Loader from 'components/Loader';
@@ -41,8 +40,9 @@ import { apiReqWithAuth } from 'lib/api';
 import Link from 'next/link';
 import { DeleteFilled, EditFilled } from '@ant-design/icons';
 import { GetServerSideProps, GetStaticProps } from 'next';
-import { getBlogs, getSiteSettings } from 'lib/serverFetch';
+import { RemoteApi, RequestOrigin } from 'lib/fetch';
 import { SiteSettings } from 'models/settings';
+import { GET_BLOG } from 'lib/endpoints';
 
 // ==============================|| BlogListPage PAGE ||============================== //
 
@@ -136,7 +136,7 @@ interface PageProps {
 }
 
 const BlogListPage: React.FC<PageProps> = ({ settings }) => {
-  const [selectedId, setSelected] = useState<number>(null);
+  const [selectedId, setSelected] = useState<string>(null);
   const theme = useTheme();
   const router = useRouter();
   const routerPageIndex = router.query.page;
@@ -152,7 +152,7 @@ const BlogListPage: React.FC<PageProps> = ({ settings }) => {
       if (!selectedId) {
         throw new Error('No blog selected');
       }
-      await apiReqWithAuth({ endpoint: GET_BLOG_BY_ID(selectedId), method: 'DELETE' });
+      await apiReqWithAuth({ endpoint: GET_BLOG(selectedId), method: 'DELETE' });
       setLoading(true);
     } catch (e) {
       message = 'There was an error deleting the blog';
@@ -176,10 +176,10 @@ const BlogListPage: React.FC<PageProps> = ({ settings }) => {
 
   const columns = useMemo(
     () => [
-      {
-        Header: 'ID',
-        accessor: 'id'
-      },
+      // {
+      //   Header: 'ID',
+      //   accessor: 'id'
+      // },
       {
         Header: 'Title',
         accessor: 'title',
@@ -198,10 +198,6 @@ const BlogListPage: React.FC<PageProps> = ({ settings }) => {
       {
         Header: 'Desciption',
         accessor: 'description'
-      },
-      {
-        Header: 'Author',
-        accessor: 'author.email'
       },
       {
         Header: 'Actions',
@@ -230,14 +226,12 @@ const BlogListPage: React.FC<PageProps> = ({ settings }) => {
   );
 
   const loadData = async (pageIndex: number, pageSize: number): Promise<void> => {
+    const api = new RemoteApi();
     setLoading(false);
 
-    const blogs = await getBlogs();
+    const blogs = await api.getBlogs();
 
-    console.log(blogs);
-
-    // const blogs = await reduceBlogs(res);
-    setData([]);
+    setData(blogs);
 
     // update router with new page number
     if (pageIndex >= 0) {
@@ -290,7 +284,8 @@ const BlogListPage: React.FC<PageProps> = ({ settings }) => {
 export default BlogListPage;
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
-  const settings = await getSiteSettings();
+  const api = new RemoteApi(RequestOrigin.NextBackend);
+  const settings = await api.getSiteSettings();
 
   return {
     props: {

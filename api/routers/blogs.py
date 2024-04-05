@@ -73,6 +73,7 @@ async def update_project(id: str, body: UpdateBlogReq) -> BlogSchema:
 @router.post("")
 async def create_project(body: CreateBlogReq) -> CreateBlogRes:
     data = json.loads(body.model_dump_json())
+    data["author_id"] = ObjectId(data["author_id"])
     blog = Blog(**data)
     result = blog.save()
     new_blog = Blog.find_one({"_id": result.inserted_id})
