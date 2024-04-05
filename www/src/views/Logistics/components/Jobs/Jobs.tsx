@@ -48,7 +48,7 @@ const Jobs = (): JSX.Element => {
           Explore our recent innovations and discover the power of innovation in action
         </Typography>
         <Box display="flex" justifyContent={'center'} marginTop={2}>
-          <Button LinkComponent={Link} href="/projects" variant="contained" color="primary" size="large">
+          <Button LinkComponent={Link} href="/project" variant="contained" color="primary" size="large">
             View all projects
           </Button>
         </Box>
@@ -57,7 +57,7 @@ const Jobs = (): JSX.Element => {
         <Grid container spacing={2}>
           {mock.map((item, i) => (
             <Grid item xs={12} key={i}>
-              <Link href={`/projects/${item.slug}`}>
+              <Link href={`/project/${item.slug}`}>
                 <Box
                   component={Card}
                   variant={'outlined'}

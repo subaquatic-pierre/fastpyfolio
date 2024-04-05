@@ -28,7 +28,7 @@ async def upload_file(req: Request, file: UploadFile):
         f.write(contents)
     return {
         "filename": file.filename,
-        "url": f"{req.app.config.HOSTNAME}/api/uploads/{file.filename}",
+        "url": f"{req.app.config.HOSTNAME}/api/upload/{file.filename}",
     }
 
 

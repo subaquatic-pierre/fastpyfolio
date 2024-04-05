@@ -1,6 +1,6 @@
 import Page from 'components/Page';
 import Main from 'layouts/Main';
-import { RemoteApi, RequestOrigin } from 'lib/fetch';
+import { RemoteApi, RequestOrigin } from 'lib/api';
 import { SiteSettings } from 'models/settings';
 import { GetStaticProps } from 'next';
 import React from 'react';
@@ -13,10 +13,11 @@ interface PageProps {
 }
 
 const IndexPage: React.FC<PageProps> = ({ settings, blogs }): JSX.Element => {
+  console.log(blogs);
   return (
     <Main colorInvert>
       <Page settings={settings} title={settings.title}>
-        <BlogNewsroom />
+        <BlogNewsroom blogs={blogs} />
       </Page>
     </Main>
   );

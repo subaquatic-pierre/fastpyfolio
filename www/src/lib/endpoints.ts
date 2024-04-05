@@ -14,10 +14,10 @@ export const EMAIL_CONFIRMATION = '/api/auth/send-email-confirmation';
 export const GET_SITE_SETTINGS = '/api/site-settings';
 
 // Blogs
-export const LIST_BLOG = (pageNumber = 0, pageSize = 25) => `/api/blogs`;
-export const GET_BLOG = (slugOrId: string) => `/api/blogs/${slugOrId}`;
+export const LIST_BLOG = (pageNumber = 0, pageSize = 25) => `/api/blog`;
+export const GET_BLOG = (slugOrId: string) => `/api/blog/${slugOrId}`;
 
 // Projects
-export const LIST_PROJECT = (pageNumber = 0, pageSize = 25) => `/api/projects`;
-export const GET_PROJECT = (slugOrId: string) => `/api/projects/${slugOrId}`;
-export const UPLOAD = '/api/uploads';
+export const LIST_PROJECT = (pageNumber = 0, pageSize = 25) => `/api/project`;
+export const GET_PROJECT = (slugOrId: string) => `/api/project/${slugOrId}`;
+export const UPLOAD = '/api/upload';

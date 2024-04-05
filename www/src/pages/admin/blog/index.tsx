@@ -40,7 +40,7 @@ import { apiReqWithAuth } from 'lib/api';
 import Link from 'next/link';
 import { DeleteFilled, EditFilled } from '@ant-design/icons';
 import { GetServerSideProps, GetStaticProps } from 'next';
-import { RemoteApi, RequestOrigin } from 'lib/fetch';
+import { RemoteApi, RequestOrigin } from 'lib/api';
 import { SiteSettings } from 'models/settings';
 import { GET_BLOG } from 'lib/endpoints';
 
@@ -234,11 +234,11 @@ const BlogListPage: React.FC<PageProps> = ({ settings }) => {
     setData(blogs);
 
     // update router with new page number
-    if (pageIndex >= 0) {
-      router.replace({
-        query: { ...router.query, page: pageIndex + 1 }
-      });
-    }
+    // if (pageIndex >= 0) {
+    //   router.replace({
+    //     query: { ...router.query, page: pageIndex + 1 }
+    //   });
+    // }
   };
 
   useEffect(() => {

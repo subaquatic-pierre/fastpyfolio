@@ -91,8 +91,8 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }: Props): JSX.Eleme
           {/* <NavItem title={'About Us'} path="/about-us" id={'about-us'} colorInvert={colorInvert} /> */}
           {/* <NavItem title={'Services'} path="/services" id={'services'} colorInvert={colorInvert} /> */}
           {/* <NavItem title={'Contact'} path="/contact-us" id={'contact'} colorInvert={colorInvert} /> */}
-          <NavItem title={'Projects'} path="/projects" id={'projects'} colorInvert={colorInvert} />
-          <NavItem title={'Blog'} path="/blogs" id={'blog'} colorInvert={colorInvert} />
+          <NavItem title={'Projects'} path="/project" id={'projects'} colorInvert={colorInvert} />
+          <NavItem title={'Blog'} path="/blog" id={'blog'} colorInvert={colorInvert} />
           {/* <NavItem title={'Demo Pages'} id={'pages'} items={pagesState} colorInvert={colorInvert} /> */}
         </Stack>
         <Stack mx={4} spacing={2} direction="row">

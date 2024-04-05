@@ -8,15 +8,22 @@ export type Blog = {
   slug: string;
   content: object;
   featuredImageUrl?: string;
+  category?: string;
   createdAt?: string;
   updatedAt?: string;
   authorId: string;
 };
 
 export const reduceBlog = (data: any): Blog | null => {
+  let content = {};
+
+  try {
+    content = JSON.parse(data.content);
+  } catch (e) {}
   try {
     let blog: Blog = {
-      ...data
+      ...data,
+      content
     };
 
     return blog;

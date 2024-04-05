@@ -4,8 +4,8 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import { dispatch } from 'store';
 import { openSnackbar } from 'store/reducers/snackbar';
-import { ApiMethod, apiReqWithAuth } from 'lib/api';
-import { LIST_BLOG, GET_SITE_SETTINGS, GET_BLOG_BY_ID } from 'lib/endpoints';
+import { ApiMethod, UploadApi, apiReqWithAuth } from 'lib/api';
+import { LIST_BLOG, GET_SITE_SETTINGS } from 'lib/endpoints';
 import { useRouter } from 'next/router';
 
 import {
@@ -26,7 +26,6 @@ import useSettings from 'hooks/useSettings';
 import { getInitialFile } from 'utils/upload';
 import { FormFiles } from 'types/dropzone';
 import SingleFileUpload from 'components/Dropzone/SingleFile';
-import { uploadBlogImage } from 'lib/upload';
 import useAuth from 'hooks/useAuth';
 
 const emptyFiles: FormFiles = {
@@ -92,6 +91,7 @@ const SeoForm: React.FC<Props> = ({ endpoint, method, title, slug, description, 
   };
 
   const handleSaveClick = async () => {
+    const uploadApi = new UploadApi();
     // only validate form if slug is needed
     if (slug) {
       const errors = await formik.validateForm();
@@ -106,8 +106,8 @@ const SeoForm: React.FC<Props> = ({ endpoint, method, title, slug, description, 
 
     try {
       if (files?.image?.files) {
-        const res = await uploadBlogImage(files, `${user.id}`);
-        imageUrl = res?.image?.url ?? '';
+        const res = await uploadApi.uploadFile(files.image.files[0]);
+        imageUrl = res?.file?.url ?? '';
       }
     } catch (e) {
       dispatch(

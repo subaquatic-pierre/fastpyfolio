@@ -1,6 +1,6 @@
 import Page from 'components/Page';
 import Main from 'layouts/Main';
-import { RemoteApi, RequestOrigin } from 'lib/fetch';
+import { RemoteApi, RequestOrigin } from 'lib/api';
 import { SiteSettings } from 'models/settings';
 import { GetStaticProps } from 'next';
 import React from 'react';

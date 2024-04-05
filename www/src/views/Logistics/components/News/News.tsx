@@ -102,7 +102,7 @@ const News = (): JSX.Element => {
                     color="primary"
                     size="large"
                     LinkComponent={Link}
-                    href="/blogs"
+                    href="/blog"
                     endIcon={
                       <Box
                         component={'svg'}

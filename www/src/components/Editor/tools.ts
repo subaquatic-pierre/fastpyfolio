@@ -6,6 +6,7 @@ import Delimiter from '@editorjs/delimiter';
 import CheckList from '@editorjs/checklist';
 import ImageTool from '@editorjs/image';
 import { uploadByFile } from 'utils/upload';
+import { UploadApi } from 'lib/api';
 
 export const EDITOR_JS_TOOLS = {
   paragraph: {
@@ -22,7 +23,8 @@ export const EDITOR_JS_TOOLS = {
     config: {
       uploader: {
         uploadByFile(file, ...rest) {
-          return uploadByFile(file);
+          const uploadApi = new UploadApi();
+          return uploadApi.uploadFile(file);
         }
       }
     }

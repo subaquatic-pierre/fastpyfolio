@@ -19,8 +19,13 @@ import {
   Tags,
   SearchBox
 } from './components';
+import { Blog } from 'models/blog';
 
-const BlogNewsroom = (): JSX.Element => {
+interface Props {
+  blogs: Blog[];
+}
+
+const BlogNewsroom: React.FC<Props> = ({ blogs }) => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true
@@ -40,7 +45,7 @@ const BlogNewsroom = (): JSX.Element => {
         <SearchBox />
       </Container>
       <Container>
-        <PopularNews />
+        <PopularNews blogs={blogs} />
       </Container>
 
       <Container maxWidth={800} paddingY={'0 !important'}>

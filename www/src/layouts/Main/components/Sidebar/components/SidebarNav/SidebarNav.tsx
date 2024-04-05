@@ -63,8 +63,8 @@ const SidebarNav = ({ pages }: Props): JSX.Element => {
           {/* <LinkNavItem title={'Services'} path="/services" id={'services'} /> */}
           {/* <LinkNavItem title={'Contact Us'} path="/contact-us" id={'contact'} /> */}
           {/* <LinkNavItem title={'Blog'} path="/blog" id={'blog'} /> */}
-          <LinkNavItem title={'Projects'} path="/projects" id={'projects'} />
-          <LinkNavItem title={'Blog'} path="/blogs" id={'blog'} />
+          <LinkNavItem title={'Projects'} path="/project" id={'projects'} />
+          <LinkNavItem title={'Blog'} path="/blog" id={'blog'} />
           {/* <NavItem title={'Demo Pages'} id={'pages'} items={pagesState} /> */}
         </Stack>
         <Box marginTop={2}>

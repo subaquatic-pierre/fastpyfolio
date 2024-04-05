@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
 from config.settings import settings
-from routers import auth, index, uploads, projects, users, blogs
+from routers import auth, index, blog, project, upload, user
 
 app = FastAPI()
 app.config = settings
@@ -20,10 +20,10 @@ app.add_middleware(
 
 app.include_router(index.router, tags=["Index"], prefix="/api")
 app.include_router(auth.router, tags=["Auth"], prefix="/api/auth")
-app.include_router(users.router, tags=["Users"], prefix="/api/users")
-app.include_router(projects.router, tags=["Projects"], prefix="/api/projects")
-app.include_router(blogs.router, tags=["Blogs"], prefix="/api/blogs")
-app.include_router(uploads.router, tags=["Uploads"], prefix="/api/uploads")
+app.include_router(user.router, tags=["User"], prefix="/api/user")
+app.include_router(project.router, tags=["Project"], prefix="/api/project")
+app.include_router(blog.router, tags=["Blog"], prefix="/api/blog")
+app.include_router(upload.router, tags=["Upload"], prefix="/api/upload")
 
 
 if __name__ == "__main__":

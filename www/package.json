@@ -48,6 +48,7 @@
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.10",
     "dayjs-plugin-utc": "^0.1.2",
+    "editorjs-react-renderer": "^3.5.1",
     "formik": "^2.2.9",
     "framer-motion": "^10.12.4",
     "fullcalendar": "^6.1.8",

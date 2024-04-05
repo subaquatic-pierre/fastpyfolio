@@ -8,6 +8,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
+import { Blog } from 'models/blog';
+import Link from 'next/link';
 
 const mock = [
   {
@@ -36,12 +38,16 @@ const mock = [
   }
 ];
 
-const PopularNews = (): JSX.Element => {
+interface Props {
+  blogs?: Blog[];
+}
+
+const PopularNews: React.FC<Props> = ({ blogs = [] }) => {
   const theme = useTheme();
   return (
     <Box>
       <Grid container spacing={4}>
-        {mock.map((item, i) => (
+        {blogs.map((item, i) => (
           <Grid key={i} item xs={12}>
             <Box
               component={Card}
@@ -66,7 +72,7 @@ const PopularNews = (): JSX.Element => {
                   loading="lazy"
                   height={1}
                   width={1}
-                  src={item.image}
+                  src={item.featuredImageUrl}
                   alt="..."
                   sx={{
                     objectFit: 'cover',
@@ -86,7 +92,7 @@ const PopularNews = (): JSX.Element => {
                   justifyContent: 'center'
                 }}
               >
-                <Box>
+                {/* <Box>
                   {item.tags.map((item) => (
                     <Chip
                       key={item}
@@ -99,18 +105,20 @@ const PopularNews = (): JSX.Element => {
                       sx={{ marginBottom: 1, marginRight: 1 }}
                     />
                   ))}
-                </Box>
+                </Box> */}
                 <Typography variant={'h6'} fontWeight={700} sx={{ textTransform: 'uppercase' }}>
                   {item.title}
                 </Typography>
                 <Box marginY={1}>
                   <Typography variant={'caption'} color={'text.secondary'} component={'i'}>
-                    {item.author.name} - {item.date}
+                    {item.authorId} - {item.createdAt}
                   </Typography>
                 </Box>
                 <Typography color="text.secondary">{item.description}</Typography>
                 <Box marginTop={2} display={'flex'} justifyContent={'flex-end'}>
                   <Button
+                    LinkComponent={Link}
+                    href={`/blog/${item.slug}`}
                     endIcon={
                       <Box
                         component={'svg'}

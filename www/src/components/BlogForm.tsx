@@ -12,7 +12,6 @@ import {
   Dialog,
   DialogActions
 } from '@mui/material';
-import { API } from '@editorjs/editorjs';
 // third party
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
@@ -22,16 +21,12 @@ import { Blog } from 'models/blog';
 import { FormFiles } from 'types/dropzone';
 
 import Editor from 'components/Editor';
-import { RemoteApi } from 'lib/fetch';
+import { BlogApi, UploadApi } from 'lib/api';
 import { slugify } from 'utils/slug';
 import useAuth from 'hooks/useAuth';
 import EditorJS from '@editorjs/editorjs';
-import { ApiMethod, apiReqWithAuth } from 'lib/api';
-import { LIST_BLOG, GET_BLOG } from 'lib/endpoints';
 import { useRouter } from 'next/router';
 import SingleFileUpload from 'components/Dropzone/SingleFile';
-import { uploadBlogImage } from 'lib/upload';
-import { getInitialFile } from 'utils/upload';
 
 interface Props {
   blogData: Blog;
@@ -45,6 +40,7 @@ const emptyFiles: FormFiles = {
 };
 
 const BlogForm: React.FC<Props> = ({ blogData }) => {
+  const imageChanged = useRef(false);
   const [selectedId, setSelected] = useState<string>(null);
   const router = useRouter();
   const { user } = useAuth();
@@ -69,21 +65,25 @@ const BlogForm: React.FC<Props> = ({ blogData }) => {
   });
 
   const handleFileUpload = (field: string, value: any) => {
+    imageChanged.current = true;
     setFiles((old) => ({ ...old, [field]: { files: value, error: '' } }));
   };
 
   const loadInitialFiles = async () => {
+    const uploadApi = new UploadApi();
     const files = { ...emptyFiles };
 
     if (blogData && blogData.featuredImageUrl) {
-      files.image = await getInitialFile('blog-image', blogData.featuredImageUrl);
+      const filename = blogData.featuredImageUrl.split('/')[blogData.featuredImageUrl.split('/').length - 1];
+      files.image = await uploadApi.getInitialFile(filename, blogData.featuredImageUrl);
 
       setFiles(files);
     }
   };
 
   const handleSaveClick = async () => {
-    const fetchApi = new RemoteApi();
+    const blogApi = new BlogApi();
+    const uploadApi = new UploadApi();
     // ensure slug is not 'new'
     if (formik.values.slug === 'new') {
       setSubmitErrors({ slug: "Slug cannot be 'new'" });
@@ -98,7 +98,7 @@ const BlogForm: React.FC<Props> = ({ blogData }) => {
     }
 
     try {
-      const prevBlog = await fetchApi.getBlog(formik.values.slug);
+      const prevBlog = await blogApi.getBlog(formik.values.slug);
 
       // check that slug is not already taken
       // first if checks that new blog does not use same slug as an existing blog
@@ -124,23 +124,18 @@ const BlogForm: React.FC<Props> = ({ blogData }) => {
     if (editorRef.current) {
       const editor = editorRef.current;
       const blogContent = await editor.save();
-
-      let endpoint = LIST_BLOG();
-      let method: ApiMethod = 'POST';
       let message = 'Blog created successfully';
-      let featuredImageUrl = '';
+      let featuredImageUrl = blogData.featuredImageUrl;
 
       // update endpoint, method and success message if blog is update
       if (blogData.id !== '') {
-        endpoint = GET_BLOG(blogData.id);
-        method = 'PUT';
         message = 'Blog updated successfully';
       }
 
       try {
-        if (files.image.files) {
-          const res = await uploadBlogImage(files, `${user.id}`);
-          featuredImageUrl = res?.image?.url ?? '';
+        if (files.image.files?.length === 1 && imageChanged.current) {
+          const res = await uploadApi.uploadFile(files.image.files[0]);
+          featuredImageUrl = res?.file?.url ?? blogData.featuredImageUrl;
         }
       } catch (e) {
         dispatch(
@@ -165,14 +160,7 @@ const BlogForm: React.FC<Props> = ({ blogData }) => {
           featuredImageUrl
         };
 
-        // remove id field from formik data before api call
-        delete data.id;
-
-        await apiReqWithAuth({
-          endpoint,
-          method,
-          data
-        });
+        await blogApi.saveBlog(data, blogData.id);
 
         dispatch(
           openSnackbar({
@@ -220,6 +208,7 @@ const BlogForm: React.FC<Props> = ({ blogData }) => {
   };
 
   const handleDeleteClick = async () => {
+    const blogApi = new BlogApi();
     let message = 'Blog Deleted';
     let color = 'success';
 
@@ -227,7 +216,7 @@ const BlogForm: React.FC<Props> = ({ blogData }) => {
       if (!selectedId) {
         throw new Error('No blog selected');
       }
-      await apiReqWithAuth({ endpoint: GET_BLOG(selectedId), method: 'DELETE' });
+      await blogApi.deleteBlog(selectedId);
       router.push('/admin/blog');
     } catch (e) {
       message = 'There was an error deleting the blog';
