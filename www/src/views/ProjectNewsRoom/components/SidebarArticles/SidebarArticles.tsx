@@ -54,11 +54,7 @@ const mock = [
 
 const SidebarArticles = (): JSX.Element => {
   const theme = useTheme();
-  return (
-    <Box component={Card} variant={'outlined'} padding={2}>
-      <Tags />
-    </Box>
-  );
+  return <></>;
 };
 
 export default SidebarArticles;

@@ -1,7 +1,7 @@
 import { defaultSiteSettings } from 'models/settings';
 import { SiteSettings, reduceSiteSettings } from 'models/settings';
-import { GET_BLOG, GET_SITE_SETTINGS, LIST_BLOG, LIST_PROJECT, UPLOAD } from 'lib/endpoints';
-import { Project, reduceProjects } from 'models/project';
+import { GET_BLOG, GET_PROJECT, GET_SITE_SETTINGS, LIST_BLOG, LIST_PROJECT, UPLOAD, LIST_TAGS } from 'lib/endpoints';
+import { Project, reduceProject, reduceProjects } from 'models/project';
 import { Blog, reduceBlog, reduceBlogs } from 'models/blog';
 import { blankBlog, blankProject } from 'utils/blankData';
 
@@ -9,6 +9,8 @@ import axios from 'axios';
 import { DropzoneFileUpload } from 'types/dropzone';
 
 const apiHost = process.env.NEXT_PUBLIC_API_URL;
+const isProdEnv = process.env.NODE_ENV === 'production';
+const isBuild = process.env.IS_BUILD_ENV ?? false;
 
 type Object = Record<string, number | string | null>;
 
@@ -64,8 +66,6 @@ export const apiReqWithAuth = async <Model = object>({
   return apiReq({ endpoint, method, data, headers: _headers });
 };
 
-const env = process.env.NODE_ENV;
-
 export enum RequestOrigin {
   Browser,
   NextBackend
@@ -74,7 +74,15 @@ export enum RequestOrigin {
 class BaseRemoteApi {
   apiHost: string;
   mockApi: boolean;
-  constructor(apiHost: string, mockApi = false) {
+  constructor(requestOrigin: RequestOrigin, mockApi = false) {
+    let apiHost = process.env.NEXT_PUBLIC_API_URL;
+
+    if (requestOrigin === RequestOrigin.NextBackend) {
+      if ((isProdEnv && !isBuild) || !isProdEnv) {
+        apiHost = process.env.BACKEND_API_URL;
+      }
+    }
+
     this.apiHost = apiHost;
     this.mockApi = mockApi;
   }
@@ -107,13 +115,7 @@ class BaseRemoteApi {
 
 export class RemoteApi extends BaseRemoteApi {
   constructor(requestOrigin: RequestOrigin = RequestOrigin.Browser, mockApi = false) {
-    let apiHost = process.env.NEXT_PUBLIC_API_URL;
-
-    if (env === 'development' && requestOrigin === RequestOrigin.NextBackend) {
-      apiHost = process.env.BACKEND_API_URL;
-    }
-
-    super(apiHost, mockApi);
+    super(requestOrigin, mockApi);
   }
 
   getSiteSettings = async (): Promise<SiteSettings> => {
@@ -125,48 +127,11 @@ export class RemoteApi extends BaseRemoteApi {
       ...siteSettings
     };
   };
-
-  getProjects = async (): Promise<Project[]> => {
-    const res = await this.apiReq<any[]>({ endpoint: LIST_PROJECT() });
-
-    const projects = reduceProjects(res.data);
-
-    return projects;
-  };
-
-  getProject = async (slugOrId: string): Promise<Project> => {
-    // const res = await apiReq<any[]>({ endpoint: LIST_PROJECT() });
-
-    // const projects = reduceProjects(res.data);
-
-    return blankProject;
-  };
-
-  getBlogs = async (): Promise<Blog[]> => {
-    const res = await this.apiReq<any[]>({ endpoint: LIST_BLOG() });
-
-    const blogs = reduceBlogs(res.data);
-
-    return blogs;
-  };
-
-  getBlog = async (slugOrId: string): Promise<Blog> => {
-    const res = await this.apiReq<any>({ endpoint: GET_BLOG(slugOrId) });
-
-    // return projects;
-    return res.data;
-  };
 }
 
 export class BlogApi extends BaseRemoteApi {
   constructor(requestOrigin: RequestOrigin = RequestOrigin.Browser, mockApi = false) {
-    let apiHost = process.env.NEXT_PUBLIC_API_URL;
-
-    if (env === 'development' && requestOrigin === RequestOrigin.NextBackend) {
-      apiHost = process.env.BACKEND_API_URL;
-    }
-
-    super(apiHost, mockApi);
+    super(requestOrigin, mockApi);
   }
 
   getBlogs = async (): Promise<Blog[]> => {
@@ -200,40 +165,22 @@ export class BlogApi extends BaseRemoteApi {
     delete data.id;
 
     // make request
-    const res = await this.apiReq<any>({ endpoint, method, data });
+    const res = await this.apiReqWithAuth<any>({ endpoint, method, data });
 
-    // return projects;
     return res.data;
   };
 
-  deleteBlog = async (blogId: string): Promise<Blog> => {
+  deleteBlog = async (blogId: string): Promise<object> => {
     const res = await this.apiReqWithAuth<any>({ endpoint: GET_BLOG(blogId), method: 'DELETE' });
 
-    // return projects;
     return res.data;
   };
 }
 
 export class ProjectApi extends BaseRemoteApi {
   constructor(requestOrigin: RequestOrigin = RequestOrigin.Browser, mockApi = false) {
-    let apiHost = process.env.NEXT_PUBLIC_API_URL;
-
-    if (env === 'development' && requestOrigin === RequestOrigin.NextBackend) {
-      apiHost = process.env.BACKEND_API_URL;
-    }
-
-    super(apiHost, mockApi);
+    super(requestOrigin, mockApi);
   }
-
-  getSiteSettings = async (): Promise<SiteSettings> => {
-    const res = await this.apiReq<{ data: any }>({ endpoint: GET_SITE_SETTINGS });
-
-    const siteSettings = reduceSiteSettings(res);
-
-    return {
-      ...siteSettings
-    };
-  };
 
   getProjects = async (): Promise<Project[]> => {
     const res = await this.apiReq<any[]>({ endpoint: LIST_PROJECT() });
@@ -244,38 +191,48 @@ export class ProjectApi extends BaseRemoteApi {
   };
 
   getProject = async (slugOrId: string): Promise<Project> => {
-    // const res = await apiReq<any[]>({ endpoint: LIST_PROJECT() });
+    const res = await apiReq<any[]>({ endpoint: GET_PROJECT(slugOrId) });
 
-    // const projects = reduceProjects(res.data);
+    const project = reduceProject(res.data);
 
-    return blankProject;
+    return project;
   };
 
-  getBlogs = async (): Promise<Blog[]> => {
-    const res = await this.apiReq<any[]>({ endpoint: LIST_BLOG() });
+  saveProject = async (data: any, projectId: string): Promise<Project> => {
+    let endpoint = LIST_PROJECT();
+    let method: ApiMethod = 'POST';
 
-    const blogs = reduceBlogs(res.data);
+    // update values if project id is not empty, ie. is existing project
+    if (projectId !== '') {
+      endpoint = GET_PROJECT(projectId);
+      method = 'PUT';
+    }
 
-    return blogs;
-  };
+    // ensure never send id with data
+    delete data.id;
 
-  getBlog = async (slugOrId: string): Promise<Blog> => {
-    const res = await this.apiReq<any>({ endpoint: GET_BLOG(slugOrId) });
+    // make request
+    const res = await this.apiReqWithAuth<any>({ endpoint, method, data });
 
-    // return projects;
     return res.data;
+  };
+
+  deleteProject = async (projectId: string): Promise<object> => {
+    const res = await this.apiReqWithAuth<any>({ endpoint: GET_PROJECT(projectId), method: 'DELETE' });
+
+    return res.data;
+  };
+
+  getTags = async (): Promise<string[]> => {
+    const res = await this.apiReq<{ tags: string[] }>({ endpoint: LIST_TAGS });
+
+    return res.data.tags;
   };
 }
 
 export class UploadApi extends BaseRemoteApi {
   constructor(requestOrigin: RequestOrigin = RequestOrigin.Browser, mockApi = false) {
-    let apiHost = process.env.NEXT_PUBLIC_API_URL;
-
-    if (env === 'development' && requestOrigin === RequestOrigin.NextBackend) {
-      apiHost = process.env.BACKEND_API_URL;
-    }
-
-    super(apiHost, mockApi);
+    super(requestOrigin, mockApi);
   }
 
   uploadFile = async (file: File): Promise<ApiUploadResponse> => {

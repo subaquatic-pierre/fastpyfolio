@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Grid from '@mui/material/Grid';
@@ -19,26 +19,85 @@ import {
   Tags,
   SearchBox
 } from './components';
+import { Project } from 'models/project';
+import { Button, Card } from '@mui/material';
 
-const ProjectNewsRoom = (): JSX.Element => {
+interface Props {
+  data: Project[];
+}
+
+const defaultCount = 1;
+const incAmount = 1;
+
+const ProjectNewsRoom: React.FC<Props> = ({ data }): JSX.Element => {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [projectCount, setProjectCount] = useState(defaultCount);
+  const [activeTags, setActiveTags] = useState([]);
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true
   });
+
+  const handleMoreClick = () => {
+    setProjectCount((old) => old + incAmount);
+  };
+
+  const handleTagClick = (tag: string) => {
+    if (activeTags.indexOf(tag) === -1) {
+      setActiveTags((old) => [...old, tag]);
+    } else {
+      setActiveTags((old) => old.filter((item) => item !== tag));
+    }
+  };
+
+  const handleFilterProjects = (activeTags: string[], projectCount: number) => {
+    data.sort((a, b) => new Date(a.createdAt).getMilliseconds() - new Date(b.createdAt).getMilliseconds());
+    if (activeTags.length === 0) {
+      const filteredProjects = data;
+      setProjects(filteredProjects.slice(0, projectCount));
+    } else {
+      const filteredProjects = [];
+      for (const tag of activeTags) {
+        for (const project of data) {
+          if (project.tags.indexOf(tag) !== -1 && filteredProjects.filter((item) => item.id === project.id).length === 0) {
+            filteredProjects.push(project);
+          }
+        }
+      }
+      setProjects(filteredProjects.slice(0, projectCount));
+    }
+  };
+
+  useEffect(() => {
+    handleFilterProjects(activeTags, projectCount);
+  }, [activeTags, projectCount]);
 
   return (
     <>
       <Hero />
       <Container paddingY={'0 !important'}>
         <Grid container spacing={isMd ? 4 : 2}>
-          {isMd ? (
-            <Grid item xs={12} md={3}>
-              <SidebarArticles />
-            </Grid>
-          ) : null}
-          <Grid item xs={12} md={9}>
-            <LatestStories />
+          <Grid item xs={12} md={3}>
+            <Box component={Card} variant={'outlined'} padding={2}>
+              <Tags handleTagClick={handleTagClick} activeTags={activeTags} />
+            </Box>
           </Grid>
+          <Grid item xs={12} md={9}>
+            <LatestStories data={projects} />
+          </Grid>
+        </Grid>
+        <Grid>
+          <Box
+            display={'flex'}
+            justifyContent={'center'}
+            alignItems={{ xs: 'flex-start', sm: 'center' }}
+            flexDirection={{ xs: 'column', sm: 'row' }}
+            my={4}
+          >
+            <Box component={Button} onClick={handleMoreClick} variant="outlined" color="primary" size="large" marginLeft={2}>
+              View More
+            </Box>
+          </Box>
         </Grid>
       </Container>
 

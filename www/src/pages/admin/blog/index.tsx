@@ -36,7 +36,7 @@ import Loader from 'components/Loader';
 import { useRouter } from 'next/router';
 import makeData from 'data/react-table';
 import { Blog, reduceBlog, reduceBlogs } from 'models/blog';
-import { apiReqWithAuth } from 'lib/api';
+import { BlogApi, apiReqWithAuth } from 'lib/api';
 import Link from 'next/link';
 import { DeleteFilled, EditFilled } from '@ant-design/icons';
 import { GetServerSideProps, GetStaticProps } from 'next';
@@ -226,7 +226,7 @@ const BlogListPage: React.FC<PageProps> = ({ settings }) => {
   );
 
   const loadData = async (pageIndex: number, pageSize: number): Promise<void> => {
-    const api = new RemoteApi();
+    const api = new BlogApi();
     setLoading(false);
 
     const blogs = await api.getBlogs();

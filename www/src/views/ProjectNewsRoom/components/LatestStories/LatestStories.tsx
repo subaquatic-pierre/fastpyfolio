@@ -8,6 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Chip from '@mui/material/Chip';
+import { Project } from 'models/project';
 
 const mock = [
   {
@@ -56,12 +57,16 @@ const mock = [
   }
 ];
 
-const LatestStories = (): JSX.Element => {
+interface Props {
+  data: Project[];
+}
+
+const LatestStories: React.FC<Props> = ({ data }): JSX.Element => {
   const theme = useTheme();
   return (
     <Box>
       <Grid container spacing={4}>
-        {mock.map((item, i) => (
+        {data.map((item, i) => (
           <Grid item xs={12} md={6} key={i}>
             <Box
               component={'a'}
@@ -79,7 +84,7 @@ const LatestStories = (): JSX.Element => {
             >
               <Box component={Card} width={1} height={1}>
                 <CardMedia
-                  image={item.image}
+                  image={item.featuredImageUrl}
                   title={item.title}
                   sx={{
                     height: { xs: 300, md: 360 },
@@ -105,7 +110,7 @@ const LatestStories = (): JSX.Element => {
                   </Typography>
                   <Box marginY={1}>
                     <Typography variant={'caption'} align={'center'} color={'text.secondary'} component={'i'}>
-                      {item.author.name} - {item.date}
+                      {item.createdAt}
                     </Typography>
                   </Box>
                   <Typography color="text.secondary" align={'center'}>
@@ -117,17 +122,6 @@ const LatestStories = (): JSX.Element => {
           </Grid>
         ))}
       </Grid>
-      <Box
-        display={'flex'}
-        justifyContent={'center'}
-        alignItems={{ xs: 'flex-start', sm: 'center' }}
-        flexDirection={{ xs: 'column', sm: 'row' }}
-        my={4}
-      >
-        <Box component={Button} variant="outlined" color="primary" size="large" marginLeft={2}>
-          View More
-        </Box>
-      </Box>
     </Box>
   );
 };

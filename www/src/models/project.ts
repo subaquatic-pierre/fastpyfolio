@@ -1,12 +1,9 @@
-import { User } from './auth';
-
 export type Project = {
   id: string;
   title: string;
   slug: string;
   createdAt: string;
   updatedAt: string;
-  category?: string;
   description?: string;
   githubUrl?: string;
   wwwUrl?: string;

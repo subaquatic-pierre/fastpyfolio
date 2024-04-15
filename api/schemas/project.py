@@ -8,10 +8,10 @@ class CreateProjectReq(BaseSchema):
     description: str
     tags: List[str] = []
     content: str | None
-    category: str | None = None
     www_url: str | None = None
     github_url: str | None = None
     slug: str | None = None
+    featured_image_url: str | None = None
 
 
 # Inherit all fields from create project request schema
@@ -37,7 +37,11 @@ class UpdateProjectReq(BaseSchema):
     description: Optional[str] = None
     tags: Optional[List[str]] = None
     content: Optional[str] = None
-    category: Optional[str] = None
     www_url: Optional[str] = None
     github_url: Optional[str] = None
     slug: Optional[str] = None
+    featured_image_url: str | None = None
+
+
+class TagsRes(BaseSchema):
+    tags: List[str] = []

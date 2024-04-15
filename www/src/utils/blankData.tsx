@@ -55,5 +55,9 @@ export const blankProject: Project = {
   title: '',
   slug: '',
   createdAt: '',
-  updatedAt: ''
+  updatedAt: '',
+  description: '',
+  githubUrl: '',
+  wwwUrl: '',
+  tags: []
 };

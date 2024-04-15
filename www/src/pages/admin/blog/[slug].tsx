@@ -24,7 +24,7 @@ interface PageProps {
   settings: SiteSettings;
 }
 
-const BlogDetailPage: React.FC<PageProps> = ({ settings }) => {
+const BlogDetailPageAdmin: React.FC<PageProps> = ({ settings }) => {
   const [blogData, setBlogData] = useState<Blog>(null);
   const router = useRouter();
   const slug = router.query.slug;
@@ -66,7 +66,7 @@ const BlogDetailPage: React.FC<PageProps> = ({ settings }) => {
   );
 };
 
-export default BlogDetailPage;
+export default BlogDetailPageAdmin;
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
   const api = new RemoteApi(RequestOrigin.NextBackend);

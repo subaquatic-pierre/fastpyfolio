@@ -10,6 +10,7 @@ from schemas.project import (
     CreateProjectReq,
     DeleteProjectRes,
     UpdateProjectReq,
+    TagsRes,
 )
 from models.project import Project
 
@@ -20,6 +21,18 @@ router = APIRouter()
 async def list_projects(req: Request) -> List[ProjectSchema]:
     projects = Project.find_many()
     return [project.to_json() for project in projects]
+
+
+@router.get("/tags")
+async def get_tags() -> TagsRes:
+    projects = Project.find_many()
+    tags = set()
+
+    for project in projects:
+        for tag in project.tags:
+            tags.add(tag)
+
+    return {"tags": [tag for tag in tags]}
 
 
 @router.get("/{id}")

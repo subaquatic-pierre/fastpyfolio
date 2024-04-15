@@ -18,6 +18,7 @@ export const LIST_BLOG = (pageNumber = 0, pageSize = 25) => `/api/blog`;
 export const GET_BLOG = (slugOrId: string) => `/api/blog/${slugOrId}`;
 
 // Projects
+export const LIST_TAGS = '/api/project/tags';
 export const LIST_PROJECT = (pageNumber = 0, pageSize = 25) => `/api/project`;
 export const GET_PROJECT = (slugOrId: string) => `/api/project/${slugOrId}`;
 export const UPLOAD = '/api/upload';

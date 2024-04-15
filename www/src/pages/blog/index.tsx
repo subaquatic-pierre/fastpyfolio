@@ -1,11 +1,10 @@
 import Page from 'components/Page';
 import Main from 'layouts/Main';
-import { RemoteApi, RequestOrigin } from 'lib/api';
+import { BlogApi, RemoteApi, RequestOrigin } from 'lib/api';
 import { SiteSettings } from 'models/settings';
 import { GetStaticProps } from 'next';
 import React from 'react';
 import BlogNewsroom from 'views/BlogNewsroom';
-import Logistics from 'views/Logistics';
 
 interface PageProps {
   settings: SiteSettings;
@@ -27,8 +26,9 @@ export default IndexPage;
 
 export const getStaticProps: GetStaticProps<PageProps> = async () => {
   const api = new RemoteApi(RequestOrigin.NextBackend);
+  const blogApi = new BlogApi(RequestOrigin.NextBackend);
   const settings = await api.getSiteSettings();
-  const blogs = await api.getBlogs();
+  const blogs = await blogApi.getBlogs();
 
   return {
     props: {
