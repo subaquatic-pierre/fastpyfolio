@@ -9,53 +9,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Chip from '@mui/material/Chip';
 import { Project } from 'models/project';
-
-const mock = [
-  {
-    image: 'https://assets.maccarianagency.com/backgrounds/img1.jpg',
-    description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem',
-    title: 'Eiusmod tempor incididunt',
-    tags: ['UX', 'Design', 'Themes', 'Photography'],
-    author: {
-      name: 'Clara Bertoletti',
-      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg'
-    },
-    date: '10 Sep'
-  },
-  {
-    image: 'https://assets.maccarianagency.com/backgrounds/img4.jpg',
-    description: 'At vero eos et accusamus et iusto odio dignissimos ducimus',
-    title: 'Sed ut perspiciatis',
-    tags: ['UX', 'Design', 'Themes', 'Photography'],
-    author: {
-      name: 'Jhon Anderson',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg'
-    },
-    date: '02 Aug'
-  },
-  {
-    image: 'https://assets.maccarianagency.com/backgrounds/img2.jpg',
-    description: 'Qui blanditiis praesentium voluptatum deleniti atque corrupti',
-    title: 'Unde omnis iste natus',
-    tags: ['UX', 'Design', 'Themes', 'Photography'],
-    author: {
-      name: 'Chary Smith',
-      avatar: 'https://assets.maccarianagency.com/avatars/img3.jpg'
-    },
-    date: '05 Mar'
-  },
-  {
-    image: 'https://assets.maccarianagency.com/backgrounds/img3.jpg',
-    description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem',
-    title: 'Eiusmod tempor incididunt',
-    tags: ['UX', 'Design', 'Themes', 'Photography'],
-    author: {
-      name: 'Clara Bertoletti',
-      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg'
-    },
-    date: '10 Sep'
-  }
-];
+import { formatDate } from 'utils/date';
 
 interface Props {
   data: Project[];
@@ -69,8 +23,9 @@ const LatestStories: React.FC<Props> = ({ data }): JSX.Element => {
         {data.map((item, i) => (
           <Grid item xs={12} md={6} key={i}>
             <Box
+              data-aos={'fade-up'}
               component={'a'}
-              href={''}
+              href={`/project/${item.slug}`}
               display={'block'}
               width={1}
               height={1}
@@ -110,7 +65,7 @@ const LatestStories: React.FC<Props> = ({ data }): JSX.Element => {
                   </Typography>
                   <Box marginY={1}>
                     <Typography variant={'caption'} align={'center'} color={'text.secondary'} component={'i'}>
-                      {item.createdAt}
+                      {formatDate(new Date(item.createdAt), 'DD-MMM-YYYY')}
                     </Typography>
                   </Box>
                   <Typography color="text.secondary" align={'center'}>

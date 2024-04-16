@@ -12,7 +12,6 @@ interface PageProps {
 }
 
 const IndexPage: React.FC<PageProps> = ({ settings, blogs }): JSX.Element => {
-  console.log(blogs);
   return (
     <Main colorInvert>
       <Page settings={settings} title={settings.title}>
@@ -29,6 +28,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async () => {
   const blogApi = new BlogApi(RequestOrigin.NextBackend);
   const settings = await api.getSiteSettings();
   const blogs = await blogApi.getBlogs();
+  settings.title = `Blog - Nebula Nexus`;
 
   return {
     props: {

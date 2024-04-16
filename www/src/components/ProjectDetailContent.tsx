@@ -4,10 +4,10 @@ import Output from 'editorjs-react-renderer';
 
 import BlogAuthorBox from './BlogAuthorBox';
 
-import { Blog } from 'models/blog';
+import { Project } from 'models/project';
 
 interface Props {
-  blog: Blog;
+  project: Project;
 }
 
 const ParagraphRenderer = ({ data, style, classNames, config }) => {
@@ -37,17 +37,17 @@ const renderers = {
   header: HeaderRenderer
 };
 
-const BlogDetailContent: React.FC<Props> = ({ blog }) => {
+const ProjectDetailContent: React.FC<Props> = ({ project }) => {
+  console.log({ project });
   return (
     <Box mb={5} minHeight={'60vh'}>
       <Container maxWidth="md">
         <Stack spacing={2}>
-          <BlogAuthorBox large date={new Date(blog.createdAt)} author={blog.authorId} />
-          <Output renderers={renderers} data={blog.content} />
+          <Output renderers={renderers} data={JSON.parse(project.content)} />
         </Stack>
       </Container>
     </Box>
   );
 };
 
-export default BlogDetailContent;
+export default ProjectDetailContent;

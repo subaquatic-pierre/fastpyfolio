@@ -10,6 +10,7 @@ from schemas.blog import (
     CreateBlogReq,
     DeleteBlogRes,
     UpdateBlogReq,
+    CategoryListRes,
 )
 from models.blog import Blog
 
@@ -20,6 +21,20 @@ router = APIRouter()
 async def list_blogs(req: Request) -> List[BlogSchema]:
     blogs = Blog.find_many()
     return [project.to_json() for project in blogs]
+
+
+@router.get("/categories")
+async def list_categories(req: Request) -> CategoryListRes:
+    blogs = Blog.find_many()
+
+    categories = set()
+
+    for blog in blogs:
+        categories.add(blog.category)
+
+    categories = [cat for cat in categories]
+
+    return {"categories": categories}
 
 
 @router.get("/{id}")

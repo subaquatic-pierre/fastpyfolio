@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 from models.model import ModelId
 
 from schemas.base import BaseSchema, BaseModelSchema
@@ -39,3 +39,7 @@ class UpdateBlogReq(BaseSchema):
     featured_image_url: Optional[str] = None
     category: Optional[str] = None
     content: Optional[str] = None
+
+
+class CategoryListRes(BaseSchema):
+    categories: List[str] = []

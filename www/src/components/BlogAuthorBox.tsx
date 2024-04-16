@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { Avatar, Box, Stack, Typography } from '@mui/material';
 
 import { UserProfile } from 'models/auth';
+import { formatDate } from 'utils/date';
 
 interface Props {
   author: string;
@@ -11,9 +12,9 @@ interface Props {
 
 const BlogAuthorBox: React.FC<Props> = ({ author, date, large }) => {
   return (
-    <Box display="flex" alignItems="center" py={large ? 2 : 0}>
+    <Box display="flex" alignItems="center" justifyContent="flex-end">
       {/* Author image */}
-      <Box
+      {/* <Box
         sx={{
           width: large ? 60 : 40,
           height: large ? 60 : 40,
@@ -24,13 +25,12 @@ const BlogAuthorBox: React.FC<Props> = ({ author, date, large }) => {
         }}
       >
         <Avatar />
-      </Box>
-      <Box ml={2}>
-        <Typography sx={{ fontSize: large && '1.1rem', fontWeight: large && 500 }}>{author}</Typography>
-        <Typography sx={(theme) => ({ color: theme.palette.grey[600] })} variant={large ? 'body1' : 'caption'}>
-          {`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`}
-        </Typography>
-      </Box>
+      </Box> */}
+      {/* <Typography sx={{ fontSize: large && '1.1rem', fontWeight: large && 500 }}>{author}</Typography> */}
+      <Typography sx={(theme) => ({ color: theme.palette.grey[600] })} variant={large ? 'body1' : 'caption'}>
+        {formatDate(date, 'DD-MMM-YYYY')}
+        {/* {`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`} */}
+      </Typography>
     </Box>
   );
 };

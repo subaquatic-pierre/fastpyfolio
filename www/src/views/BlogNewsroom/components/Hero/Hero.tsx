@@ -37,6 +37,7 @@ const Hero = (): JSX.Element => {
         minHeight={{ xs: 500, md: 600 }}
         maxHeight={600}
         display={'flex'}
+        data-aos="fade-down"
         alignItems={'center'}
         justifyContent={'center'}
       >

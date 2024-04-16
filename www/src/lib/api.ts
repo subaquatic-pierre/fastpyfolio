@@ -1,6 +1,6 @@
 import { defaultSiteSettings } from 'models/settings';
 import { SiteSettings, reduceSiteSettings } from 'models/settings';
-import { GET_BLOG, GET_PROJECT, GET_SITE_SETTINGS, LIST_BLOG, LIST_PROJECT, UPLOAD, LIST_TAGS } from 'lib/endpoints';
+import { GET_BLOG, GET_PROJECT, GET_SITE_SETTINGS, LIST_BLOG, LIST_PROJECT, UPLOAD, LIST_TAGS, LIST_CATEGORIES } from 'lib/endpoints';
 import { Project, reduceProject, reduceProjects } from 'models/project';
 import { Blog, reduceBlog, reduceBlogs } from 'models/blog';
 import { blankBlog, blankProject } from 'utils/blankData';
@@ -9,7 +9,6 @@ import axios from 'axios';
 import { DropzoneFileUpload } from 'types/dropzone';
 
 const apiHost = process.env.NEXT_PUBLIC_API_URL;
-const isProdEnv = process.env.NODE_ENV === 'production';
 const isBuild = process.env.IS_BUILD_ENV ?? false;
 
 type Object = Record<string, number | string | null>;
@@ -77,10 +76,8 @@ class BaseRemoteApi {
   constructor(requestOrigin: RequestOrigin, mockApi = false) {
     let apiHost = process.env.NEXT_PUBLIC_API_URL;
 
-    if (requestOrigin === RequestOrigin.NextBackend) {
-      if ((isProdEnv && !isBuild) || !isProdEnv) {
-        apiHost = process.env.BACKEND_API_URL;
-      }
+    if (requestOrigin === RequestOrigin.NextBackend && !isBuild) {
+      apiHost = process.env.BACKEND_API_URL;
     }
 
     this.apiHost = apiHost;
@@ -109,7 +106,7 @@ class BaseRemoteApi {
       Authorization: `Bearer ${token}`
     };
 
-    return apiReq({ endpoint, method, data, headers: _headers });
+    return this.apiReq({ endpoint, method, data, headers: _headers });
   };
 }
 
@@ -175,6 +172,12 @@ export class BlogApi extends BaseRemoteApi {
 
     return res.data;
   };
+
+  getCategories = async (): Promise<string[]> => {
+    const res = await this.apiReq<{ categories: string[] }>({ endpoint: LIST_CATEGORIES });
+
+    return res.data.categories;
+  };
 }
 
 export class ProjectApi extends BaseRemoteApi {
@@ -191,7 +194,7 @@ export class ProjectApi extends BaseRemoteApi {
   };
 
   getProject = async (slugOrId: string): Promise<Project> => {
-    const res = await apiReq<any[]>({ endpoint: GET_PROJECT(slugOrId) });
+    const res = await this.apiReq<any>({ endpoint: GET_PROJECT(slugOrId) });
 
     const project = reduceProject(res.data);
 
@@ -270,5 +273,20 @@ export class UploadApi extends BaseRemoteApi {
     });
 
     return { files: [file], error: '' };
+  };
+}
+
+export class ContactApi extends BaseRemoteApi {
+  constructor() {
+    super(RequestOrigin.Browser);
+  }
+  submitContactForm = async (data: { name: string; email: string; message: string; phone: string }) => {
+    const res = await this.apiReq<any>({
+      method: 'POST',
+      endpoint: '/api/contact',
+      data: data
+    });
+
+    return res.data;
   };
 }

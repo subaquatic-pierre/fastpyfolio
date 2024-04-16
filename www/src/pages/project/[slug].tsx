@@ -10,28 +10,31 @@ import { Blog } from 'models/blog';
 import { sleep } from 'utils/sleep';
 import BlogDetailHero from 'components/BlogDetailHero';
 import BlogDetailContent from 'components/BlogDetailContent';
-import { BlogApi, RemoteApi, RequestOrigin } from 'lib/api';
+import { BlogApi, ProjectApi, RemoteApi, RequestOrigin } from 'lib/api';
 import { GetServerSideProps, GetStaticPaths, GetStaticProps, NextPageContext } from 'next';
 import { SiteSettings } from 'models/settings';
+import { Project } from 'models/project';
+import ProjectDetailContent from 'components/ProjectDetailContent';
+import ProjectDetailHero from 'components/ProjectDetailHero';
 
 interface PageProps {
   settings: SiteSettings;
-  blog: Blog | null;
+  project: Project | null;
 }
 
 const ProjectDetailPage: React.FC<PageProps> = ({ settings }) => {
-  const [data, setData] = useState<Blog | null>(null);
+  const [data, setData] = useState<Project | null>(null);
   const router = useRouter();
   const slug = router.query.slug;
 
   const loadData = async () => {
-    const blogApi = new BlogApi();
+    const api = new ProjectApi();
     try {
       await sleep(2);
-      const blog = await blogApi.getBlog(slug as string);
-      if (!blog) router.push('/404');
+      const project = await api.getProject(slug as string);
+      if (!project) router.push('/404');
 
-      setData(blog);
+      setData(project);
     } catch {
       router.push('/404');
     }
@@ -48,12 +51,12 @@ const ProjectDetailPage: React.FC<PageProps> = ({ settings }) => {
       <Page title={settings.title} settings={settings}>
         {data ? (
           <>
-            <BlogDetailHero
+            <ProjectDetailHero
               description={data.description}
               imageSrc={data.featuredImageUrl !== '' ? data.featuredImageUrl : '/images/default-blog-hero.png'}
               title={data.title}
             />
-            <BlogDetailContent blog={data} />
+            <ProjectDetailContent project={data} />
           </>
         ) : (
           <Stack minHeight={'100vh'} justifyContent="center" alignItems="center">
@@ -69,31 +72,31 @@ export default ProjectDetailPage;
 
 export const getStaticProps: GetServerSideProps<PageProps> = async (ctx) => {
   const api = new RemoteApi(RequestOrigin.NextBackend);
-  const blogApi = new BlogApi(RequestOrigin.NextBackend);
+  const projectApi = new ProjectApi(RequestOrigin.NextBackend);
   const settings = await api.getSiteSettings();
   const slug = ctx.params.slug as string;
-  const blog = await blogApi.getBlog(slug);
+  const project = await projectApi.getProject(slug);
 
-  if (blog) {
-    settings.title = blog.title;
+  if (project) {
+    settings.title = `${project.title} - Nebula Nexus`;
   }
 
   return {
     props: {
       settings,
-      blog
+      project
     },
     revalidate: 10
   };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const blogApi = new BlogApi(RequestOrigin.NextBackend);
-  let blogs = await blogApi.getBlogs();
+  const projectApi = new ProjectApi(RequestOrigin.NextBackend);
+  let projects = await projectApi.getProjects();
 
   // Get the paths we want to pre-render based on posts
-  const paths = blogs.map((blog) => ({
-    params: { slug: blog.slug }
+  const paths = projects.map((project) => ({
+    params: { slug: project.slug }
   }));
 
   return { paths, fallback: 'blocking' };

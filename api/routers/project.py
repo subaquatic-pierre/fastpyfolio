@@ -27,12 +27,16 @@ async def list_projects(req: Request) -> List[ProjectSchema]:
 async def get_tags() -> TagsRes:
     projects = Project.find_many()
     tags = set()
+    tags.add("Featured")
 
     for project in projects:
         for tag in project.tags:
             tags.add(tag)
 
-    return {"tags": [tag for tag in tags]}
+    tags = [tag for tag in tags]
+    tags.insert(0, tags.pop(tags.index("Featured")))
+
+    return {"tags": tags}
 
 
 @router.get("/{id}")

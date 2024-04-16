@@ -27,6 +27,7 @@ import useAuth from 'hooks/useAuth';
 import EditorJS from '@editorjs/editorjs';
 import { useRouter } from 'next/router';
 import SingleFileUpload from 'components/Dropzone/SingleFile';
+import BlogFormCategorySelect from './BlogFormCategory';
 
 interface Props {
   blogData: Blog;
@@ -40,6 +41,7 @@ const emptyFiles: FormFiles = {
 };
 
 const BlogForm: React.FC<Props> = ({ blogData }) => {
+  const [category, setCategory] = useState(blogData.category);
   const imageChanged = useRef(false);
   const [selectedId, setSelected] = useState<string>(null);
   const router = useRouter();
@@ -157,7 +159,8 @@ const BlogForm: React.FC<Props> = ({ blogData }) => {
           ...formik.values,
           content: JSON.stringify(blogContent),
           authorId: user.id,
-          featuredImageUrl
+          featuredImageUrl,
+          category
         };
 
         await blogApi.saveBlog(data, blogData.id);
@@ -313,6 +316,12 @@ const BlogForm: React.FC<Props> = ({ blogData }) => {
                 {submitErrors.slug}
               </FormHelperText>
             )}
+          </Stack>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Stack spacing={1}>
+            <InputLabel htmlFor="slug">Cetagory</InputLabel>
+            <BlogFormCategorySelect value={category} setValue={setCategory} />
           </Stack>
         </Grid>
         <Grid item xs={12}>

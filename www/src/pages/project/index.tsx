@@ -30,6 +30,8 @@ export const getStaticProps: GetStaticProps<PageProps> = async () => {
   const projectApi = new ProjectApi(RequestOrigin.NextBackend);
 
   const settings = await api.getSiteSettings();
+
+  settings.title = `Digital Showcase - Nebula Nexus`;
   const projects = await projectApi.getProjects();
 
   return {

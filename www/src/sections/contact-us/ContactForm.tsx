@@ -1,56 +1,64 @@
-import { useState } from 'react';
-
+import React, { useState } from 'react';
+import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Box, Button, Checkbox, Grid, MenuItem, Stack, TextField, Typography } from '@mui/material';
+import { Alert, Box, Button, Checkbox, CircularProgress, Grid, MenuItem, Stack, TextField, Typography } from '@mui/material';
+import { ContactApi } from 'lib/api';
 
-// select project-budget
-const currencies = [
-  {
-    value: '1',
-    label: 'Below $1000'
-  },
-  {
-    value: '2',
-    label: '$1000 - $5000'
-  },
-  {
-    value: '3',
-    label: 'Not specified'
-  }
-];
-
-// select company-size
-const sizes = [
-  {
-    value: '1',
-    label: '1 - 5'
-  },
-  {
-    value: '2',
-    label: '5 - 10'
-  },
-  {
-    value: '3',
-    label: '10+'
-  }
-];
-
-// ==============================|| CONTACT US - FORM ||============================== //
+const blankData = { email: '', phone: '', name: '', message: '', nameError: '', emailError: '' };
 
 function ContactForm() {
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState<{ message: string; color: string } | null>(null);
+  const [formData, setFormData] = useState(blankData);
   const theme = useTheme();
-  const [budget, setBudget] = useState(1);
-  const handleProjectBudget = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setBudget(Number(event.target?.value!));
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((old) => ({
+      ...old,
+      nameError: '',
+      emailError: '',
+      [e.target.name]: e.target.value
+    }));
   };
 
-  const [size, setSize] = useState(1);
-  const handleCompanySize = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setSize(Number(event.target?.value!));
+  const validateForm = (formData) => {
+    if (!formData.email || !formData.name) {
+      return false;
+    }
+    return true;
   };
+
+  const handleSubmit = async () => {
+    const contactApi = new ContactApi();
+
+    const valid = validateForm(formData);
+    if (!valid) {
+      setFormData((old) => ({
+        ...old,
+        nameError: 'Name required',
+        emailError: 'Email required'
+      }));
+      setAlert({ message: 'Please ensure all fields are filled on the form', color: 'error' });
+
+      return;
+    }
+    try {
+      setLoading(true);
+      await contactApi.submitContactForm(formData);
+
+      setAlert({ message: 'Contact message sent successfully', color: 'success' });
+    } catch (e) {
+      console.debug(e);
+      setAlert({ message: 'There was an error, try again later', color: 'error' });
+    } finally {
+      setFormData(blankData);
+      setLoading(false);
+    }
+  };
+
   return (
-    <Box sx={{ p: { xs: 2.5, sm: 0 } }}>
+    <Box sx={{ p: { xs: 2.5, sm: 0 } }} data-aos="fade-up">
       <Grid container spacing={5} justifyContent="center">
         <Grid item xs={12} sm={10} lg={9}>
           <Stack alignItems="center" justifyContent="center" spacing={2}>
@@ -58,61 +66,59 @@ function ContactForm() {
               Get In touch
             </Button>
             <Typography align="center" variant="h2">
-              Lorem isume dolor elits.
+              Contact
             </Typography>
             <Typography variant="caption" align="center" color="textSecondary" sx={{ maxWidth: '355px' }}>
-              The starting point for your next project based on easy-to-customize Material-UI © helps you build apps faster and better.
+              Looking to connect? Feel free to reach out with any questions, feedback, or just to say hello.
             </Typography>
           </Stack>
         </Grid>
         <Grid item xs={12} sm={10} lg={9}>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
-              <TextField fullWidth type="text" placeholder="Name" sx={{ '& .MuiOutlinedInput-input': { opacity: 0.5 } }} />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField fullWidth type="text" placeholder="Company Name" sx={{ '& .MuiOutlinedInput-input': { opacity: 0.5 } }} />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField fullWidth type="email" placeholder="Email Address" sx={{ '& .MuiOutlinedInput-input': { opacity: 0.5 } }} />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField fullWidth type="number" placeholder="Phone Number" sx={{ '& .MuiOutlinedInput-input': { opacity: 0.5 } }} />
+            <Grid item xs={12} md={12}>
+              <TextField
+                fullWidth
+                type="text"
+                error={!!formData.nameError}
+                name="name"
+                onChange={handleInputChange}
+                value={formData.name}
+                placeholder="Name"
+                sx={{ '& .MuiOutlinedInput-input': { opacity: 0.5 } }}
+              />
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
-                select
                 fullWidth
-                placeholder="Company Size"
+                name="email"
+                onChange={handleInputChange}
+                value={formData.email}
+                error={!!formData.emailError}
+                placeholder="Email Address"
                 sx={{ '& .MuiOutlinedInput-input': { opacity: 0.5 } }}
-                value={size}
-                onChange={handleCompanySize}
-              >
-                {sizes.map((option, index) => (
-                  <MenuItem key={index} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
+              />
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
-                select
                 fullWidth
-                placeholder="Project Budget"
+                name="phone"
+                onChange={handleInputChange}
+                value={formData.phone}
+                placeholder="Phone Number"
                 sx={{ '& .MuiOutlinedInput-input': { opacity: 0.5 } }}
-                value={budget}
-                onChange={handleProjectBudget}
-              >
-                {currencies.map((option, index) => (
-                  <MenuItem key={index} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
+              />
             </Grid>
             <Grid item xs={12}>
-              <TextField fullWidth multiline rows={4} placeholder="Message" sx={{ '& .MuiOutlinedInput-input': { opacity: 0.5 } }} />
+              <TextField
+                fullWidth
+                multiline
+                name="message"
+                onChange={handleInputChange}
+                value={formData.message}
+                rows={4}
+                placeholder="Message"
+                sx={{ '& .MuiOutlinedInput-input': { opacity: 0.5 } }}
+              />
             </Grid>
           </Grid>
         </Grid>
@@ -123,25 +129,31 @@ function ContactForm() {
             justifyContent="space-between"
             alignItems={{ xs: 'stretch', sm: 'center' }}
           >
-            <Stack direction="row" alignItems="center" sx={{ ml: -1 }}>
-              <Checkbox sx={{ '& .css-1vjb4cj': { borderRadius: '2px' } }} defaultChecked />
-              <Typography>
-                By submitting this, you agree to the{' '}
-                <Typography sx={{ cursor: 'pointer' }} component="span" color={theme.palette.primary.main}>
-                  Privacy Policy
-                </Typography>{' '}
-                and{' '}
-                <Typography sx={{ cursor: 'pointer' }} component="span" color={theme.palette.primary.main}>
-                  Cookie Policy
-                </Typography>{' '}
-              </Typography>
-            </Stack>
-            <Button variant="contained" sx={{ ml: { xs: 0 } }}>
-              Submit Now
-            </Button>
+            <Stack direction="row" alignItems="center" sx={{ ml: -1 }}></Stack>
+            {loading ? (
+              <CircularProgress />
+            ) : (
+              <Button onClick={handleSubmit} variant="contained" sx={{ ml: { xs: 0 } }}>
+                Submit Now
+              </Button>
+            )}
           </Stack>
         </Grid>
       </Grid>
+      <Box position="static">
+        <Snackbar
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          open={!!alert}
+          onClose={() => setAlert(null)}
+          autoHideDuration={6000}
+          color={alert?.color}
+          message={alert?.message}
+        >
+          <Alert onClose={() => setAlert(null)} severity={alert?.color as any} variant="filled" sx={{ width: '100%' }}>
+            {alert?.message}
+          </Alert>
+        </Snackbar>
+      </Box>
     </Box>
   );
 }

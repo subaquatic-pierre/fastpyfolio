@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 
 import Container from 'components/Container';
+import { useMediaQuery } from '@mui/material';
 
 const Hero = (): JSX.Element => {
   const theme = useTheme();
@@ -40,7 +41,7 @@ const Hero = (): JSX.Element => {
         alignItems={'center'}
         justifyContent={'center'}
       >
-        <Box>
+        <Box data-aos={'fade-down'}>
           <Box marginBottom={2}>
             <Typography
               variant="h2"

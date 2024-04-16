@@ -10,33 +10,7 @@ import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
 import { Blog } from 'models/blog';
 import Link from 'next/link';
-
-const mock = [
-  {
-    image: 'https://assets.maccarianagency.com/backgrounds/img3.jpg',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    title: 'Lorem ipsum dolor sit amet',
-    tags: ['UX', 'Design', 'Themes', 'Photography'],
-    author: {
-      name: 'Clara Bertoletti',
-      avatar: 'https://assets.maccarianagency.com/avatars/img3.jpg'
-    },
-    date: '04 Aug'
-  },
-  {
-    image: 'https://assets.maccarianagency.com/backgrounds/img25.jpg',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    title: 'Consectetur adipiscing elit',
-    tags: ['UX', 'Design', 'Themes', 'Photography'],
-    author: {
-      name: 'Jhon Anderson',
-      avatar: 'https://assets.maccarianagency.com/avatars/img5.jpg'
-    },
-    date: '12 Sep'
-  }
-];
+import { formatDate } from 'utils/date';
 
 interface Props {
   blogs?: Blog[];
@@ -50,6 +24,7 @@ const PopularNews: React.FC<Props> = ({ blogs = [] }) => {
         {blogs.map((item, i) => (
           <Grid key={i} item xs={12}>
             <Box
+              data-aos={i % 2 === 0 ? `fade-left` : 'fade-right'}
               component={Card}
               width={1}
               height={1}
@@ -66,6 +41,8 @@ const PopularNews: React.FC<Props> = ({ blogs = [] }) => {
                 sx={{
                   width: { xs: 1, md: '50%' }
                 }}
+                component="a"
+                href={`/blog/${item.slug}`}
               >
                 <Box
                   component={'img'}
@@ -78,7 +55,11 @@ const PopularNews: React.FC<Props> = ({ blogs = [] }) => {
                     objectFit: 'cover',
                     maxHeight: 360,
                     borderRadius: 2,
-                    filter: theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none'
+                    transition: 'all .2s ease-in-out',
+                    filter: theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none',
+                    '&:hover': {
+                      transform: `translateY(-${theme.spacing(1 / 2)})`
+                    }
                   }}
                 />
               </Box>
@@ -92,26 +73,12 @@ const PopularNews: React.FC<Props> = ({ blogs = [] }) => {
                   justifyContent: 'center'
                 }}
               >
-                {/* <Box>
-                  {item.tags.map((item) => (
-                    <Chip
-                      key={item}
-                      label={item}
-                      component="a"
-                      href=""
-                      clickable
-                      size={'small'}
-                      color={'primary'}
-                      sx={{ marginBottom: 1, marginRight: 1 }}
-                    />
-                  ))}
-                </Box> */}
                 <Typography variant={'h6'} fontWeight={700} sx={{ textTransform: 'uppercase' }}>
                   {item.title}
                 </Typography>
                 <Box marginY={1}>
                   <Typography variant={'caption'} color={'text.secondary'} component={'i'}>
-                    {item.authorId} - {item.createdAt}
+                    {formatDate(new Date(item.createdAt), 'DD-MMM-YYYY')}
                   </Typography>
                 </Box>
                 <Typography color="text.secondary">{item.description}</Typography>

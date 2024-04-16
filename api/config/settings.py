@@ -9,6 +9,10 @@ class Settings:
     PORT: int = int(os.getenv("PORT", 8000))
     HOSTNAME: str = os.getenv("NEXT_PUBLIC_API_URL", "http://localhost:8001")
 
+    SMTP_USERNAME: str = os.getenv("SMTP_USERNAME", "")
+    SMTP_PASSWORD: str = os.getenv("SMTP_PASSWORD", "")
+    SMTP_FROM: str = os.getenv("SMTP_FROM", "subaquatic.pierre@gmail.com")
+
     DB_HOST: str = os.getenv("MONGODB_HOST")
     DB_PORT: int = int(os.getenv("MONGODB_PORT"))
     DB_NAME: str = os.getenv("MONGODB_DB_NAME")

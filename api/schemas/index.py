@@ -7,3 +7,10 @@ class IndexRes(BaseSchema):
 
 class IndexReq(BaseSchema):
     name: str
+
+
+class ContactReq(BaseSchema):
+    name: str | None = None
+    email: str | None = None
+    phone: str | None = None
+    message: str | None = None

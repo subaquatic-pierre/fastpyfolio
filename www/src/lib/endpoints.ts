@@ -16,6 +16,7 @@ export const GET_SITE_SETTINGS = '/api/site-settings';
 // Blogs
 export const LIST_BLOG = (pageNumber = 0, pageSize = 25) => `/api/blog`;
 export const GET_BLOG = (slugOrId: string) => `/api/blog/${slugOrId}`;
+export const LIST_CATEGORIES = '/api/blog/categories';
 
 // Projects
 export const LIST_TAGS = '/api/project/tags';

@@ -44,20 +44,21 @@ function ContactHeader() {
     >
       <Container maxWidth="lg" sx={{ px: { xs: 0, sm: 2 } }}>
         <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-around" alignItems="center" spacing={{ xs: 0, sm: 3 }}>
-          <Box sx={{ width: { xs: '100%', sm: 252, md: 360, lg: 436 }, pt: 6 }}>
+          <Box data-aos="fade-right" sx={{ width: { xs: '100%', sm: 252, md: 360, lg: 436 }, pt: 6 }}>
             <Stack spacing={1}>
               <Typography align={matchDownSM ? 'center' : 'left'} variant="h2">
-                Talk to our{' '}
+                Get In Touch With The{' '}
                 <Typography variant="h2" component="span" color="primary" sx={{ cursor: 'pointer' }}>
-                  Expert
+                  Cloud
                 </Typography>
               </Typography>
               <Typography align={matchDownSM ? 'center' : 'left'} color="textSecondary">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Get in touch for the latest cloud innovation.
               </Typography>
             </Stack>
           </Box>
           <Box
+            data-aos="fade-left"
             sx={{
               background: theme.palette.mode === ThemeMode.DARK ? theme.palette.grey.A700 : theme.palette.grey[100]
             }}

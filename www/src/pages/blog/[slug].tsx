@@ -75,7 +75,7 @@ export const getStaticProps: GetServerSideProps<PageProps> = async (ctx) => {
   const blog = await blogApi.getBlog(slug);
 
   if (blog) {
-    settings.title = blog.title;
+    settings.title = `${blog.title} - Nebula Nexus`;
   }
 
   return {

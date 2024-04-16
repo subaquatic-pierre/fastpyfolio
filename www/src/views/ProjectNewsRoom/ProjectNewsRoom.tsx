@@ -78,7 +78,7 @@ const ProjectNewsRoom: React.FC<Props> = ({ data }): JSX.Element => {
       <Container paddingY={'0 !important'}>
         <Grid container spacing={isMd ? 4 : 2}>
           <Grid item xs={12} md={3}>
-            <Box component={Card} variant={'outlined'} padding={2}>
+            <Box data-aos={'fade-right'} component={Card} variant={'outlined'} padding={2}>
               <Tags handleTagClick={handleTagClick} activeTags={activeTags} />
             </Box>
           </Grid>
