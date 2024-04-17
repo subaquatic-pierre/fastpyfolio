@@ -3,7 +3,7 @@ import requests
 
 from config.settings import settings
 from schemas.index import IndexRes, IndexReq, ContactReq
-from utils.email import (
+from lib.email import (
     send_email,
     generate_user_contact_html,
     generate_admin_contact_html,

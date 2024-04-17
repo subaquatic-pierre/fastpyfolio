@@ -108,19 +108,6 @@ const PopularNews: React.FC<Props> = ({ blogs = [] }) => {
           </Grid>
         ))}
       </Grid>
-      <Box
-        display={'flex'}
-        justifyContent={'center'}
-        alignItems={{ xs: 'flex-start', sm: 'center' }}
-        flexDirection={{ xs: 'column', sm: 'row' }}
-        my={4}
-      >
-        <Box display="flex" marginTop={{ xs: 2, md: 0 }}>
-          <Box component={Button} variant="outlined" color="primary" size="large" marginLeft={2}>
-            Load More
-          </Box>
-        </Box>
-      </Box>
     </Box>
   );
 };

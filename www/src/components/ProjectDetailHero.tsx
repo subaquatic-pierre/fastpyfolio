@@ -11,7 +11,12 @@ const ProjectDetailHero: React.FC<Props> = ({ imageSrc, title, description }) =>
   return (
     <Box position="relative" mb={4}>
       <Box sx={{ position: 'relative', height: 500 }}>
-        <img src={imageSrc} alt={title} style={{ objectFit: 'cover', width: '100%', overflow: 'hidden', maxHeight: 500 }} />
+        <Box
+          component="img"
+          src={imageSrc}
+          alt={title}
+          sx={{ objectFit: 'cover', width: { sm: '100%' }, objectPosition: 'center', maxHeight: 500 }}
+        />
         {/* <Image src={imageSrc} alt={title} style={{ objectFit: 'cover', width: '100%', overflow: 'hidden', maxHeight: 500 }} /> */}
       </Box>
       <Box

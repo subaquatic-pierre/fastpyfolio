@@ -15,7 +15,7 @@ const IndexPage: React.FC<PageProps> = ({ settings, blogs }): JSX.Element => {
   return (
     <Main colorInvert>
       <Page settings={settings} title={settings.title}>
-        <BlogNewsroom blogs={blogs} />
+        <BlogNewsroom data={blogs} />
       </Page>
     </Main>
   );
@@ -29,6 +29,8 @@ export const getStaticProps: GetStaticProps<PageProps> = async () => {
   const settings = await api.getSiteSettings();
   const blogs = await blogApi.getBlogs();
   settings.title = `Blog - Nebula Nexus`;
+
+  blogs.sort((a, b) => new Date(a.createdAt).getMilliseconds() - new Date(b.createdAt).getMilliseconds());
 
   return {
     props: {

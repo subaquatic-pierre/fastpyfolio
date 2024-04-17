@@ -10,7 +10,7 @@ def send_email(subject: str, message: str, to_email: str):
     # The character encoding for the email.
     CHARSET = "UTF-8"
 
-    SENDER = f"Pierre Du Toit <{settings.SMTP_FROM}>"
+    SENDER = f"Pierre Du Toit <pierre@nebuladev.io>"
 
     ses = boto3.client(
         "ses",
@@ -49,9 +49,9 @@ def send_email(subject: str, message: str, to_email: str):
     # Display an error if something goes wrong.
     except ClientError as e:
         print(e.response["Error"]["Message"])
-    else:
-        print("Email sent! Message ID:"),
-        print(response["MessageId"])
+    # else:
+    #     print("Email sent! Message ID:"),
+    #     print(response["MessageId"])
 
 
 def generate_user_contact_html(vals: dict = {"name": "User"}):

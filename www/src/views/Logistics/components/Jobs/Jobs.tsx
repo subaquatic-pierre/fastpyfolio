@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
@@ -7,29 +7,24 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
-
-export const mock = [
-  {
-    title: 'Front-End Developer',
-    location: 'Madrid',
-    type: 'Remote',
-    slug: 'slug'
-  },
-  {
-    title: 'Community Manager',
-    location: 'Paris',
-    type: 'Full time',
-    slug: 'slug'
-  },
-  {
-    title: 'UX/UI Designer',
-    location: 'Yerevan',
-    type: 'Part time',
-    slug: 'slug'
-  }
-];
+import { Project } from 'models/project';
+import { ProjectApi } from 'lib/api';
 
 const Jobs = (): JSX.Element => {
+  const [data, setData] = useState<Project[]>([]);
+
+  const handleLoad = async () => {
+    const api = new ProjectApi();
+
+    const projects = await api.getProjects();
+
+    setData(projects.filter((item) => item.tags.includes('Featured')).slice(0, 3));
+  };
+
+  useEffect(() => {
+    handleLoad();
+  }, []);
+
   return (
     <Box>
       <Box marginBottom={4}>
@@ -55,7 +50,7 @@ const Jobs = (): JSX.Element => {
       </Box>
       <Box maxWidth={800} margin={'0 auto'}>
         <Grid container spacing={2}>
-          {mock.map((item, i) => (
+          {data.map((item, i) => (
             <Grid item xs={12} key={i}>
               <Link href={`/project/${item.slug}`}>
                 <Box
@@ -70,7 +65,7 @@ const Jobs = (): JSX.Element => {
                 >
                   <Box component={CardContent} display={'flex'} alignItems={'center'}>
                     <Box
-                      display={'flex'}
+                      // display={'flex'}
                       flexDirection={{ xs: 'column', sm: 'row' }}
                       flex={'1 1 100%'}
                       justifyContent={{ sm: 'space-between' }}
@@ -80,7 +75,7 @@ const Jobs = (): JSX.Element => {
                         {item.title}
                       </Typography>
                       <Typography variant={'subtitle1'} color={'text.secondary'}>
-                        {`${item.location} / ${item.type}`}
+                        {item.description}
                       </Typography>
                     </Box>
                     <Box marginLeft={2} color={'primary.main'}>

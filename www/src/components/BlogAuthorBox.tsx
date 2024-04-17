@@ -1,18 +1,19 @@
 import Image from 'next/image';
-import { Avatar, Box, Stack, Typography } from '@mui/material';
+import { Avatar, Box, Chip, Stack, Typography } from '@mui/material';
 
 import { UserProfile } from 'models/auth';
 import { formatDate } from 'utils/date';
 
 interface Props {
+  category: string;
   author: string;
   date: Date;
   large?: boolean;
 }
 
-const BlogAuthorBox: React.FC<Props> = ({ author, date, large }) => {
+const BlogAuthorBox: React.FC<Props> = ({ category, author, date, large }) => {
   return (
-    <Box display="flex" alignItems="center" justifyContent="flex-end">
+    <Stack spacing={2} direction="row" justifyContent="flex-end">
       {/* Author image */}
       {/* <Box
         sx={{
@@ -27,11 +28,9 @@ const BlogAuthorBox: React.FC<Props> = ({ author, date, large }) => {
         <Avatar />
       </Box> */}
       {/* <Typography sx={{ fontSize: large && '1.1rem', fontWeight: large && 500 }}>{author}</Typography> */}
-      <Typography sx={(theme) => ({ color: theme.palette.grey[600] })} variant={large ? 'body1' : 'caption'}>
-        {formatDate(date, 'DD-MMM-YYYY')}
-        {/* {`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`} */}
-      </Typography>
-    </Box>
+      <Chip label={`Category: ${category}`} />
+      <Chip label={`Date: ${formatDate(date, 'DD-MMM-YYYY')}`} />
+    </Stack>
   );
 };
 

@@ -35,7 +35,6 @@ const Logistics = (): JSX.Element => {
       <Container>
         <Trucking />
       </Container>
-      {/* <About /> */}
       <Video />
       <Container>
         <Features />

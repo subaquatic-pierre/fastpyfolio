@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
@@ -10,30 +10,27 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
-
-const mock = [
-  {
-    media: 'https://assets.maccarianagency.com/backgrounds/img2.jpg',
-    title: 'Motivation is the first step to success',
-    subtitle: "Once you're setup, instantly withdraw payments or deposit into your bank account within 2-3 business days."
-  },
-  {
-    media: 'https://assets.maccarianagency.com/backgrounds/img3.jpg',
-    title: 'Success steps for your personal or business life',
-    subtitle: 'We make sure to include all the amenities and niceties that a growing startup could possibly need.'
-  },
-  {
-    media: 'https://assets.maccarianagency.com/backgrounds/img4.jpg',
-    title: 'Increasing prosperity with positive thinking',
-    subtitle: "Once you're setup, instantly withdraw payments or deposit into your bank account within 2-3 business days."
-  }
-];
+import { BlogApi } from 'lib/api';
+import { Blog } from 'models/blog';
 
 const News = (): JSX.Element => {
+  const [data, setData] = useState<Blog[]>([]);
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true
   });
+
+  const handleLoad = async () => {
+    const api = new BlogApi();
+
+    const blogs = await api.getBlogs();
+
+    setData(blogs.slice(0, 3));
+  };
+
+  useEffect(() => {
+    handleLoad();
+  }, []);
 
   return (
     <Box>
@@ -42,18 +39,20 @@ const News = (): JSX.Element => {
           Latest Updates
         </Typography>
         <Typography variant={'h6'} component={'p'} color={'text.secondary'} align={'center'}>
-          Stay up-to-date with our latest news and announcements. Explore opportunities and make informed decisions about your next steps.
+          Stay up-to-date with the latest news.
         </Typography>
       </Box>
       <Grid container spacing={isMd ? 4 : 2}>
         <Grid item xs={12} md={8}>
           <Grid container spacing={isMd ? 4 : 2} direction="column">
-            {mock.map((item, index) => (
+            {data.map((item, index) => (
               <Grid item xs={12} key={index} data-aos="fade-up" data-aos-delay={index * 200} data-aos-offset={100} data-aos-duration={600}>
                 <Box component={Card} display={'flex'} flexDirection={{ xs: 'column', sm: 'row' }}>
                   <CardMedia
+                    component={Link}
+                    href={`/blog/${item.slug}`}
                     title={item.title}
-                    image={item.media}
+                    image={item.featuredImageUrl}
                     sx={{
                       height: { xs: 240, sm: 'auto' },
                       width: { xs: 1, sm: 300 }
@@ -65,11 +64,13 @@ const News = (): JSX.Element => {
                         {item.title}
                       </Typography>
                       <Typography variant="subtitle1" color="text.secondary">
-                        {item.subtitle}
+                        {item.description}
                       </Typography>
                     </Box>
                     <CardActions sx={{ justifyContent: 'flex-end' }}>
-                      <Button>Read More</Button>
+                      <Button LinkComponent={Link} href={`/blog/${item.slug}`}>
+                        Read More
+                      </Button>
                     </CardActions>
                   </CardContent>
                 </Box>

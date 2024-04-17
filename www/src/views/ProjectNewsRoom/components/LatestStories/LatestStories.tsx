@@ -63,11 +63,11 @@ const LatestStories: React.FC<Props> = ({ data }): JSX.Element => {
                   <Typography variant={'h6'} fontWeight={700} align={'center'} sx={{ textTransform: 'uppercase' }}>
                     {item.title}
                   </Typography>
-                  <Box marginY={1}>
+                  {/* <Box marginY={1}>
                     <Typography variant={'caption'} align={'center'} color={'text.secondary'} component={'i'}>
                       {formatDate(new Date(item.createdAt), 'DD-MMM-YYYY')}
                     </Typography>
-                  </Box>
+                  </Box> */}
                   <Typography color="text.secondary" align={'center'}>
                     {item.description}
                   </Typography>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Grid from '@mui/material/Grid';
@@ -20,16 +20,62 @@ import {
   SearchBox
 } from './components';
 import { Blog } from 'models/blog';
+import { Button, Chip } from '@mui/material';
+import { BlogApi } from 'lib/api';
+
+const mock = ['...', '...', '...'];
 
 interface Props {
-  blogs: Blog[];
+  data: Blog[];
 }
 
-const BlogNewsroom: React.FC<Props> = ({ blogs }) => {
+const defaultCount = 1;
+const incAmount = 1;
+
+const BlogNewsroom: React.FC<Props> = ({ data }) => {
   const theme = useTheme();
-  const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-    defaultMatches: true
-  });
+  const [blogCount, setBlogCount] = useState(defaultCount);
+  const [blogs, setBlogs] = useState<Blog[]>(data.slice(0, defaultCount));
+  const [filteredCount, setFilteredCount] = useState(data.length);
+
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [categories, setCategories] = useState([]);
+
+  const handleLoad = async () => {
+    const api = new BlogApi();
+    const cats = await api.getCategories();
+    setCategories(cats);
+  };
+
+  useEffect(() => {
+    handleLoad();
+  }, []);
+
+  const handleMoreClick = () => {
+    setBlogCount((old) => old + incAmount);
+  };
+
+  const handleCategoryClick = (name: string) => {
+    if (name === activeCategory) {
+      setActiveCategory(null);
+    } else {
+      setActiveCategory(name);
+    }
+  };
+
+  const handleFilterBlogs = (activeCategories: string, projectCount: number) => {
+    if (activeCategory) {
+      const filtered = data.filter((item) => item.category === activeCategory);
+      setFilteredCount(filtered.length);
+      setBlogs(filtered.slice(0, blogCount));
+    } else {
+      setBlogs(data.slice(0, blogCount));
+    }
+  };
+
+  useEffect(() => {
+    handleFilterBlogs(activeCategory, blogCount);
+  }, [activeCategory, blogCount]);
 
   return (
     <>
@@ -42,10 +88,36 @@ const BlogNewsroom: React.FC<Props> = ({ blogs }) => {
           paddingY: '0 !important'
         }}
       >
-        <SearchBox />
+        <SearchBox clearActiveCategory={() => setActiveCategory(null)} setData={setBlogs} />
+        <Box>
+          {categories.map((item) => (
+            <Chip
+              key={item}
+              label={item}
+              color={activeCategory === item ? 'primary' : 'default'}
+              onClick={() => handleCategoryClick(item)}
+              sx={{ margin: 0.5 }}
+            />
+          ))}
+        </Box>
       </Container>
       <Container>
         <PopularNews blogs={blogs} />
+        <Box
+          display={'flex'}
+          justifyContent={'center'}
+          alignItems={{ xs: 'flex-start', sm: 'center' }}
+          flexDirection={{ xs: 'column', sm: 'row' }}
+          my={4}
+        >
+          <Box display="flex" marginTop={{ xs: 2, md: 0 }}>
+            {filteredCount > blogCount && (
+              <Box component={Button} onClick={handleMoreClick} variant="outlined" color="primary" size="large" marginLeft={2}>
+                Load More
+              </Box>
+            )}
+          </Box>
+        </Box>
       </Container>
 
       <Container maxWidth={800} paddingY={'0 !important'}>

@@ -42,7 +42,7 @@ const BlogDetailContent: React.FC<Props> = ({ blog }) => {
     <Box mb={5} minHeight={'60vh'}>
       <Container maxWidth="md">
         <Stack spacing={2}>
-          <BlogAuthorBox large date={new Date(blog.createdAt)} author={blog.authorId} />
+          <BlogAuthorBox category={blog.category} large date={new Date(blog.createdAt)} author={blog.authorId} />
           <Output renderers={renderers} data={blog.content} />
         </Stack>
       </Container>

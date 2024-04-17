@@ -14,6 +14,7 @@ export const EMAIL_CONFIRMATION = '/api/auth/send-email-confirmation';
 export const GET_SITE_SETTINGS = '/api/site-settings';
 
 // Blogs
+export const BLOG_SEARCH = (searchString: string) => `/api/blog/search?term=${searchString}`;
 export const LIST_BLOG = (pageNumber = 0, pageSize = 25) => `/api/blog`;
 export const GET_BLOG = (slugOrId: string) => `/api/blog/${slugOrId}`;
 export const LIST_CATEGORIES = '/api/blog/categories';

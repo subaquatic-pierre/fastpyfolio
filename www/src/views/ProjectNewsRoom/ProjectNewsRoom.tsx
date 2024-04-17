@@ -31,8 +31,9 @@ const incAmount = 1;
 
 const ProjectNewsRoom: React.FC<Props> = ({ data }): JSX.Element => {
   const [projects, setProjects] = useState<Project[]>([]);
+  const [filteredProjectsCount, setFilteredProjectsCount] = useState(data.length);
   const [projectCount, setProjectCount] = useState(defaultCount);
-  const [activeTags, setActiveTags] = useState([]);
+  const [activeTags, setActiveTags] = useState(['Featured']);
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true
@@ -51,10 +52,10 @@ const ProjectNewsRoom: React.FC<Props> = ({ data }): JSX.Element => {
   };
 
   const handleFilterProjects = (activeTags: string[], projectCount: number) => {
-    data.sort((a, b) => new Date(a.createdAt).getMilliseconds() - new Date(b.createdAt).getMilliseconds());
     if (activeTags.length === 0) {
       const filteredProjects = data;
       setProjects(filteredProjects.slice(0, projectCount));
+      setFilteredProjectsCount(filteredProjects.length);
     } else {
       const filteredProjects = [];
       for (const tag of activeTags) {
@@ -65,6 +66,7 @@ const ProjectNewsRoom: React.FC<Props> = ({ data }): JSX.Element => {
         }
       }
       setProjects(filteredProjects.slice(0, projectCount));
+      setFilteredProjectsCount(filteredProjects.length);
     }
   };
 
@@ -75,7 +77,7 @@ const ProjectNewsRoom: React.FC<Props> = ({ data }): JSX.Element => {
   return (
     <>
       <Hero />
-      <Container paddingY={'0 !important'}>
+      <Container minHeight="500px" paddingY={'0 !important'}>
         <Grid container spacing={isMd ? 4 : 2}>
           <Grid item xs={12} md={3}>
             <Box data-aos={'fade-right'} component={Card} variant={'outlined'} padding={2}>
@@ -94,9 +96,11 @@ const ProjectNewsRoom: React.FC<Props> = ({ data }): JSX.Element => {
             flexDirection={{ xs: 'column', sm: 'row' }}
             my={4}
           >
-            <Box component={Button} onClick={handleMoreClick} variant="outlined" color="primary" size="large" marginLeft={2}>
-              View More
-            </Box>
+            {filteredProjectsCount > projectCount && (
+              <Box component={Button} onClick={handleMoreClick} variant="outlined" color="primary" size="large" marginLeft={2}>
+                View More
+              </Box>
+            )}
           </Box>
         </Grid>
       </Container>

@@ -1,6 +1,16 @@
 import { defaultSiteSettings } from 'models/settings';
 import { SiteSettings, reduceSiteSettings } from 'models/settings';
-import { GET_BLOG, GET_PROJECT, GET_SITE_SETTINGS, LIST_BLOG, LIST_PROJECT, UPLOAD, LIST_TAGS, LIST_CATEGORIES } from 'lib/endpoints';
+import {
+  GET_BLOG,
+  GET_PROJECT,
+  GET_SITE_SETTINGS,
+  LIST_BLOG,
+  LIST_PROJECT,
+  UPLOAD,
+  LIST_TAGS,
+  LIST_CATEGORIES,
+  BLOG_SEARCH
+} from 'lib/endpoints';
 import { Project, reduceProject, reduceProjects } from 'models/project';
 import { Blog, reduceBlog, reduceBlogs } from 'models/blog';
 import { blankBlog, blankProject } from 'utils/blankData';
@@ -177,6 +187,12 @@ export class BlogApi extends BaseRemoteApi {
     const res = await this.apiReq<{ categories: string[] }>({ endpoint: LIST_CATEGORIES });
 
     return res.data.categories;
+  };
+
+  search = async (searchString: string): Promise<Blog[]> => {
+    const res = await this.apiReq<{ blogs: Blog[] }>({ endpoint: BLOG_SEARCH(searchString) });
+
+    return res.data.blogs;
   };
 }
 

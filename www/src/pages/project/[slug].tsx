@@ -3,7 +3,7 @@ import { ReactElement, useEffect, useState } from 'react';
 // project import
 import Main from 'layouts/Main';
 import Page from 'components/Page';
-import { Box, Button, CircularProgress, Container, Stack, Typography } from '@mui/material';
+import { Box, Button, Chip, CircularProgress, Container, Grid, Stack, Typography } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Blog } from 'models/blog';
@@ -16,6 +16,7 @@ import { SiteSettings } from 'models/settings';
 import { Project } from 'models/project';
 import ProjectDetailContent from 'components/ProjectDetailContent';
 import ProjectDetailHero from 'components/ProjectDetailHero';
+import ProjectDetailSidebar from 'components/ProjectDetailSidebar';
 
 interface PageProps {
   settings: SiteSettings;
@@ -56,7 +57,21 @@ const ProjectDetailPage: React.FC<PageProps> = ({ settings }) => {
               imageSrc={data.featuredImageUrl !== '' ? data.featuredImageUrl : '/images/default-blog-hero.png'}
               title={data.title}
             />
-            <ProjectDetailContent project={data} />
+            <Container>
+              <Stack mb={2} spacing={2} direction="row">
+                {data.tags.map((item) => (
+                  <Chip key={item} label={item} />
+                ))}
+              </Stack>
+              <Grid container>
+                <Grid item xs={12} order={{ md: 2, xs: 1 }} md={3}>
+                  <ProjectDetailSidebar project={data} />
+                </Grid>
+                <Grid item xs={12} order={{ md: 1, xs: 2 }} md={9}>
+                  <ProjectDetailContent project={data} />
+                </Grid>
+              </Grid>
+            </Container>
           </>
         ) : (
           <Stack minHeight={'100vh'} justifyContent="center" alignItems="center">
