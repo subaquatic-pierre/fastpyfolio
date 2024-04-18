@@ -63,8 +63,10 @@ const SidebarNav = ({ pages }: Props): JSX.Element => {
           {/* <LinkNavItem title={'Services'} path="/services" id={'services'} /> */}
           {/* <LinkNavItem title={'Contact Us'} path="/contact-us" id={'contact'} /> */}
           {/* <LinkNavItem title={'Blog'} path="/blog" id={'blog'} /> */}
+          <LinkNavItem title={'Home'} path="/" id={'home'} />
           <LinkNavItem title={'Projects'} path="/project" id={'projects'} />
           <LinkNavItem title={'Blog'} path="/blog" id={'blog'} />
+          <LinkNavItem title={'Contact'} path="/contact" id={'contact'} />
           {/* <NavItem title={'Demo Pages'} id={'pages'} items={pagesState} /> */}
         </Stack>
         <Box marginTop={2}>
@@ -73,10 +75,10 @@ const SidebarNav = ({ pages }: Props): JSX.Element => {
             variant="contained"
             fullWidth
             component={Link}
-            href="/contact"
+            href="/login"
             // target={'blank'}
           >
-            Get In Touch
+            Login
           </Button>
         </Box>
         {/* <Box>

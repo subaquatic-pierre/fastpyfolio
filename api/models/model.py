@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, time, timezone
 from abc import ABC, abstractmethod
 from typing import List, Any
 import json
@@ -61,7 +61,7 @@ class DBModel(BaseModel, ABC):
         collection = self._get_collection()
 
         data = self.to_json(show_hidden_fields=True, delete_id=True)
-        now = datetime.utcnow()
+        now = datetime.now().replace(microsecond=0, tzinfo=timezone.utc).isoformat()
 
         if self.id == None:
             data["updated_at"] = now
@@ -71,7 +71,7 @@ class DBModel(BaseModel, ABC):
         item = collection.find_one({"_id": ObjectId(self.id)})
 
         if item:
-            data["updated_at"] = now
+            # data["updated_at"] = now
             return collection.update_one({"_id": ObjectId(self.id)}, {"$set": data})
         else:
             return collection.insert_one(data)

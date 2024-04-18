@@ -58,11 +58,11 @@ const ProjectDetailPage: React.FC<PageProps> = ({ settings }) => {
               title={data.title}
             />
             <Container>
-              <Stack mb={2} spacing={2} direction="row">
+              <Box mb={2}>
                 {data.tags.map((item) => (
-                  <Chip key={item} label={item} />
+                  <Chip key={item} label={item} sx={{ margin: 0.5 }} />
                 ))}
-              </Stack>
+              </Box>
               <Grid container>
                 <Grid item xs={12} order={{ md: 2, xs: 1 }} md={3}>
                   <ProjectDetailSidebar project={data} />

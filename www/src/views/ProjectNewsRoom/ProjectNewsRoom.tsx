@@ -26,8 +26,8 @@ interface Props {
   data: Project[];
 }
 
-const defaultCount = 1;
-const incAmount = 1;
+const defaultCount = 4;
+const incAmount = 2;
 
 const ProjectNewsRoom: React.FC<Props> = ({ data }): JSX.Element => {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -89,13 +89,7 @@ const ProjectNewsRoom: React.FC<Props> = ({ data }): JSX.Element => {
           </Grid>
         </Grid>
         <Grid>
-          <Box
-            display={'flex'}
-            justifyContent={'center'}
-            alignItems={{ xs: 'flex-start', sm: 'center' }}
-            flexDirection={{ xs: 'column', sm: 'row' }}
-            my={4}
-          >
+          <Box display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={{ xs: 'column', sm: 'row' }} my={4}>
             {filteredProjectsCount > projectCount && (
               <Box component={Button} onClick={handleMoreClick} variant="outlined" color="primary" size="large" marginLeft={2}>
                 View More

@@ -70,3 +70,12 @@ def generate_admin_contact_html(vals: dict = {"name": "User"}):
 
     template = Template(html_as_string)
     return template.safe_substitute(vals)
+
+
+def generate_password_reset_html(vals: dict = {"token": "ERROR"}):
+    template_path = path.join(settings.ROOT_DIR, "templates", "reset_password.html")
+    with open(template_path, "r") as file:  # r to open file in READ mode
+        html_as_string = file.read()
+
+    template = Template(html_as_string)
+    return template.safe_substitute(vals)

@@ -34,7 +34,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async () => {
   settings.title = `Digital Showcase - Nebula Nexus`;
   const projects = await projectApi.getProjects();
 
-  projects.sort((a, b) => new Date(a.createdAt).getMilliseconds() - new Date(b.createdAt).getMilliseconds());
+  // projects.sort((a, b) => new Date(a.createdAt).getMilliseconds() - new Date(b.createdAt).getMilliseconds());
 
   return {
     props: {

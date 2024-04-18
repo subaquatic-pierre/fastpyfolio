@@ -85,10 +85,10 @@ const AuthResetPassword = () => {
           setStatus({ success: true });
           setSubmitting(false);
 
-          const res = await resetPassword({
-            code: router.query.code as string,
+          await resetPassword({
+            token: router.query.token as string,
             password: values.password,
-            passwordConfirmation: values.confirmPassword
+            passwordConfirm: values.confirmPassword
           });
 
           // console.log(res);

@@ -27,7 +27,7 @@ const Footer = (): JSX.Element => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={3} md={4}>
+      <Grid item xs={3} sm={4}>
         <Box display={'flex'} component={Link} href="/" title={settings.title} height={{ xs: 60, md: 80 }} width={{ xs: 60, md: 100 }}>
           {/* TODO: Get logo from CMS */}
           <Box
@@ -35,7 +35,7 @@ const Footer = (): JSX.Element => {
               objectFit: 'contain'
               // ...(mode === 'dark' && {
               //   WebkitFilter: 'brightness(0) invert(1)',
-              //   filter: 'brightness(0) invert(1)'
+              //   filter: 'brigtness(0) invert(1)'
               // })
             }}
             component={'img'}
@@ -45,40 +45,25 @@ const Footer = (): JSX.Element => {
           />
         </Box>
       </Grid>
-      <Grid item xs={9} md={8} container spacing={2}>
-        <Stack direction="row" width="100%" justifyContent="space-between" alignItems="center">
-          <Typography>Nebula Nexus - Unleashing Innovation in the Cloud</Typography>
-          <Stack spacing={1} direction="row">
-            <Link underline="none" href="https://www.linkedin.com/in/subaquatic-pierre/" target="_blank" sx={linkSX}>
-              <LinkedinFilled style={{ fontSize: '200%' }} />
-            </Link>
-            <Link underline="none" href="https://github.com/subaquatic-pierre" target="_blank" sx={linkSX}>
-              <GithubFilled style={{ fontSize: '200%' }} />
-            </Link>
-          </Stack>
+      <Grid item xs={9} sm={6}>
+        <Stack direction="row" width="100%" height={'100%'} alignItems="center">
+          <Typography textAlign={'center'}>Nebula Nexus - Unleashing Innovation in the Cloud</Typography>
         </Stack>
-        {/* <Grid item xs={12} sm={8}>
-          <Typography>Nebula Nexus - Unleashing Innovation in the Cloud</Typography>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Grid container spacing={2} alignItems="center" sx={{ justifyContent: 'flex-end' }}>
-            <Grid item>
-              <Link underline="none" href="https://www.linkedin.com/in/subaquatic-pierre/" target="_blank" sx={linkSX}>
-                <LinkedinFilled style={{ fontSize: '200%' }} />
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link underline="none" href="https://github.com/subaquatic-pierre" target="_blank" sx={linkSX}>
-                <GithubFilled style={{ fontSize: '200%' }} />
-              </Link>
-            </Grid>
-          </Grid>
-        </Grid> */}
+      </Grid>
+      <Grid item xs={12} sm={2}>
+        <Stack spacing={1} direction="row" width="100%" height={'100%'} alignItems="center" justifyContent={'center'}>
+          <Link underline="none" href="https://www.linkedin.com/in/subaquatic-pierre/" target="_blank" sx={linkSX}>
+            <LinkedinFilled style={{ fontSize: '200%' }} />
+          </Link>
+          <Link underline="none" href="https://github.com/subaquatic-pierre" target="_blank" sx={linkSX}>
+            <GithubFilled style={{ fontSize: '200%' }} />
+          </Link>
+        </Stack>
       </Grid>
       <Grid item xs={12}>
         <Stack direction="row" alignItems="center" justifyContent="center">
           <Typography maxWidth={800} align={'center'} variant={'caption'} color="text.secondary" component={'p'}>
-            When you visit or interact with our sites, services or tools, we or our authorised service providers may use cookies for storing
+            When you visit or interact with this site, services or tools, we or our authorized service providers may use cookies for storing
             information to help provide you with a better, faster and safer experience and for marketing purposes.
           </Typography>
         </Stack>

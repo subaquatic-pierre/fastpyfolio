@@ -33,7 +33,8 @@ import { Formik } from 'formik';
 import { APP_ADMIN_DEFAULT_PATH } from 'config';
 import IconButton from 'components/@extended/IconButton';
 import AnimateButton from 'components/@extended/AnimateButton';
-
+import { dispatch } from 'store';
+import { openSnackbar } from 'store/reducers/snackbar';
 // assets
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import { login } from 'lib/auth';
@@ -46,7 +47,6 @@ import useAuth from 'hooks/useAuth';
 const AuthLogin = () => {
   const { setLoading, loading } = useAuth();
   const router = useRouter();
-  const [checked, setChecked] = React.useState(false);
   const [capsWarning, setCapsWarning] = React.useState(false);
 
   const [showPassword, setShowPassword] = React.useState(false);
@@ -67,24 +67,39 @@ const AuthLogin = () => {
   };
 
   const handleSubmit = async (values: any, { setErrors, setSubmitting }: any): Promise<any> => {
-    const res = await login({
-      email: values.email,
-      password: values.password
-    });
-
-    if (res.error) {
-      setErrors({ submit: res.error.message });
-      setSubmitting(false);
-      setTokenInStorage(null);
-    } else {
-      if (res.data?.token) {
+    try {
+      const res = await login({
+        email: values.email,
+        password: values.password
+      });
+      if (!res.data?.token) {
+        setErrors({ submit: res.error.message });
+        setSubmitting(false);
+        setTokenInStorage(null);
+      } else {
         setLoading(true);
         const token = parseToken(res.data.token);
         setTokenInStorage(token);
-      }
-      setSubmitting(false);
+        setSubmitting(false);
 
-      router.push({ pathname: APP_ADMIN_DEFAULT_PATH, query: router.query });
+        router.push({ pathname: APP_ADMIN_DEFAULT_PATH, query: router.query });
+      }
+    } catch (e) {
+      dispatch(
+        openSnackbar({
+          open: true,
+          message: 'Error logging in',
+          variant: 'alert',
+          alert: {
+            color: 'error'
+          },
+          close: false
+        })
+      );
+
+      setErrors({ submit: e.error.message });
+      setSubmitting(false);
+      setTokenInStorage(null);
     }
   };
 
@@ -174,7 +189,7 @@ const AuthLogin = () => {
 
               <Grid item xs={12} sx={{ mt: -1 }}>
                 <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
-                  <FormControlLabel
+                  {/* <FormControlLabel
                     control={
                       <Checkbox
                         checked={checked}
@@ -185,7 +200,7 @@ const AuthLogin = () => {
                       />
                     }
                     label={<Typography variant="h6">Keep me sign in</Typography>}
-                  />
+                  /> */}
                   <NextLink href={'/forgot-password'} passHref legacyBehavior>
                     <Link variant="h6" color="text.primary">
                       Forgot Password?

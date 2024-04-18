@@ -20,7 +20,7 @@ const ParagraphRenderer = ({ data, style, classNames, config }) => {
   const regex = new RegExp(expression);
 
   if (content.match(regex)) {
-    return <a target="_blank" href={content} dangerouslySetInnerHTML={{ __html: content }}></a>;
+    return <Box component="a" target="_blank" href={content} dangerouslySetInnerHTML={{ __html: content }} />;
   }
 
   return (
@@ -50,7 +50,6 @@ const renderers = {
 };
 
 const ProjectDetailContent: React.FC<Props> = ({ project }) => {
-  console.log({ project });
   return (
     <Box mb={5} minHeight={'60vh'}>
       <Container maxWidth="md">
@@ -59,8 +58,11 @@ const ProjectDetailContent: React.FC<Props> = ({ project }) => {
           sx={(theme) => ({
             '& a': {
               color: theme.palette.primary.main
-            }
+            },
+            overflowX: 'hidden',
+            wordWrap: 'break-word'
           })}
+          maxWidth={'100%'}
         >
           <Output renderers={renderers} data={JSON.parse(project.content)} />
         </Stack>

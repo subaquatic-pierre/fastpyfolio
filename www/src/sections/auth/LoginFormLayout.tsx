@@ -24,12 +24,12 @@ const LoginFormLayout = ({ children }: Props) => {
       <Grid
         container
         direction="column"
-        justifyContent="flex-end"
+        justifyContent={{ xs: 'center', md: 'flex-end' }}
         sx={{
           minHeight: '100vh'
         }}
       >
-        <Grid item xs={12} sx={{ ml: 3, mt: 3 }}>
+        <Grid item xs={12} sx={{ ml: { md: 3 }, mt: 3, display: 'flex', justifyContent: { xs: 'center', md: 'start' } }}>
           <Logo to={WEBSITE_URL} />
         </Grid>
         <Grid item xs={12}>

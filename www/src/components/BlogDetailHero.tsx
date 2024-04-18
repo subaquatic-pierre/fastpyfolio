@@ -10,12 +10,22 @@ interface Props {
 const BlogDetailHero: React.FC<Props> = ({ imageSrc, title, description }) => {
   return (
     <Box position="relative" mb={4}>
-      <Box sx={{ position: 'relative', height: 500 }}>
+      <Box
+        sx={{
+          position: 'relative',
+          height: 500,
+          maxWidth: '100%',
+          overflow: 'hidden',
+          objectPosition: 'center',
+          display: 'flex',
+          justifyContent: 'center'
+        }}
+      >
         <Box
           component="img"
           src={imageSrc}
           alt={title}
-          sx={{ objectFit: 'cover', width: { sm: '100%' }, objectPosition: 'center', maxHeight: 500 }}
+          sx={{ objectFit: 'cover', width: { sm: '100%' }, maxHeight: 500, overflow: 'hidden' }}
         />
       </Box>
       <Box
@@ -31,14 +41,16 @@ const BlogDetailHero: React.FC<Props> = ({ imageSrc, title, description }) => {
           justifyContent: 'center'
         }}
       >
-        <Box maxWidth={700} mt={8}>
-          <Typography variant="h2" mb={2} textAlign="center" color="white">
-            {title}
-          </Typography>
-          <Typography variant="h6" textAlign="center" color="white">
-            {description}
-          </Typography>
-        </Box>
+        <Container sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Box maxWidth={700} mt={8}>
+            <Typography variant="h2" mb={2} textAlign="center" color="white">
+              {title}
+            </Typography>
+            <Typography variant="h6" textAlign="center" color="white">
+              {description}
+            </Typography>
+          </Box>
+        </Container>
       </Box>
     </Box>
   );

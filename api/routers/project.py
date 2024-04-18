@@ -1,7 +1,9 @@
 import json
+import datetime
 from fastapi import APIRouter, Request
 from bson.objectid import ObjectId
 from fastapi import APIRouter, Request, status, HTTPException
+from operator import attrgetter
 
 from typing import List
 from schemas.project import (
@@ -19,8 +21,12 @@ router = APIRouter()
 
 @router.get("")
 async def list_projects(req: Request) -> List[ProjectSchema]:
-    projects = Project.find_many()
-    return [project.to_json() for project in projects]
+    try:
+        projects = reversed(sorted(Project.find_many(), key=attrgetter("updated_at")))
+        return [project.to_json() for project in projects]
+    except TypeError:
+        projects = Project.find_many()
+        return [project.to_json() for project in projects]
 
 
 @router.get("/tags")
@@ -67,7 +73,11 @@ async def update_project(id: str, body: UpdateProjectReq) -> ProjectSchema:
     if project:
         for attr, value in body:
             if value is not None:
-                setattr(project, attr, value)
+                if attr == "created_at" or attr == "updated_at":
+                    date = datetime.datetime.fromisoformat(value)
+                    setattr(project, attr, date)
+                else:
+                    setattr(project, attr, value)
 
         result = project.save()
         updated_project = Project.find_one({"_id": ObjectId(id)})

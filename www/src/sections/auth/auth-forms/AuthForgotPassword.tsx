@@ -36,9 +36,7 @@ const AuthForgotPassword = () => {
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
-            const res = await forgotPassword({ email: values.email });
-
-            console.log(res);
+            await forgotPassword({ email: values.email });
 
             setStatus({ success: true });
             setSubmitting(false);

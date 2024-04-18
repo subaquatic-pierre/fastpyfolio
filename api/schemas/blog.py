@@ -39,6 +39,8 @@ class UpdateBlogReq(BaseSchema):
     featured_image_url: Optional[str] = None
     category: Optional[str] = None
     content: Optional[str] = None
+    updated_at: str | None = None
+    created_at: str | None = None
 
 
 class CategoryListRes(BaseSchema):

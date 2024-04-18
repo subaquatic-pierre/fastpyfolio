@@ -30,7 +30,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async () => {
   const blogs = await blogApi.getBlogs();
   settings.title = `Blog - Nebula Nexus`;
 
-  blogs.sort((a, b) => new Date(a.createdAt).getMilliseconds() - new Date(b.createdAt).getMilliseconds());
+  // blogs.sort((a, b) => new Date(a.createdAt).getMilliseconds() - new Date(b.createdAt).getMilliseconds());
 
   return {
     props: {

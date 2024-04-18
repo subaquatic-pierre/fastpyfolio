@@ -24,7 +24,7 @@ const PopularNews: React.FC<Props> = ({ blogs = [] }) => {
         {blogs.map((item, i) => (
           <Grid key={i} item xs={12}>
             <Box
-              data-aos={i % 2 === 0 ? `fade-left` : 'fade-right'}
+              data-aos={'fade-up'}
               component={Card}
               width={1}
               height={1}

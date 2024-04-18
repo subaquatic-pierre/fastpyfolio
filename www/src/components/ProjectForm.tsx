@@ -31,6 +31,7 @@ import EditorJS from '@editorjs/editorjs';
 import { useRouter } from 'next/router';
 import SingleFileUpload from 'components/Dropzone/SingleFile';
 import { Project } from 'models/project';
+import DatePicker from './DatePicker';
 
 interface Props {
   data: Project;
@@ -45,6 +46,7 @@ const emptyFiles: FormFiles = {
 
 const ProjectForm: React.FC<Props> = ({ data }) => {
   const imageChanged = useRef(false);
+  const [dates, setDates] = useState({ createdAt: data.createdAt, updatedAt: data.updatedAt });
   const [tagOptions, setTagOptions] = useState<string[]>([]);
   const [tags, setTags] = React.useState<string[]>(data.tags);
   const [selectedId, setSelected] = useState<string>(null);
@@ -161,15 +163,16 @@ const ProjectForm: React.FC<Props> = ({ data }) => {
       }
 
       try {
-        const data = {
+        const newData = {
           ...formik.values,
           content: JSON.stringify(blogContent),
           authorId: user.id,
           featuredImageUrl,
-          tags
+          tags,
+          ...(data.id && dates)
         };
 
-        await api.saveProject(data, data.id);
+        await api.saveProject(newData, data.id);
 
         dispatch(
           openSnackbar({
@@ -372,6 +375,30 @@ const ProjectForm: React.FC<Props> = ({ data }) => {
             )}
           </Stack>
         </Grid>
+        {data.id && (
+          <>
+            <Grid item xs={12} md={6}>
+              <Stack spacing={1}>
+                <InputLabel htmlFor="createdAt">Created At</InputLabel>
+                <DatePicker
+                  date={dates.createdAt}
+                  dateKey="createdAt"
+                  setDate={(newDate, key) => setDates((old) => ({ ...old, [key]: newDate }))}
+                />
+              </Stack>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Stack spacing={1}>
+                <InputLabel htmlFor="updatedAt">Updated At</InputLabel>
+                <DatePicker
+                  date={dates.updatedAt}
+                  dateKey="updatedAt"
+                  setDate={(newDate, key) => setDates((old) => ({ ...old, [key]: newDate }))}
+                />
+              </Stack>
+            </Grid>
+          </>
+        )}
         <Grid item xs={12}>
           <Stack spacing={1}>
             <InputLabel htmlFor="tags">Tags</InputLabel>

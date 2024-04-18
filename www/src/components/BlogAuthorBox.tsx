@@ -13,7 +13,7 @@ interface Props {
 
 const BlogAuthorBox: React.FC<Props> = ({ category, author, date, large }) => {
   return (
-    <Stack spacing={2} direction="row" justifyContent="flex-end">
+    <Box display="flex" flexDirection="row" justifyContent="flex-end">
       {/* Author image */}
       {/* <Box
         sx={{
@@ -28,9 +28,9 @@ const BlogAuthorBox: React.FC<Props> = ({ category, author, date, large }) => {
         <Avatar />
       </Box> */}
       {/* <Typography sx={{ fontSize: large && '1.1rem', fontWeight: large && 500 }}>{author}</Typography> */}
-      <Chip label={`Category: ${category}`} />
-      <Chip label={`Date: ${formatDate(date, 'DD-MMM-YYYY')}`} />
-    </Stack>
+      <Chip sx={{ margin: 0.5 }} label={`Category: ${category}`} />
+      <Chip sx={{ margin: 0.5 }} label={`Date: ${formatDate(date, 'DD-MMM-YYYY')}`} />
+    </Box>
   );
 };
 

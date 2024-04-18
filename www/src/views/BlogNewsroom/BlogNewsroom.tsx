@@ -29,8 +29,8 @@ interface Props {
   data: Blog[];
 }
 
-const defaultCount = 1;
-const incAmount = 1;
+const defaultCount = 4;
+const incAmount = 2;
 
 const BlogNewsroom: React.FC<Props> = ({ data }) => {
   const theme = useTheme();
@@ -82,13 +82,13 @@ const BlogNewsroom: React.FC<Props> = ({ data }) => {
       <Hero />
       <Container
         sx={{
-          marginTop: '-6rem',
+          marginTop: '-1rem',
           position: 'relative',
           zIndex: 3,
           paddingY: '0 !important'
         }}
       >
-        <SearchBox clearActiveCategory={() => setActiveCategory(null)} setData={setBlogs} />
+        {/* <SearchBox clearActiveCategory={() => setActiveCategory(null)} setData={setBlogs} /> */}
         <Box>
           {categories.map((item) => (
             <Chip
@@ -106,7 +106,7 @@ const BlogNewsroom: React.FC<Props> = ({ data }) => {
         <Box
           display={'flex'}
           justifyContent={'center'}
-          alignItems={{ xs: 'flex-start', sm: 'center' }}
+          alignItems={{ xs: 'center', sm: 'center' }}
           flexDirection={{ xs: 'column', sm: 'row' }}
           my={4}
         >

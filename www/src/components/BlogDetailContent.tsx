@@ -41,7 +41,16 @@ const BlogDetailContent: React.FC<Props> = ({ blog }) => {
   return (
     <Box mb={5} minHeight={'60vh'}>
       <Container maxWidth="md">
-        <Stack spacing={2}>
+        <Stack
+          spacing={2}
+          sx={(theme) => ({
+            '& a': {
+              color: theme.palette.primary.main
+            },
+            overflowX: 'hidden',
+            wordWrap: 'break-word'
+          })}
+        >
           <BlogAuthorBox category={blog.category} large date={new Date(blog.createdAt)} author={blog.authorId} />
           <Output renderers={renderers} data={blog.content} />
         </Stack>

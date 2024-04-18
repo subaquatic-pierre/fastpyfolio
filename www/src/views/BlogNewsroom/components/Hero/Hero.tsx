@@ -15,6 +15,7 @@ const Hero = (): JSX.Element => {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         marginTop: -13,
+        minWidth: '100%',
         paddingTop: 13,
         '&:after': {
           position: 'absolute',

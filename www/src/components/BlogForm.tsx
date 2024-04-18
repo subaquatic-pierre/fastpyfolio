@@ -27,7 +27,8 @@ import useAuth from 'hooks/useAuth';
 import EditorJS from '@editorjs/editorjs';
 import { useRouter } from 'next/router';
 import SingleFileUpload from 'components/Dropzone/SingleFile';
-import BlogFormCategorySelect from './BlogFormCategory';
+import BlogFormCategorySelect from 'components/BlogFormCategory';
+import DatePicker from 'components/DatePicker';
 
 interface Props {
   blogData: Blog;
@@ -41,6 +42,7 @@ const emptyFiles: FormFiles = {
 };
 
 const BlogForm: React.FC<Props> = ({ blogData }) => {
+  const [dates, setDates] = useState({ createdAt: blogData.createdAt, updatedAt: blogData.updatedAt });
   const [category, setCategory] = useState(blogData.category);
   const imageChanged = useRef(false);
   const [selectedId, setSelected] = useState<string>(null);
@@ -160,8 +162,11 @@ const BlogForm: React.FC<Props> = ({ blogData }) => {
           content: JSON.stringify(blogContent),
           authorId: user.id,
           featuredImageUrl,
-          category
+          category,
+          ...(blogData.id && dates)
         };
+
+        console.log(data);
 
         await blogApi.saveBlog(data, blogData.id);
 
@@ -320,10 +325,35 @@ const BlogForm: React.FC<Props> = ({ blogData }) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Stack spacing={1}>
-            <InputLabel htmlFor="slug">Cetagory</InputLabel>
+            <InputLabel htmlFor="slug">Category</InputLabel>
             <BlogFormCategorySelect value={category} setValue={setCategory} />
           </Stack>
         </Grid>
+        <Grid item xs={12} md={6}></Grid>
+        {blogData.id && (
+          <>
+            <Grid item xs={12} md={6}>
+              <Stack spacing={1}>
+                <InputLabel htmlFor="createdAt">Created At</InputLabel>
+                <DatePicker
+                  date={dates.createdAt}
+                  dateKey="createdAt"
+                  setDate={(newDate, key) => setDates((old) => ({ ...old, [key]: newDate }))}
+                />
+              </Stack>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Stack spacing={1}>
+                <InputLabel htmlFor="updatedAt">Updated At</InputLabel>
+                <DatePicker
+                  date={dates.updatedAt}
+                  dateKey="updatedAt"
+                  setDate={(newDate, key) => setDates((old) => ({ ...old, [key]: newDate }))}
+                />
+              </Stack>
+            </Grid>
+          </>
+        )}
         <Grid item xs={12}>
           <Stack spacing={1}>
             <InputLabel htmlFor="description">Description</InputLabel>

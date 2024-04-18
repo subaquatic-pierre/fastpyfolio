@@ -22,7 +22,7 @@ const Page = forwardRef<HTMLDivElement, Props>(({ children, settings, title = ''
   <>
     <Seo settings={settings} />
     <SiteSettingsProvider settings={settings}>
-      <Box ref={ref} {...other}>
+      <Box ref={ref} {...other} sx={{ maxWidth: '100% !important' }}>
         {children}
       </Box>
     </SiteSettingsProvider>

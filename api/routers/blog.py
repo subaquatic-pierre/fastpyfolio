@@ -2,6 +2,8 @@ import json
 from fastapi import APIRouter, Request
 from bson.objectid import ObjectId
 from fastapi import APIRouter, Request, status, HTTPException
+import datetime
+from operator import attrgetter
 
 from typing import List
 from schemas.blog import (
@@ -19,8 +21,12 @@ router = APIRouter()
 
 @router.get("")
 async def list_blogs(req: Request) -> List[BlogSchema]:
-    blogs = Blog.find_many()
-    return [project.to_json() for project in blogs]
+    try:
+        blogs = reversed(sorted(Blog.find_many(), key=attrgetter("updated_at")))
+        return [blog.to_json() for blog in blogs]
+    except TypeError:
+        blogs = Blog.find_many()
+        return [blog.to_json() for blog in blogs]
 
 
 @router.get("/categories")
@@ -65,7 +71,11 @@ async def update_project(id: str, body: UpdateBlogReq) -> BlogSchema:
     if blog:
         for attr, value in body:
             if value is not None:
-                setattr(blog, attr, value)
+                if attr == "created_at" or attr == "updated_at":
+                    date = datetime.datetime.fromisoformat(value)
+                    setattr(blog, attr, date)
+                else:
+                    setattr(blog, attr, value)
 
         result = blog.save()
         updated_blog = Blog.find_one({"_id": ObjectId(id)})

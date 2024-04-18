@@ -13,6 +13,7 @@ class UserSchema(BaseModelSchema):
     verified: bool = False
 
     hashed_password: str | None = None
+    reset_token: str | None = None
     role: str | None = None
 
 
@@ -47,3 +48,21 @@ class UpdateUserReq(BaseSchema):
 class DeleteUserRes(BaseSchema):
     status: str
     deleted_count: int
+
+
+class ForgotPasswordReq(BaseSchema):
+    email: str
+
+
+class ForgotPasswordRes(BaseSchema):
+    status: str
+
+
+class ResetPasswordReq(BaseSchema):
+    token: str
+    password: Annotated[str, StringConstraints(min_length=8)]
+    password_confirm: str
+
+
+class ResetPasswordRes(BaseSchema):
+    status: str

@@ -30,6 +30,7 @@ const BlogFormCategorySelect: React.FC<Props> = ({ value, setValue }) => {
       }}
       selectOnFocus
       clearOnBlur
+      fullWidth
       handleHomeEndKeys
       id="free-solo-with-text-demo"
       options={categories}
@@ -41,9 +42,8 @@ const BlogFormCategorySelect: React.FC<Props> = ({ value, setValue }) => {
         return option.title;
       }}
       renderOption={(props, option) => <li {...props}>{option}</li>}
-      sx={{ width: 300 }}
       freeSolo
-      renderInput={(params) => <TextField {...params} placeholder="Category" />}
+      renderInput={(params) => <TextField fullWidth {...params} placeholder="Category" />}
     />
   );
 };

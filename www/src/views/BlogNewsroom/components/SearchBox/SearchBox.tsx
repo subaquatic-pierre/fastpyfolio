@@ -7,6 +7,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Chip from '@mui/material/Chip';
 import { Blog } from 'models/blog';
 import { BlogApi } from 'lib/api';
+import { Grid } from '@mui/material';
 
 interface Props {
   clearActiveCategory: () => void;
@@ -25,9 +26,9 @@ const SearchBox: React.FC<Props> = ({ clearActiveCategory, setData }): JSX.Eleme
   return (
     <Box>
       <Box padding={2} width={1} component={Card} boxShadow={4} marginBottom={2}>
-        <form noValidate autoComplete="off">
-          <Box display="flex" alignItems={'center'}>
-            <Box width={1} marginRight={1}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={9}>
+            <Box display="flex" alignItems="center" height="100%">
               <TextField
                 value={searchValue}
                 sx={{
@@ -38,7 +39,7 @@ const SearchBox: React.FC<Props> = ({ clearActiveCategory, setData }): JSX.Eleme
                 variant="outlined"
                 onChange={(e) => setSearchValue(e.target.value)}
                 color="primary"
-                size="medium"
+                // size="medium"
                 placeholder="Search"
                 fullWidth
                 InputProps={{
@@ -66,20 +67,20 @@ const SearchBox: React.FC<Props> = ({ clearActiveCategory, setData }): JSX.Eleme
                 }}
               />
             </Box>
-            <Box>
-              <Button
-                onClick={handleSearchClick}
-                sx={{ height: 54, minWidth: 100, whiteSpace: 'nowrap' }}
-                variant="contained"
-                color="primary"
-                size="medium"
-                fullWidth
-              >
-                Search
-              </Button>
-            </Box>
-          </Box>
-        </form>
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <Button
+              onClick={handleSearchClick}
+              sx={{ height: 54, minWidth: 100, whiteSpace: 'nowrap' }}
+              variant="contained"
+              color="primary"
+              // size="medium"
+              fullWidth
+            >
+              Search
+            </Button>
+          </Grid>
+        </Grid>
       </Box>
     </Box>
   );

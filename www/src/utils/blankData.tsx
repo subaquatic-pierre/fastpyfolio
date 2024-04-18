@@ -45,8 +45,8 @@ export const blankBlog: Blog = {
   slug: '',
   description: '',
   content: {},
-  createdAt: '2024-02-29T09:07:33.919Z',
-  updatedAt: '2024-02-29T09:07:33.919Z',
+  createdAt: '2024-04-18T08:51:55Z',
+  updatedAt: '2024-04-18T08:51:55Z',
   authorId: '660281a7a40452e4268940e0'
 };
 
@@ -54,8 +54,8 @@ export const blankProject: Project = {
   id: '',
   title: '',
   slug: '',
-  createdAt: '',
-  updatedAt: '',
+  createdAt: '2024-04-18T08:51:55Z',
+  updatedAt: '2024-04-18T08:51:55Z',
   description: '',
   githubUrl: '',
   wwwUrl: '',

@@ -34,7 +34,7 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }: Props): JSX.Eleme
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 30
+    threshold: 120
   });
 
   // const loadPages = async () => {
@@ -61,7 +61,7 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }: Props): JSX.Eleme
           transition: '0.5s ease',
           ...(trigger
             ? {
-                height: { xs: 20, md: 60 },
+                height: { xs: 40, md: 60 },
                 width: { xs: 40, md: 80 }
               }
             : {
@@ -93,10 +93,11 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }: Props): JSX.Eleme
           {/* <NavItem title={'Contact'} path="/contact-us" id={'contact'} colorInvert={colorInvert} /> */}
           <NavItem title={'Projects'} path="/project" id={'projects'} colorInvert={colorInvert} />
           <NavItem title={'Blog'} path="/blog" id={'blog'} colorInvert={colorInvert} />
+          <NavItem title={'Contact'} path="/contact" id={'contact'} colorInvert={colorInvert} />
           {/* <NavItem title={'Demo Pages'} id={'pages'} items={pagesState} colorInvert={colorInvert} /> */}
         </Stack>
         <Stack mx={4} spacing={2} direction="row">
-          <Box>
+          {/* <Box>
             <Button
               size={'large'}
               variant="contained"
@@ -107,7 +108,7 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }: Props): JSX.Eleme
             >
               Get In Touch
             </Button>
-          </Box>
+          </Box> */}
           <Box>
             <Button variant="contained" color="primary" href="/admin" LinkComponent={Link} size="large">
               Login

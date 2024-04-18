@@ -10,9 +10,9 @@ interface LoginArgs {
   speaker?: boolean;
 }
 interface ResetPasswordArgs {
-  code: string;
+  token: string;
   password: string;
-  passwordConfirmation: string;
+  passwordConfirm: string;
 }
 interface ForgotPasswordArgs {
   email: string;
@@ -45,12 +45,14 @@ export const forgotPassword = async ({ email }: ForgotPasswordArgs): Promise<Api
   });
 };
 
-export const resetPassword = async ({ code, password, passwordConfirmation }: ResetPasswordArgs): Promise<ApiResponse> => {
+export const resetPassword = async ({ token, password, passwordConfirm }: ResetPasswordArgs): Promise<ApiResponse> => {
   const data = {
-    code,
+    token,
     password,
-    passwordConfirmation
+    passwordConfirm
   };
+
+  console.log(data);
 
   return apiReq({
     endpoint: RESET_PASSWORD,

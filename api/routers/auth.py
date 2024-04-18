@@ -16,18 +16,22 @@ from schemas.user import (
     RegsiterUserRes,
     LoginUserReq,
     LoginUserRes,
+    ForgotPasswordReq,
+    ForgotPasswordRes,
+    ResetPasswordReq,
+    ResetPasswordRes,
 )
-from schemas.token import TokenRes, RefreshTokenReq
+from schemas.token import TokenRes
 from auth.utils import get_token_from_request
+from lib.email import send_email, generate_password_reset_html
 
 
 router = APIRouter()
 
 
-@router.post(
-    "/register",
-    status_code=status.HTTP_201_CREATED,
-)
+# @router.post(
+#     "/register",
+# )
 async def regsiter(body: RegisterUserReq) -> RegsiterUserRes:
     # Check if user already exist
     user = User.find_one({"email": body.email.lower()})
@@ -112,9 +116,59 @@ async def refresh_token(req: Request) -> TokenRes:
     return {"token": token}
 
 
+@router.post("/forgot-password")
+async def forgot_password(body: ForgotPasswordReq) -> ForgotPasswordRes:
+    user = User.find_one({"email": body.email})
+
+    if user:
+        token = create_access_token(
+            email=user.email,
+            expires_delta=timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES),
+        )
+        user.reset_token = token
+        user.save()
+
+        message = generate_password_reset_html({"token": token})
+
+        send_email("Reset Password Token", message, user.email)
+
+        return {"status": "Email sent"}
+
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Unauthorized",
+        )
+
+
+@router.post("/reset-password")
+async def reset_password(body: ResetPasswordReq) -> ResetPasswordRes:
+    user = User.find_one({"reset_token": body.token})
+
+    if user:
+        if body.password == body.password_confirm:
+
+            user.hashed_password = hash_password(body.password)
+            user.reset_token = None
+            user.save()
+
+            return {"status": "Password Reset"}
+
+        else:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Passwords do not match",
+            )
+
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Unauthorized",
+        )
+
+
 @router.get("/me")
 async def get_me(req: Request):
     token = get_token_from_request(req)
     user = get_current_user(token)
     return user.to_json()
-
