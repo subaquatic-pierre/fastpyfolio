@@ -96,7 +96,7 @@ const ProjectDetailSidebar: React.FC<Props> = ({ project }) => {
                     <PublicIcon />
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary="Github" />
+                <ListItemText primary="Website" />
               </ListItemButton>
             )}
           </List>

@@ -407,7 +407,7 @@ const ProjectForm: React.FC<Props> = ({ data }) => {
               id="tags"
               value={tags}
               onChange={(event, newValue) => {
-                setTags(newValue);
+                setTags(newValue.map((val) => val.toLowerCase()));
               }}
               options={tagOptions}
               freeSolo

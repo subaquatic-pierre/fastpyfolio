@@ -19,7 +19,7 @@ const ParagraphRenderer = ({ data, style, classNames, config }) => {
   const expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
   const regex = new RegExp(expression);
 
-  if (content.match(regex)) {
+  if (content.match(regex) && content.startsWith('https')) {
     return <Box component="a" target="_blank" href={content} dangerouslySetInnerHTML={{ __html: content }} />;
   }
 

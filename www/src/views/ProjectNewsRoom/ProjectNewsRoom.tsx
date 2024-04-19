@@ -33,7 +33,7 @@ const ProjectNewsRoom: React.FC<Props> = ({ data }): JSX.Element => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [filteredProjectsCount, setFilteredProjectsCount] = useState(data.length);
   const [projectCount, setProjectCount] = useState(defaultCount);
-  const [activeTags, setActiveTags] = useState(['Featured']);
+  const [activeTags, setActiveTags] = useState(['featured']);
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true

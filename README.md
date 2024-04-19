@@ -3,14 +3,17 @@
 [![GitHub stars](https://img.shields.io/github/stars/subaquatic-pierre/fastpyfolio.svg)](https://github.com/subaquatic-pierre/fastpyfolio/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/subaquatic-pierre/fastpyfolio.svg)](https://github.com/subaquatic-pierre/fastpyfolio/network)
 
-# Kube Starter
+# FastPyFolio
 
 ![Kube Starter Logo](.github/logo.png)
 
 ## Project Overview
 
-Kube Starter is an all-encompassing starter project designed to establish a solid foundation for deploying scalable, containerized applications using Kubernetes on AWS. The project integrates critical components such as NGINX as a load balancer, Kubernetes templates, Terraform scripts for AWS infrastructure deployment, a Python API for authentication, a Next.js frontend for user login, and a default admin page. Additionally, MongoDB is used for data storage, and Docker Compose facilitates local development.
-Table of Contents
+Kube Starter is your comprehensive starter project, designed to lay the groundwork for deploying scalable, containerized applications using Kubernetes on AWS. This project integrates essential components such as NGINX for load balancing, Kubernetes templates for orchestrating containers, Terraform scripts for provisioning AWS infrastructure, a Python API for authentication, a Next.js frontend for user login, and a default admin page. Leveraging MongoDB for data storage and Docker Compose for local development, Kube Starter streamlines the process of building and deploying robust applications with ease.
+
+**NOTE**
+
+This project is still in development phase, some of the features here have not been implemented yet.
 
 ## Table of Contents
 
@@ -44,7 +47,7 @@ Table of Contents
 
 ### Prerequisites
 
-To get started with Kube Starter, make sure you have the following installed:
+To get started with FastPyFolio, make sure you have the following installed:
 
 - Docker
 - Kubernetes
@@ -73,7 +76,7 @@ cd fastpyfolio
 
 # Configuration
 
-Kube Starter allows for flexible configuration. Edit the configuration files in the config directory to customize NGINX settings, Kubernetes templates, and more.
+PastPyFolio allows for flexible configuration. Edit the configuration files in the config directory to customize NGINX settings, Kubernetes templates, and more.
 
 ## Usage
 

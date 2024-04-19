@@ -33,14 +33,14 @@ async def list_projects(req: Request) -> List[ProjectSchema]:
 async def get_tags() -> TagsRes:
     projects = Project.find_many()
     tags = set()
-    tags.add("Featured")
+    tags.add("featured")
 
     for project in projects:
         for tag in project.tags:
             tags.add(tag)
 
     tags = [tag for tag in tags]
-    tags.insert(0, tags.pop(tags.index("Featured")))
+    tags.insert(0, tags.pop(tags.index("featured")))
 
     return {"tags": tags}
 

@@ -34,7 +34,7 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }: Props): JSX.Eleme
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 120
+    threshold: 10
   });
 
   // const loadPages = async () => {
