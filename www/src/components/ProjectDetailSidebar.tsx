@@ -55,7 +55,7 @@ const ProjectDetailSidebar: React.FC<Props> = ({ project }) => {
       <Grid container spacing={4}>
         {isMd ? (
           <Grid item container justifyContent={'center'} xs={12}>
-            <Box height={1} width={1} maxWidth={'80%'}>
+            <Box minHeight={200} width={1} maxWidth={'80%'}>
               <Box
                 component={'img'}
                 src={'https://assets.maccarianagency.com/svg/illustrations/drawkit-illustration2.svg'}

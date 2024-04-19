@@ -5,7 +5,7 @@ import { sleep } from 'utils/sleep';
 import { JWTToken, User, UserRoleEnum } from 'models/auth';
 import { getTokenFromStorage, isTokenExpired, parseToken, setTokenInStorage } from 'utils/jwt';
 import { apiReq } from 'lib/api';
-import { PROFILE, USER } from 'lib/endpoints';
+import { PROFILE, REFRESH_TOKEN, USER } from 'lib/endpoints';
 import { dispatch, useSelector } from 'store';
 import { openSnackbar } from 'store/reducers/snackbar';
 import { useRouter } from 'next/router';
@@ -78,6 +78,25 @@ function AuthContextProvider({ children }: ConfigProviderProps) {
     }
   };
 
+  const refreshToken = async (token: JWTToken): Promise<{ token: string } | null> => {
+    try {
+      const headers = {
+        Authorization: `Bearer ${token.str}`
+      };
+
+      const res = await apiReq<{ token: string }>({ endpoint: REFRESH_TOKEN, headers });
+
+      if (res.error) {
+        setError(res.error);
+        return null;
+      }
+      return res.data;
+    } catch (e) {
+      setError('There was an error getting user');
+      return null;
+    }
+  };
+
   const reloadProfile = async () => {
     initAuth();
   };
@@ -107,12 +126,10 @@ function AuthContextProvider({ children }: ConfigProviderProps) {
 
     if (!token) {
       setLoading(false);
-      // setError('No token found');
       return;
     }
 
     const user = await getUser(token);
-    // const profile = await getProfile(token);
 
     await sleep(1);
 
@@ -169,6 +186,40 @@ function AuthContextProvider({ children }: ConfigProviderProps) {
   useEffect(() => {
     validateTokenExp();
   }, [router.asPath]);
+
+  // Run refresh token each minute
+  useEffect(() => {
+    const intervalId = setInterval(async () => {
+      const token = getTokenFromStorage();
+
+      const now = Math.floor(new Date().getTime() / 1000);
+
+      try {
+        const secDiff = token.exp - now;
+
+        if (secDiff < 120) {
+          const newTokenRes = await refreshToken(token);
+          const newToken = parseToken(newTokenRes.token);
+          const user = await getUser(newToken);
+
+          if (user) {
+            setTokenInStorage(token);
+
+            const role = user.role;
+
+            setAuthState((old) => ({
+              ...old,
+              loading: false,
+              role: role as UserRoleEnum,
+              user
+            }));
+          }
+        }
+      } catch (e) {}
+    }, 60000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <AuthContext.Provider

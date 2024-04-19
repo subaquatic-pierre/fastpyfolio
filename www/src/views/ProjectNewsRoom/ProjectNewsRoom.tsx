@@ -86,16 +86,14 @@ const ProjectNewsRoom: React.FC<Props> = ({ data }): JSX.Element => {
           </Grid>
           <Grid item xs={12} md={9}>
             <LatestStories data={projects} />
+            <Box display={'flex'} width="100%" justifyContent={'center'} alignItems={'center'} flexDirection={'row'} my={4}>
+              {filteredProjectsCount > projectCount && (
+                <Box component={Button} onClick={handleMoreClick} variant="outlined" color="primary" size="large">
+                  View More
+                </Box>
+              )}
+            </Box>
           </Grid>
-        </Grid>
-        <Grid>
-          <Box display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={{ xs: 'column', sm: 'row' }} my={4}>
-            {filteredProjectsCount > projectCount && (
-              <Box component={Button} onClick={handleMoreClick} variant="outlined" color="primary" size="large" marginLeft={2}>
-                View More
-              </Box>
-            )}
-          </Box>
         </Grid>
       </Container>
 

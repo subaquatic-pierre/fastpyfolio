@@ -16,7 +16,8 @@ import {
   Button,
   Dialog,
   DialogActions,
-  Box
+  Box,
+  Chip
 } from '@mui/material';
 import IconButton from 'components/@extended/IconButton';
 
@@ -44,6 +45,7 @@ import { RemoteApi, RequestOrigin } from 'lib/api';
 import { SiteSettings } from 'models/settings';
 import { GET_BLOG, GET_PROJECT } from 'lib/endpoints';
 import { Project } from 'models/project';
+import { formatDate } from 'utils/date';
 
 // ==============================|| BlogListPage PAGE ||============================== //
 
@@ -55,16 +57,16 @@ interface TableProps {
 }
 
 const ReactTable: React.FC<TableProps> = ({ columns, data, top, loadData }) => {
-  const router = useRouter();
-  const routerPageIndex: any = router.query.page;
+  // const router = useRouter();
+  // const routerPageIndex: any = router.query.page;
 
-  let index = 0;
+  // let index = 0;
 
-  try {
-    if (routerPageIndex) index = Number.parseInt(routerPageIndex as string) - 1;
-  } catch (e) {
-    console.log('Page is not valid integer');
-  }
+  // try {
+  //   if (routerPageIndex) index = Number.parseInt(routerPageIndex as string) - 1;
+  // } catch (e) {
+  //   console.log('Page is not valid integer');
+  // }
 
   const {
     getTableProps,
@@ -80,15 +82,15 @@ const ReactTable: React.FC<TableProps> = ({ columns, data, top, loadData }) => {
     {
       columns,
       data,
-      initialState: { pageIndex: index, pageSize: 25 }
+      initialState: { pageIndex: 0, pageSize: 10 }
     },
     useFilters,
     usePagination
   );
 
-  useEffect(() => {
-    loadData(pageIndex, pageSize);
-  }, [pageIndex, pageSize]);
+  // useEffect(() => {
+  //   loadData(pageIndex, pageSize);
+  // }, [pageIndex, pageSize]);
 
   return (
     <Stack>
@@ -197,8 +199,24 @@ const BlogListPage: React.FC<PageProps> = ({ settings }) => {
         accessor: 'slug'
       },
       {
-        Header: 'Desciption',
-        accessor: 'description'
+        Header: 'Tags',
+        accessor: 'tags',
+        Cell: ({ row }: { row: Row<Blog> }) => {
+          return (
+            <Box maxWidth="200px" display="flex" flexWrap="wrap" flexDirection="row">
+              {row.original.tags.map((tag, idx) => (
+                <Chip size="small" key={idx} label={tag} sx={{ margin: 0.5 }} />
+              ))}
+            </Box>
+          );
+        }
+      },
+      {
+        Header: 'Updated Date',
+        accessor: 'updatedAt',
+        Cell: ({ row }: { row: Row<Blog> }) => {
+          return <Box>{formatDate(new Date(row.original.updatedAt), 'DD-MMM-YYYY')}</Box>;
+        }
       },
       {
         Header: 'Actions',

@@ -54,8 +54,8 @@ const News = (): JSX.Element => {
                     title={item.title}
                     image={item.featuredImageUrl}
                     sx={{
-                      height: { xs: 240, sm: 'auto' },
-                      width: { xs: 1, sm: 300 }
+                      height: 180,
+                      width: 280
                     }}
                   />
                   <CardContent>

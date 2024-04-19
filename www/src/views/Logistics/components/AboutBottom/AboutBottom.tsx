@@ -42,11 +42,11 @@ const AboutBottom = (): JSX.Element => {
               Cloud Orchestration and Site Reliability
             </Typography>
             <Typography data-aos={'fade-up'}>
-              Incorporating Docker, Kubernetes, Prometheus, RabbitMQ, and Terraform, this approach to cloud orchestration and site
-              reliability engineering ensures seamless management of infrastructure. Docker enables consistent application deployment.
-              Kubernetes orchestrates containers for effortless scaling and management, while Prometheus monitors infrastructure health.
-              RabbitMQ ensures reliable communication, and Terraform streamlines infrastructure provisioning. Together, these tools empower
-              robust and reliable cloud orchestration, ensuring optimal site reliability and performance.
+              Incorporating Docker, Kubernetes, Prometheus, and Terraform, this approach to cloud orchestration and site reliability
+              engineering ensures seamless management of infrastructure. Docker enables consistent application deployment. Kubernetes
+              orchestrates containers for effortless scaling and management, while Prometheus monitors infrastructure health, and Terraform
+              streamlines infrastructure provisioning. Together, these tools empower robust and reliable cloud orchestration, ensuring
+              optimal site reliability and performance.
             </Typography>
           </Box>
         </Grid>
