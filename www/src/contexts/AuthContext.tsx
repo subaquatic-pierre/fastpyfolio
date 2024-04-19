@@ -141,6 +141,8 @@ function AuthContextProvider({ children }: ConfigProviderProps) {
       try {
         const role = user.role;
 
+        console.log({ user, role });
+
         setAuthState((old) => ({
           ...old,
           loading: false,
@@ -154,7 +156,9 @@ function AuthContextProvider({ children }: ConfigProviderProps) {
     } else {
       setAuthState((old) => ({
         ...old,
-        loading: false
+        loading: false,
+        user: null,
+        role: null
       }));
       setTokenInStorage(null);
 

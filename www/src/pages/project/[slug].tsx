@@ -3,7 +3,7 @@ import { ReactElement, useEffect, useState } from 'react';
 // project import
 import Main from 'layouts/Main';
 import Page from 'components/Page';
-import { Box, Button, Chip, CircularProgress, Container, Grid, Stack, Typography } from '@mui/material';
+import { Box, Button, Chip, CircularProgress, Container, Grid, IconButton, Stack, Typography } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Blog } from 'models/blog';
@@ -17,6 +17,8 @@ import { Project } from 'models/project';
 import ProjectDetailContent from 'components/ProjectDetailContent';
 import ProjectDetailHero from 'components/ProjectDetailHero';
 import ProjectDetailSidebar from 'components/ProjectDetailSidebar';
+import useAuth from 'hooks/useAuth';
+import { EditOutlined } from '@ant-design/icons';
 
 interface PageProps {
   settings: SiteSettings;
@@ -24,6 +26,7 @@ interface PageProps {
 }
 
 const ProjectDetailPage: React.FC<PageProps> = ({ settings }) => {
+  const { role } = useAuth();
   const [data, setData] = useState<Project | null>(null);
   const router = useRouter();
   const slug = router.query.slug;
@@ -58,11 +61,22 @@ const ProjectDetailPage: React.FC<PageProps> = ({ settings }) => {
               title={data.title}
             />
             <Container>
-              <Box mb={2}>
-                {data.tags.map((item) => (
-                  <Chip key={item} label={item} sx={{ margin: 0.5 }} />
-                ))}
-              </Box>
+              <Stack direction="row" justifyContent="space-between">
+                <Box mb={2}>
+                  {data.tags.map((item) => (
+                    <Chip key={item} label={item} sx={{ margin: 0.5 }} />
+                  ))}
+                </Box>
+                <Box>
+                  {role && (
+                    <Stack ml={2} direction="row" spacing={2}>
+                      <IconButton href={`/admin/project/${slug}`}>
+                        <EditOutlined />
+                      </IconButton>
+                    </Stack>
+                  )}
+                </Box>
+              </Stack>
               <Grid container>
                 <Grid item xs={12} order={{ md: 2, xs: 1 }} md={3}>
                   <ProjectDetailSidebar project={data} />

@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { Stack, useScrollTrigger } from '@mui/material';
 import useSettings from 'hooks/useSettings';
 import { apiReq } from 'lib/api';
+import useAuth from 'hooks/useAuth';
 // import { LIST_PAGES } from 'lib/endpoints';
 // import { reducePages } from 'models/page';
 
@@ -28,6 +29,7 @@ interface Props {
 }
 
 const Topbar = ({ onSidebarOpen, pages, colorInvert = false }: Props): JSX.Element => {
+  const { role } = useAuth();
   const settings = useSettings();
   const theme = useTheme();
   const { mode } = theme.palette;
@@ -111,7 +113,7 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }: Props): JSX.Eleme
           </Box> */}
           <Box>
             <Button variant="contained" color="primary" href="/admin" LinkComponent={Link} size="large">
-              Login
+              {role ? 'Dashboard' : 'Login'}
             </Button>
           </Box>
         </Stack>

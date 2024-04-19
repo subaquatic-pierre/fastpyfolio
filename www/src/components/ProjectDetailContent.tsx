@@ -12,19 +12,7 @@ const ProjectDetailContent: React.FC<Props> = ({ project }) => {
   return (
     <Box mb={5} minHeight={'60vh'}>
       <Container maxWidth="md">
-        <Stack
-          spacing={2}
-          sx={(theme) => ({
-            '& a': {
-              color: theme.palette.primary.main
-            },
-            overflowX: 'hidden',
-            wordWrap: 'break-word'
-          })}
-          maxWidth={'100%'}
-        >
-          <EditorJSOutput data={JSON.parse(project.content)} />
-        </Stack>
+        <EditorJSOutput data={JSON.parse(project.content)} />
       </Container>
     </Box>
   );

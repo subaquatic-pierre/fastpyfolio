@@ -1,5 +1,5 @@
 import Output from 'editorjs-react-renderer';
-import { Box, Typography, TypographyVariant, useTheme } from '@mui/material';
+import { Box, Stack, Typography, TypographyVariant, useTheme } from '@mui/material';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { vs2015 } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
@@ -7,6 +7,14 @@ const ParagraphRenderer = ({ data, style, classNames, config }) => {
   let content = null;
   if (typeof data === 'string') content = data;
   else if (typeof data === 'object' && data.text && typeof data.text === 'string') content = data.text;
+
+  if (content.startsWith('https')) {
+    return (
+      <a target="_blank" href={content}>
+        {content}
+      </a>
+    );
+  }
 
   return (
     <Typography>
@@ -58,6 +66,15 @@ const style = (theme) => ({
   table: {
     th: {
       backgroundColor: theme.palette.primary.light
+    },
+    td: {
+      backgroundColor: 'transparent'
+    },
+    tr: {
+      backgroundColor: 'transparent'
+    },
+    table: {
+      backgroundColor: 'transparent'
     }
   }
 });
@@ -68,7 +85,21 @@ interface Props {
 
 const EditorJSOutput: React.FC<Props> = ({ data }) => {
   const theme = useTheme();
-  return <Output renderers={renderers} config={config} style={style(theme)} data={data} />;
+  return (
+    <Stack
+      spacing={2}
+      sx={(theme) => ({
+        '& a': {
+          color: theme.palette.primary.main
+        },
+        overflowX: 'hidden',
+        wordWrap: 'break-word'
+      })}
+      maxWidth={'100%'}
+    >
+      <Output renderers={renderers} config={config} style={style(theme)} data={data} />
+    </Stack>
+  );
 };
 
 export default EditorJSOutput;
