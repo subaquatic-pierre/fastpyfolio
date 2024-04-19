@@ -9,7 +9,7 @@
 
 ## Project Overview
 
-Kube Starter is your comprehensive starter project, designed to lay the groundwork for deploying scalable, containerized applications using Kubernetes on AWS. This project integrates essential components such as NGINX for load balancing, Kubernetes templates for orchestrating containers, Terraform scripts for provisioning AWS infrastructure, a Python API for authentication, a Next.js frontend for user login, and a default admin page. Leveraging MongoDB for data storage and Docker Compose for local development, Kube Starter streamlines the process of building and deploying robust applications with ease.
+FastPyFolio is your comprehensive starter project, designed to lay the groundwork for deploying scalable, containerized applications using Kubernetes on AWS. This project integrates essential components such as NGINX for load balancing, Kubernetes templates for orchestrating containers, Terraform scripts for provisioning AWS infrastructure, a Python API for authentication, a Next.js frontend for user login, and a default admin page. Leveraging MongoDB for data storage and Docker Compose for local development, FastPyFolio streamlines the process of building and deploying robust applications with ease.
 
 **NOTE**
 
