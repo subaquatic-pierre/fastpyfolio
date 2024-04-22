@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import { BlogApi } from 'lib/api';
 import { Blog } from 'models/blog';
+import Image from 'next/image';
 
 const News = (): JSX.Element => {
   const [data, setData] = useState<Blog[]>([]);
@@ -48,32 +49,43 @@ const News = (): JSX.Element => {
             {data.map((item, index) => (
               <Grid item xs={12} key={index} data-aos="fade-up" data-aos-delay={index * 200} data-aos-offset={100} data-aos-duration={600}>
                 <Box component={Card} display={'flex'} flexDirection={{ xs: 'column', md: 'row' }}>
-                  <Box
-                    sx={{
-                      height: 180,
-                      overflow: 'hidden',
-                      width: { md: 280, xs: '100%' }
-                    }}
-                  >
-                    <a href={`/blog/${item.slug}`}>
-                      <img title={item.title} src={item.featuredImageUrl} style={{ height: '100%', objectFit: 'cover' }} />
-                    </a>
-                  </Box>
-                  <CardContent sx={{ maxWidth: '70%' }}>
-                    <Box>
-                      <Typography variant="h6" gutterBottom color="text.primary">
-                        {item.title}
-                      </Typography>
-                      <Typography variant="subtitle1" color="text.secondary">
-                        {item.description}
-                      </Typography>
-                    </Box>
-                    <CardActions sx={{ justifyContent: 'flex-end' }}>
-                      <Button LinkComponent={Link} href={`/blog/${item.slug}`}>
-                        Read More
-                      </Button>
-                    </CardActions>
-                  </CardContent>
+                  <Grid container sx={{ maxHeight: { md: 180 } }}>
+                    <Grid item xs={12} md={4}>
+                      <Box
+                        sx={{
+                          height: 180,
+                          maxWidth: '100% !important',
+                          overflow: 'hidden'
+                        }}
+                      >
+                        <a href={`/blog/${item.slug}`}>
+                          <Box
+                            component="img"
+                            sx={{ objectFit: 'cover', height: '100%', width: '100%' }}
+                            title={item.title}
+                            src={item.featuredImageUrl}
+                          />
+                        </a>
+                      </Box>
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                      <CardContent>
+                        <Box>
+                          <Typography variant="h6" gutterBottom color="text.primary">
+                            {item.title}
+                          </Typography>
+                          <Typography variant="subtitle1" color="text.secondary">
+                            {item.description}
+                          </Typography>
+                        </Box>
+                        <CardActions sx={{ justifyContent: 'flex-end' }}>
+                          <Button LinkComponent={Link} href={`/blog/${item.slug}`}>
+                            Read More
+                          </Button>
+                        </CardActions>
+                      </CardContent>
+                    </Grid>
+                  </Grid>
                 </Box>
               </Grid>
             ))}
