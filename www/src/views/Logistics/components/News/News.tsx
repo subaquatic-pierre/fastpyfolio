@@ -47,18 +47,19 @@ const News = (): JSX.Element => {
           <Grid container spacing={isMd ? 4 : 2} direction="column">
             {data.map((item, index) => (
               <Grid item xs={12} key={index} data-aos="fade-up" data-aos-delay={index * 200} data-aos-offset={100} data-aos-duration={600}>
-                <Box component={Card} display={'flex'} flexDirection={{ xs: 'column', sm: 'row' }}>
-                  <CardMedia
-                    component={Link}
-                    href={`/blog/${item.slug}`}
-                    title={item.title}
-                    image={item.featuredImageUrl}
+                <Box component={Card} display={'flex'} flexDirection={{ xs: 'column', md: 'row' }}>
+                  <Box
                     sx={{
                       height: 180,
-                      width: 280
+                      overflow: 'hidden',
+                      width: { md: 280, xs: '100%' }
                     }}
-                  />
-                  <CardContent>
+                  >
+                    <a href={`/blog/${item.slug}`}>
+                      <img title={item.title} src={item.featuredImageUrl} style={{ height: '100%', objectFit: 'cover' }} />
+                    </a>
+                  </Box>
+                  <CardContent sx={{ maxWidth: '70%' }}>
                     <Box>
                       <Typography variant="h6" gutterBottom color="text.primary">
                         {item.title}

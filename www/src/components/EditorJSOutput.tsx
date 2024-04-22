@@ -1,7 +1,9 @@
 import Output from 'editorjs-react-renderer';
 import { Box, Stack, Typography, TypographyVariant, useTheme } from '@mui/material';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { vs2015 } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { vs2015, dark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import useConfig from 'hooks/useConfig';
+import { ThemeMode } from 'types/config';
 
 const ParagraphRenderer = ({ data, style, classNames, config }) => {
   let content = null;
@@ -35,17 +37,18 @@ const HeaderRenderer = ({ data, style, classNames, config }) => {
 };
 
 const CodeRenderer = ({ data, style, classNames, config }) => {
+  const { mode } = useConfig();
   const theme = useTheme();
 
   return (
     <Box
       component={SyntaxHighlighter}
       language={'javascript'}
-      style={vs2015}
+      style={mode === ThemeMode.DARK ? dark : vs2015}
       padding={`${theme.spacing(2)} !important`}
       borderRadius={2}
       margin={`${theme.spacing(0)} !important`}
-      bgcolor={'#21325b !important'}
+      // bgcolor={mode === ThemeMode.DARK ? '#CACBCC !important' : '#21325b !important'}
     >
       {data.code}
     </Box>

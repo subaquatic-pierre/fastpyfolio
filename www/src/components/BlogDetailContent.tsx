@@ -23,7 +23,7 @@ const BlogDetailContent: React.FC<Props> = ({ blog }) => {
             wordWrap: 'break-word'
           })}
         >
-          <BlogAuthorBox slug={blog.slug} category={blog.category} large date={new Date(blog.createdAt)} author={blog.authorId} />
+          <BlogAuthorBox slug={blog.slug} category={blog.category} large date={new Date(blog.updatedAt)} author={blog.authorId} />
           <EditorJSOutput data={blog.content} />
         </Stack>
       </Container>
