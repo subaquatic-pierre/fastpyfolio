@@ -21,7 +21,7 @@ class Settings:
     DB_PASSWORD: str = os.getenv("MONGODB_PASSWORD")
 
     SECRET_KEY: str = os.getenv("SECRET_KEY")
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = int(os.getenv("ACCESS_TOKEN_EXPIRES_IN", 30))
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 30))
     JWT_ALGORITHM: str = os.getenv("JWT_ALGORITHM")
 
     CLIENT_ORIGIN: str = os.getenv("CLIENT_ORIGIN")

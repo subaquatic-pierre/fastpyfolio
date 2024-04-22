@@ -19,7 +19,7 @@ items:
             app: fastpyfolio-api
         spec:
           containers:
-            - image: subaquaticpierre/fastpyfolio-api:0.42
+            - image: subaquaticpierre/fastpyfolio-api:0.46
               imagePullPolicy: IfNotPresent
               name: fastpyfolio-api
               envFrom:
@@ -57,7 +57,7 @@ items:
             app: fastpyfolio-www
         spec:
           containers:
-            - image: subaquaticpierre/fastpyfolio-www:0.42
+            - image: subaquaticpierre/fastpyfolio-www:0.46
               imagePullPolicy: IfNotPresent
               name: fastpyfolio-www
               envFrom:

@@ -29,6 +29,18 @@ const News = (): JSX.Element => {
     setData(blogs.slice(0, 3));
   };
 
+  const getDescriptionText = (text: string): string => {
+    if (text.length > 200) {
+      if (isMd) {
+        return `${text.slice(0, 200)} ...`;
+      } else {
+        return `${text.slice(0, 100)} ...`;
+      }
+    } else {
+      return text;
+    }
+  };
+
   useEffect(() => {
     handleLoad();
   }, []);
@@ -49,11 +61,11 @@ const News = (): JSX.Element => {
             {data.map((item, index) => (
               <Grid item xs={12} key={index} data-aos="fade-up" data-aos-delay={index * 200} data-aos-offset={100} data-aos-duration={600}>
                 <Box component={Card} display={'flex'} flexDirection={{ xs: 'column', md: 'row' }}>
-                  <Grid container sx={{ maxHeight: { md: 180 } }}>
+                  <Grid container sx={{ maxHeight: { md: 300 } }}>
                     <Grid item xs={12} md={4}>
                       <Box
                         sx={{
-                          height: 180,
+                          height: 222,
                           maxWidth: '100% !important',
                           overflow: 'hidden'
                         }}
@@ -68,14 +80,18 @@ const News = (): JSX.Element => {
                         </a>
                       </Box>
                     </Grid>
-                    <Grid item xs={12} md={4}>
+                    <Grid item xs={12} md={8}>
                       <CardContent>
                         <Box>
                           <Typography variant="h6" gutterBottom color="text.primary">
                             {item.title}
                           </Typography>
-                          <Typography variant="subtitle1" color="text.secondary">
-                            {item.description}
+                          <Typography
+                            variant="subtitle1"
+                            sx={{ maxHeight: 100, overflow: 'hidden', textOverflow: 'ellipsis' }}
+                            color="text.secondary"
+                          >
+                            {getDescriptionText(item.description)}
                           </Typography>
                         </Box>
                         <CardActions sx={{ justifyContent: 'flex-end' }}>

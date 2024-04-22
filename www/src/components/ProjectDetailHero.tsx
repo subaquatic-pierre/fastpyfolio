@@ -13,7 +13,7 @@ const ProjectDetailHero: React.FC<Props> = ({ imageSrc, title, description }) =>
       <Box
         sx={{
           position: 'relative',
-          height: 500,
+          minHeight: 500,
           maxWidth: '100%',
           overflow: 'hidden',
           objectPosition: 'center',

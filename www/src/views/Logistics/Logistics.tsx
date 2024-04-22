@@ -36,6 +36,11 @@ const Logistics = (): JSX.Element => {
         <Trucking />
       </Container>
       <Video />
+      <Box bgcolor={'alternate.main'}>
+        <Container>
+          <Jobs />
+        </Container>
+      </Box>
       <Container>
         <Features />
       </Container>
@@ -55,11 +60,7 @@ const Logistics = (): JSX.Element => {
       <Container>
         <Pricings />
       </Container>
-      <Box bgcolor={'alternate.main'}>
-        <Container>
-          <Jobs />
-        </Container>
-      </Box>
+
       <Container>
         <AboutBottom />
       </Container>

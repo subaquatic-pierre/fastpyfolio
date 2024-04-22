@@ -18,7 +18,7 @@ const Jobs = (): JSX.Element => {
 
     const projects = await api.getProjects();
 
-    setData(projects.filter((item) => item.tags.includes('Featured')).slice(0, 3));
+    setData(projects.filter((item) => item.tags.includes('featured')).slice(0, 3));
   };
 
   useEffect(() => {
