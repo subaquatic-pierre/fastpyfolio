@@ -12,6 +12,7 @@ export type Blog = {
   createdAt?: string;
   updatedAt?: string;
   authorId: string;
+  videoUrl?: string;
 };
 
 export const reduceBlog = (data: any): Blog | null => {

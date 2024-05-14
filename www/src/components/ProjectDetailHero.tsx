@@ -13,7 +13,7 @@ const ProjectDetailHero: React.FC<Props> = ({ imageSrc, title, description }) =>
       <Box
         sx={{
           position: 'relative',
-          minHeight: 500,
+          minHeight: 600,
           maxWidth: '100%',
           overflow: 'hidden',
           objectPosition: 'center',
@@ -21,7 +21,12 @@ const ProjectDetailHero: React.FC<Props> = ({ imageSrc, title, description }) =>
           justifyContent: 'center'
         }}
       >
-        <Box component="img" src={imageSrc} alt={title} sx={{ objectFit: 'cover', width: { sm: '100%' }, maxHeight: 500 }} />
+        <Box
+          component="img"
+          src={imageSrc}
+          alt={title}
+          sx={{ objectFit: 'cover', width: { sm: '100%' }, maxHeight: 600, overflow: 'hidden' }}
+        />
       </Box>
       <Box
         sx={{

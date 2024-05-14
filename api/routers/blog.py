@@ -44,7 +44,7 @@ async def list_categories(req: Request) -> CategoryListRes:
 
 
 @router.get("/{id}")
-async def get_project(id: str) -> BlogSchema:
+async def get_blog(id: str) -> BlogSchema:
     try:
         id = ObjectId(id)
         project = Blog.find_one({"_id": ObjectId(id)})
@@ -66,7 +66,7 @@ async def get_project(id: str) -> BlogSchema:
 
 
 @router.put("/{id}")
-async def update_project(id: str, body: UpdateBlogReq) -> BlogSchema:
+async def update_blog(id: str, body: UpdateBlogReq) -> BlogSchema:
     blog = Blog.find_one({"_id": ObjectId(id)})
     if blog:
         for attr, value in body:
@@ -96,7 +96,7 @@ async def update_project(id: str, body: UpdateBlogReq) -> BlogSchema:
 
 
 @router.post("")
-async def create_project(body: CreateBlogReq) -> CreateBlogRes:
+async def create_blog(body: CreateBlogReq) -> CreateBlogRes:
     data = json.loads(body.model_dump_json())
     data["author_id"] = ObjectId(data["author_id"])
     blog = Blog(**data)
@@ -107,7 +107,7 @@ async def create_project(body: CreateBlogReq) -> CreateBlogRes:
 
 
 @router.delete("/{id}")
-async def delete_project(id: str) -> DeleteBlogRes:
+async def delete_blog(id: str) -> DeleteBlogRes:
     delete_res = Blog.delete(id)
 
     return {

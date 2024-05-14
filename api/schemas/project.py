@@ -10,6 +10,7 @@ class CreateProjectReq(BaseSchema):
     tags: List[str] = []
     content: str | None
     www_url: str | None = None
+    video_url: str | None = ""
     github_url: str | None = None
     slug: str | None = None
     featured_image_url: str | None = None
@@ -41,6 +42,7 @@ class UpdateProjectReq(BaseSchema):
     www_url: Optional[str] = None
     github_url: Optional[str] = None
     slug: Optional[str] = None
+    video_url: str | None = ""
     updated_at: str | None = None
     created_at: str | None = None
     featured_image_url: str | None = None

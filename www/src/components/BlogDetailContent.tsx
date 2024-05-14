@@ -24,6 +24,11 @@ const BlogDetailContent: React.FC<Props> = ({ blog }) => {
           })}
         >
           <BlogAuthorBox slug={blog.slug} category={blog.category} large date={new Date(blog.updatedAt)} author={blog.authorId} />
+          {blog.videoUrl && (
+            <Stack direction="row" justifyContent={'center'}>
+              <iframe style={{ border: 'none' }} width="420" height="315" src={blog.videoUrl}></iframe>
+            </Stack>
+          )}
           <EditorJSOutput data={blog.content} />
         </Stack>
       </Container>

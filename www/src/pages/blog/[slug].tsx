@@ -53,6 +53,7 @@ const BlogDetailPage: React.FC<PageProps> = ({ settings }) => {
               imageSrc={data.featuredImageUrl !== '' ? data.featuredImageUrl : '/images/default-blog-hero.png'}
               title={data.title}
             />
+
             <BlogDetailContent blog={data} />
           </>
         ) : (

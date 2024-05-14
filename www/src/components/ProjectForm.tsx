@@ -57,14 +57,15 @@ const ProjectForm: React.FC<Props> = ({ data }) => {
   const [files, setFiles] = useState<FormFiles>(emptyFiles);
 
   const validation = Yup.object().shape({
-    title: Yup.string().max(255).required('Title is required'),
+    title: Yup.string().max(70).required('Title is required'),
     slug: Yup.string()
       .max(255)
       .matches(/^[a-z0-9]+(?:-[a-z0-9]+)*$/gim, { message: 'Slug is not valid' })
       .required('Slug is required'),
-    description: Yup.string().required('Description is required'),
+    description: Yup.string().max(400).required('Description is required'),
     githubUrl: Yup.string(),
-    wwwUrl: Yup.string()
+    wwwUrl: Yup.string(),
+    videoUrl: Yup.string()
   });
 
   const formik = useFormik({
@@ -371,6 +372,26 @@ const ProjectForm: React.FC<Props> = ({ data }) => {
             {!!submitErrors.wwwUrl && (
               <FormHelperText error id="standard-weight-helper-text-title">
                 {submitErrors.wwwUrl}
+              </FormHelperText>
+            )}
+          </Stack>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Stack spacing={1}>
+            <InputLabel htmlFor="videoUrl">Video URL</InputLabel>
+            <OutlinedInput
+              id="videoUrl"
+              value={formik.values.videoUrl}
+              name="videoUrl"
+              onBlur={formik.handleBlur}
+              onChange={handleInputChange}
+              placeholder="https://www.youtube.com/ty-video"
+              fullWidth
+              error={!!submitErrors.videoUrl}
+            />
+            {!!submitErrors.videoUrl && (
+              <FormHelperText error id="standard-weight-helper-text-title">
+                {submitErrors.videoUrl}
               </FormHelperText>
             )}
           </Stack>

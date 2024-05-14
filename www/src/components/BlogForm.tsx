@@ -53,12 +53,12 @@ const BlogForm: React.FC<Props> = ({ blogData }) => {
   const [files, setFiles] = useState<FormFiles>(emptyFiles);
 
   const validation = Yup.object().shape({
-    title: Yup.string().max(255).required('Title is required'),
+    title: Yup.string().max(70).required('Title is required'),
     slug: Yup.string()
       .max(255)
       .matches(/^[a-z0-9]+(?:-[a-z0-9]+)*$/gim, { message: 'Slug is not valid' })
       .required('Slug is required'),
-    description: Yup.string()
+    description: Yup.string().max(400)
   });
 
   const formik = useFormik({
@@ -325,11 +325,30 @@ const BlogForm: React.FC<Props> = ({ blogData }) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Stack spacing={1}>
+            <InputLabel htmlFor="videoUrl">Video URL</InputLabel>
+            <OutlinedInput
+              id="videoUrl"
+              value={formik.values.videoUrl}
+              name="videoUrl"
+              onBlur={formik.handleBlur}
+              onChange={handleInputChange}
+              placeholder="https://www.youtube.com/yt-vedoe"
+              fullWidth
+              error={!!submitErrors.videoUrl}
+            />
+            {!!submitErrors.videoUrl && (
+              <FormHelperText error id="standard-weight-helper-text-title">
+                {submitErrors.videoUrl}
+              </FormHelperText>
+            )}
+          </Stack>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Stack spacing={1}>
             <InputLabel htmlFor="slug">Category</InputLabel>
             <BlogFormCategorySelect value={category} setValue={setCategory} />
           </Stack>
         </Grid>
-        <Grid item xs={12} md={6}></Grid>
         {blogData.id && (
           <>
             <Grid item xs={12} md={6}>

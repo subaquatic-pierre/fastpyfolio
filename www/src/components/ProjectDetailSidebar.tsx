@@ -24,7 +24,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import { formatDate } from 'utils/date';
 import { Project } from 'models/project';
-import { GithubFilled } from '@ant-design/icons';
+import { GithubFilled, YoutubeFilled } from '@ant-design/icons';
 
 const validationSchema = yup.object({
   email: yup.string().trim().email('Please enter a valid email address').required('Email is required.'),
@@ -97,6 +97,16 @@ const ProjectDetailSidebar: React.FC<Props> = ({ project }) => {
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText primary="Website" />
+              </ListItemButton>
+            )}
+            {project.videoUrl && (
+              <ListItemButton href={project.videoUrl} target="_blank">
+                <ListItemAvatar>
+                  <Avatar>
+                    <YoutubeFilled />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText primary="Video" />
               </ListItemButton>
             )}
           </List>

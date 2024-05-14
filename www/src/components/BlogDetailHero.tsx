@@ -13,7 +13,7 @@ const BlogDetailHero: React.FC<Props> = ({ imageSrc, title, description }) => {
       <Box
         sx={{
           position: 'relative',
-          minHeight: 500,
+          minHeight: 600,
           maxWidth: '100%',
           overflow: 'hidden',
           objectPosition: 'center',
@@ -25,7 +25,7 @@ const BlogDetailHero: React.FC<Props> = ({ imageSrc, title, description }) => {
           component="img"
           src={imageSrc}
           alt={title}
-          sx={{ objectFit: 'cover', width: { sm: '100%' }, maxHeight: 500, overflow: 'hidden' }}
+          sx={{ objectFit: 'cover', width: { sm: '100%' }, maxHeight: 600, overflow: 'hidden' }}
         />
       </Box>
       <Box
@@ -42,7 +42,7 @@ const BlogDetailHero: React.FC<Props> = ({ imageSrc, title, description }) => {
         }}
       >
         <Container sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Box maxWidth={700} mt={8}>
+          <Box maxWidth={700} mt={{ md: 8 }}>
             <Typography variant="h2" mb={2} textAlign="center" color="white">
               {title}
             </Typography>

@@ -8,6 +8,7 @@ class CreateBlogReq(BaseSchema):
     title: str
     description: str
     featured_image_url: str
+    video_url: str | None = ""
     content: str
     slug: str
     author_id: str
@@ -41,6 +42,7 @@ class UpdateBlogReq(BaseSchema):
     content: Optional[str] = None
     updated_at: str | None = None
     created_at: str | None = None
+    video_url: str | None = ""
 
 
 class CategoryListRes(BaseSchema):

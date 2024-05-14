@@ -10,6 +10,7 @@ export type Project = {
   content?: string;
   tags?: string[];
   featuredImageUrl?: string;
+  videoUrl?: string;
 };
 
 export const reduceProject = (data: any): Project | null => {
