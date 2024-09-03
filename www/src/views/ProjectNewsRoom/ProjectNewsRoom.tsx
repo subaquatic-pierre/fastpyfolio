@@ -44,11 +44,12 @@ const ProjectNewsRoom: React.FC<Props> = ({ data }): JSX.Element => {
   };
 
   const handleTagClick = (tag: string) => {
-    if (activeTags.indexOf(tag) === -1) {
-      setActiveTags((old) => [...old, tag]);
-    } else {
-      setActiveTags((old) => old.filter((item) => item !== tag));
-    }
+    setActiveTags([tag]);
+    // if (activeTags.indexOf(tag) === -1) {
+    //   setActiveTags((old) => [...old, tag]);
+    // } else {
+    //   setActiveTags((old) => old.filter((item) => item !== tag));
+    // }
   };
 
   const handleFilterProjects = (activeTags: string[], projectCount: number) => {
