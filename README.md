@@ -11,7 +11,7 @@
 
 FastPyFolio is the home of my Website.
 
-[NebulaDev.io](https://www.nebuladev.io)
+Currently not live
 
 ## Development
 
